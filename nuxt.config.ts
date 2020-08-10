@@ -1,6 +1,9 @@
 import type { NuxtConfig } from '@nuxt/types'
 import path from 'path'
 
+// * 개발 모드인지를 확인합니다.
+const isProductionMode = process.env.NODE_ENV == 'production'
+
 // * ExperimentalWarning 오류를 숨깁니다.
 process.removeAllListeners('warning')
 
@@ -89,4 +92,13 @@ const nuxtConfig: NuxtConfig | {
         }
     }
 }
+
+// * 런타임 캐싱을 개발 모드에선 사용하지 않습니다.
+// * HMR 사용 시 캐싱을 막기위한 조치입니다.
+if (!isProductionMode) {
+    const config = (nuxtConfig as NuxtConfig)
+    if (config && config.pwa && config.pwa.runtimeCaching)
+        delete config.pwa.runtimeCaching
+}
+
 export default nuxtConfig
