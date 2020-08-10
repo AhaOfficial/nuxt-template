@@ -6,26 +6,26 @@
         -->
         <h1>upVoteCount: {{ $vote.upVoteCount }}</h1>
         <h1>downVoteCount: {{ $vote.downVoteCount }}</h1>
+        <Card/>
     </div>
 </template>
 
 <script lang="ts">
-    import * as VueAPI from '@vue/composition-api'
-
-    // 스토어 인스턴스를 임포트 해옵니다.
+    import { VueAPI } from '~/core'
+    import { Card } from '~/components'
     import { vote } from '~/store'
 
     export default VueAPI.defineComponent({
+        components: { Card },
         setup(props, context) {
-
             // 1초마다 추천을 발생시킵니다.
             // (1초마다 템플릿에 값이 반영되는 것을 볼 수 있습니다.)
             setInterval(() => vote.upVote(), 1000)
 
             // 스토어 값을 자동으로 템플릿 태그에 바인딩합니다.
             return {
-                $vote: vote.bind()
+                $vote: vote.bind(),
             }
-        }
+        },
     })
 </script>
