@@ -9,7 +9,7 @@
         "@vue/composition-api": "1.0.0-beta.8",
         "nuxt": "2.14.1",
         "nuxt-property-decorator": "2.7.2",
-        "vue-state-store": "^0.6.0",
+        "vue-state-store": "^0.8.2",
         "vuex-class": "0.3.2"
     },
     "scripts": {
