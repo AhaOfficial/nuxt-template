@@ -4,38 +4,42 @@ import qs from 'qs';
 class CORE {
 	constructor() {}
 
-	_HEADER = (o: { type: string; tocken: boolean }) => {
-		const { type, tocken } = o;
+	private _HEADER = (axiosConfig: { type: string; token: boolean }) => {
+		const { type, token } = axiosConfig;
 
-		const O: { [type in string]: string } = {
+		const contentType: { [type in string]: string } = {
 			FILE: 'multipart/form-data',
 			FORM: 'application/x-www-form-urlencode',
 			JSON: 'application/json'
 		};
 
 		// TODO API 스펙 나오면 정의 합시당.
-		const T = tocken ? `Bearer ${tocken}` : '';
+		const isSendToken = token ? `Bearer ${token}` : '';
 
 		const RET = {
 			'Cache-Control': 'no-cache',
 			Pragma: 'no-cache',
-			'Content-Type': O.type || 'JSON',
-			Authorization: T
+			'Content-Type': contentType.type || 'JSON',
+			Authorization: isSendToken
 		};
 
 		return RET;
 	};
 
-	_GET = async <T>(u: string, v?: T, o: { type: string; tocken: boolean } = { type: '', tocken: false }): Promise<AxiosResponse<any>> => {
+	_GET = async <T>(
+		url: string,
+		value?: T,
+		axiosConfig: { type: string; token: boolean } = { type: '', token: false }
+	): Promise<AxiosResponse<any>> => {
 		try {
 			return await Axios.get(
-				u,
+				url,
 				Object.assign(
 					{},
 					{
-						params: v,
+						params: value,
 						paramsSerializer: (v: T) => qs.stringify(v, { arrayFormat: 'repeat' }),
-						headers: this._HEADER(o)
+						headers: this._HEADER(axiosConfig)
 					}
 				)
 			);
@@ -44,40 +48,56 @@ class CORE {
 		}
 	};
 
-	_POST = async <T>(u: string, v?: T, o: { type: string; tocken: boolean } = { type: '', tocken: false }): Promise<AxiosResponse<any>> => {
+	_POST = async <T>(
+		url: string,
+		value?: T,
+		axiosConfig: { type: string; token: boolean } = { type: '', token: false }
+	): Promise<AxiosResponse<any>> => {
 		try {
-			return await Axios.post(u, v, Object.assign({}, { headers: this._HEADER(o) }));
+			return await Axios.post(url, value, Object.assign({}, { headers: this._HEADER(axiosConfig) }));
 		} catch (error) {
 			return error.response;
 		}
 	};
 
-	_PATCH = async <T>(u: string, v?: T, o: { type: string; tocken: boolean } = { type: '', tocken: false }): Promise<AxiosResponse<any>> => {
+	_PATCH = async <T>(
+		url: string,
+		value?: T,
+		axiosConfig: { type: string; token: boolean } = { type: '', token: false }
+	): Promise<AxiosResponse<any>> => {
 		try {
-			return await Axios.patch(u, v, Object.assign({}, { headers: this._HEADER(o) }));
+			return await Axios.patch(url, value, Object.assign({}, { headers: this._HEADER(axiosConfig) }));
 		} catch (error) {
 			return error.response;
 		}
 	};
 
-	_PUT = async <T>(u: string, v?: T, o: { type: string; tocken: boolean } = { type: '', tocken: false }): Promise<AxiosResponse<any>> => {
+	_PUT = async <T>(
+		url: string,
+		value?: T,
+		axiosConfig: { type: string; token: boolean } = { type: '', token: false }
+	): Promise<AxiosResponse<any>> => {
 		try {
-			return await Axios.put(u, v, Object.assign({}, { headers: this._HEADER(o) }));
+			return await Axios.put(url, value, Object.assign({}, { headers: this._HEADER(axiosConfig) }));
 		} catch (error) {
 			return error.response;
 		}
 	};
 
-	_DELETE = async <T>(u: string, v?: T, o: { type: string; tocken: boolean } = { type: '', tocken: false }): Promise<AxiosResponse<any>> => {
+	_DELETE = async <T>(
+		url: string,
+		value?: T,
+		axiosConfig: { type: string; token: boolean } = { type: '', token: false }
+	): Promise<AxiosResponse<any>> => {
 		try {
 			return await Axios.delete(
-				u,
+				url,
 				Object.assign(
 					{},
 					{
-						params: v,
+						params: value,
 						paramsSerializer: (v: T) => qs.stringify(v, { arrayFormat: 'repeat' }),
-						headers: this._HEADER(o)
+						headers: this._HEADER(axiosConfig)
 					}
 				)
 			);

@@ -36,6 +36,7 @@ export default VueAPI.defineComponent({
 		// sample api
 
 		useAPI();
+
 		return {};
 	}
 });
