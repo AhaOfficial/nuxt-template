@@ -22,10 +22,20 @@
 import * as VueAPI from '@vue/composition-api';
 import { Service } from '~/core/index';
 
+const useAPI = async () => {
+	const resp = await Service.sample();
+
+	console.log(resp);
+
+	return resp;
+};
+
 export default VueAPI.defineComponent({
 	setup(props, context) {
 		// *
-		Service.sample();
+		// sample api
+
+		useAPI();
 		return {};
 	}
 });

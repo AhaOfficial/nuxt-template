@@ -26,7 +26,7 @@ class CORE {
 		return RET;
 	};
 
-	_GET = async <T>(u: string, o: { type: string; tocken: boolean } = { type: '', tocken: false }, v?: T): Promise<AxiosResponse<any>> => {
+	_GET = async <T>(u: string, v?: T, o: { type: string; tocken: boolean } = { type: '', tocken: false }): Promise<AxiosResponse<any>> => {
 		try {
 			return await Axios.get(
 				u,
@@ -44,7 +44,7 @@ class CORE {
 		}
 	};
 
-	_POST = async <T>(u: string, o: { type: string; tocken: boolean }, v?: T): Promise<AxiosResponse<any>> => {
+	_POST = async <T>(u: string, v?: T, o: { type: string; tocken: boolean } = { type: '', tocken: false }): Promise<AxiosResponse<any>> => {
 		try {
 			return await Axios.post(u, v, Object.assign({}, { headers: this._HEADER(o) }));
 		} catch (error) {
@@ -52,7 +52,7 @@ class CORE {
 		}
 	};
 
-	_PATCH = async <T>(u: string, o: { type: string; tocken: boolean }, v?: T): Promise<AxiosResponse<any>> => {
+	_PATCH = async <T>(u: string, v?: T, o: { type: string; tocken: boolean } = { type: '', tocken: false }): Promise<AxiosResponse<any>> => {
 		try {
 			return await Axios.patch(u, v, Object.assign({}, { headers: this._HEADER(o) }));
 		} catch (error) {
@@ -60,7 +60,7 @@ class CORE {
 		}
 	};
 
-	_PUT = async <T>(u: string, o: { type: string; tocken: boolean }, v?: T): Promise<AxiosResponse<any>> => {
+	_PUT = async <T>(u: string, v?: T, o: { type: string; tocken: boolean } = { type: '', tocken: false }): Promise<AxiosResponse<any>> => {
 		try {
 			return await Axios.put(u, v, Object.assign({}, { headers: this._HEADER(o) }));
 		} catch (error) {
@@ -68,7 +68,7 @@ class CORE {
 		}
 	};
 
-	_DELETE = async <T>(u: string, o: { type: string; tocken: boolean }, v?: T): Promise<AxiosResponse<any>> => {
+	_DELETE = async <T>(u: string, v?: T, o: { type: string; tocken: boolean } = { type: '', tocken: false }): Promise<AxiosResponse<any>> => {
 		try {
 			return await Axios.delete(
 				u,
