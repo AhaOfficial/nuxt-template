@@ -20,9 +20,13 @@
 
 <script lang="ts">
 import * as VueAPI from '@vue/composition-api';
+import { Service } from '~/core/index';
+
 export default VueAPI.defineComponent({
 	setup(props, context) {
 		// *
+		Service.sample();
+		return {};
 	}
 });
 </script>
