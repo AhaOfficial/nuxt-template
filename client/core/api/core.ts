@@ -23,7 +23,7 @@ class CORE {
 			Authorization: T
 		};
 
-		return { RET };
+		return RET;
 	};
 
 	_GET = async <T>(u: string, o: { type: string; tocken: boolean } = { type: '', tocken: false }, v?: T): Promise<AxiosResponse<any>> => {
