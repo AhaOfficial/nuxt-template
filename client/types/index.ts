@@ -1,1 +1,1 @@
-export * from './vuex'
+export default {};
