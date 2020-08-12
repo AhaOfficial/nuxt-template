@@ -5,7 +5,7 @@
 	"dependencies": {
 		"@nuxt/typescript-runtime": "1.0.0",
 		"@nuxtjs/axios": "5.12.1",
-		"@nuxtjs/tailwindcss": "^3.0.0",
+		"@nuxtjs/tailwindcss": "^2.0.0",
 		"@vue/composition-api": "1.0.0-beta.8",
 		"nuxt": "2.14.1",
 		"nuxt-property-decorator": "2.7.2",
@@ -37,7 +37,7 @@
 		"postcss-import": "^12.0.1",
 		"postcss-nested": "^4.2.3",
 		"prettier": "^2.0.5",
-		"tailwindcss": "^1.6.2",
+		"purgecss-whitelister": "^2.4.0",
 		"vuex-module-decorators": "^0.17.0"
 	}
 }

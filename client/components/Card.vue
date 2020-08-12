@@ -19,27 +19,25 @@
 </template>
 
 <script lang="ts">
-import * as VueAPI from '@vue/composition-api';
-import { Service } from '~/core/index';
+import * as VueAPI from '@vue/composition-api'
+import { Service } from '~/core/index'
 
 const useAPI = async () => {
-	const resp = await Service.sample();
-
-	console.log(resp);
-
-	return resp;
-};
+	const resp = await Service.sample()
+	console.log(resp)
+	return resp
+}
 
 export default VueAPI.defineComponent({
 	setup(props, context) {
 		// *
 		// sample api
 
-		useAPI();
+		useAPI()
 
-		return {};
+		return {}
 	}
-});
+})
 </script>
 
 <style lang="postcss" scoped>

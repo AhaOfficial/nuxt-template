@@ -1,21 +1,21 @@
-import path from 'path';
-import type { NuxtConfig } from '@nuxt/types';
+import path from 'path'
+import type { NuxtConfig } from '@nuxt/types'
 
 // * 개발 모드인지를 확인합니다.
-const isProductionMode = process.env.NODE_ENV == 'production';
+const isProductionMode = process.env.NODE_ENV == 'production'
 
 // * ExperimentalWarning 오류를 숨깁니다.
-process.removeAllListeners('warning');
+process.removeAllListeners('warning')
 
 // * 매 빌드마다 버전이 자동으로 색인됩니다.
-const cacheVersion = `_${Math.floor(+new Date() / 1000)}`;
+const cacheVersion = `_${Math.floor(+new Date() / 1000)}`
 
 const nuxtConfig:
 	| NuxtConfig
 	| {
 			build: {
-				postcss: any;
-			};
+				postcss: any
+			}
 	  } = {
 	srcDir: './client',
 	env: {},
@@ -55,9 +55,21 @@ const nuxtConfig:
 		}
 	},
 	loading: { color: '#3B8070' },
-	css: ['~/assets/css/main.css'],
+	css: ['~/assets/css/main.css', '~/assets/css/tailwind.css'],
 	buildModules: ['@nuxt/typescript-build', '@nuxtjs/tailwindcss', '@nuxtjs/pwa'],
-	modules: ['@nuxtjs/axios'],
+	modules: ['@nuxtjs/axios', 'nuxt-purgecss'],
+	purgeCSS: {
+		enabled: ({ isDev, isClient }) => !isDev && isClient, // or `false` when in dev/debug mode
+		paths: ['components/**/*.vue', 'layouts/**/*.vue', 'pages/**/*.vue', 'plugins/**/*.js'],
+		styleExtensions: ['.css'],
+		whitelist: ['body', 'html', 'nuxt-progress'],
+		extractors: [
+			{
+				extractor: content => content.match(/[A-z0-9-:\\/]+/g) || [],
+				extensions: ['html', 'vue', 'js']
+			}
+		]
+	},
 	axios: {},
 	plugins: ['~/plugins/composition-api'],
 	tailwindcss: {
@@ -115,13 +127,13 @@ const nuxtConfig:
 			lang: 'kr'
 		}
 	}
-};
+}
 
 // * 런타임 캐싱을 개발 모드에선 사용하지 않습니다.
 // * HMR 사용 시 캐싱을 막기위한 조치입니다.
 if (!isProductionMode) {
-	const config = nuxtConfig as NuxtConfig;
-	if (config && config.pwa && config.pwa.runtimeCaching) delete config.pwa.runtimeCaching;
+	const config = nuxtConfig as NuxtConfig
+	if (config && config.pwa && config.pwa.runtimeCaching) delete config.pwa.runtimeCaching
 }
 
-export default nuxtConfig;
+export default nuxtConfig
