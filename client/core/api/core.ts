@@ -19,11 +19,19 @@ class CORE {
 		const RET = {
 			'Cache-Control': 'no-cache',
 			Pragma: 'no-cache',
-			'Content-Type': contentType.type || 'JSON',
+			'Content-Type': contentType[type] || 'JSON',
 			Authorization: isSendToken
 		};
 
 		return RET;
+	};
+
+	private _NOMALIZER = async (response: Promise<AxiosResponse>) => {
+		const { data } = await response;
+
+		// TODO 추후 API 스펙이 나온 후 추가 로직 구현 할 예정입니다.
+
+		return { code: '', message: '', data };
 	};
 
 	_GET = async <T>(
