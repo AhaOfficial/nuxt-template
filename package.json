@@ -10,6 +10,7 @@
         "nuxt": "2.14.1",
         "nuxt-compress": "^2.0.0",
         "nuxt-lifecycle": "^1.0.1",
+        "nuxt-ssr-cache": "^1.5.2",
         "vue-state-store": "^0.8.11"
     },
     "scripts": {
