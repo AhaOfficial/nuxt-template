@@ -8,14 +8,15 @@
         "@nuxtjs/tailwindcss": "^3.0.0",
         "@vue/composition-api": "1.0.0-beta.8",
         "nuxt": "2.14.1",
+        "nuxt-lifecycle": "file:nuxt-lifecycle",
         "nuxt-property-decorator": "2.7.2",
-        "vue-state-store": "^0.8.2",
+        "vue-state-store": "^0.8.11",
         "vuex-class": "0.3.2"
     },
     "scripts": {
         "dev": "nuxt-ts",
-        "build": "nuxt-ts build",
-        "start": "nuxt-ts start",
+        "build": "nuxt-ts build --modern=server",
+        "start": "nuxt-ts start --modern=server",
         "generate": "nuxt-ts build --target static && nuxt-ts export",
         "lint": "prettier --write \"./**/*.{ts,vue}\"",
         "clean": "rm -rf .nuxt"
