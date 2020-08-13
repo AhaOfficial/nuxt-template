@@ -5,17 +5,17 @@
  ** Default: https://github.com/tailwindcss/tailwindcss/blob/master/stubs/defaultConfig.stub.js
  */
 module.exports = {
-	theme: {},
-	variants: {},
-	plugins: [],
-	purge: {
-		enabled: true,
-		content: ['components/**/*.vue', 'layouts/**/*.vue', 'pages/**/*.vue', 'plugins/**/*.ts', 'nuxt.config.ts']
-	},
-	options: {
-		whitelist: ['body', 'html', 'nuxt-progress']
-	}
-};
+  theme: {},
+  variants: {},
+  plugins: [],
+  purge: {
+    enabled: true,
+    content: ['components/**/*.vue', 'layouts/**/*.vue', 'pages/**/*.vue', 'plugins/**/*.ts', 'nuxt.config.ts']
+  },
+  options: {
+    whitelist: ['body', 'html', 'nuxt-progress']
+  }
+}
 
 // styleExtensions: ['.css'],
 // 	paths: ['components/**/*.vue', 'layouts/**/*.vue', 'pages/**/*.vue', 'plugins/**/*.js'],
