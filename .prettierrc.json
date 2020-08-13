@@ -1,12 +1,12 @@
 {
-    "trailingComma": "none",
-    "tabWidth": 2,
-    "semi": false,
-    "singleQuote": true,
-		"useTabs": false,
-		"printWidth": 150,
-		"bracketSpacing": true,
-		"arrowParens": "avoid",
-		"endOfLine": "crlf",
-    "vueIndentScriptAndStyle": false
+  "trailingComma": "none",
+  "tabWidth": 2,
+  "semi": false,
+  "singleQuote": true,
+  "useTabs": false,
+  "printWidth": 150,
+  "bracketSpacing": true,
+  "arrowParens": "avoid",
+  "endOfLine": "crlf",
+  "vueIndentScriptAndStyle": false
 }

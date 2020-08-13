@@ -1,20 +1,15 @@
 {
-	"editor.tabSize": 2,
-	"editor.insertSpaces": true,
-	"eslint.enable": true,
-	"editor.formatOnType": false,
-	"editor.formatOnSave": false,
-	"editor.codeActionsOnSave": {
-		"source.fixAll.eslint": true
-	},
-	"eslint.alwaysShowStatus": true,
-	"eslint.validate": [
-		"vue",
-		"js",
-		"ts",
-		"typescript"
-	],
-	"eslint.options": {
-		"extensions": [".js", ".jsx", ".ts", ".tsx"]
-	}
+  "editor.tabSize": 2,
+  "editor.insertSpaces": true,
+  "eslint.enable": true,
+  "editor.formatOnType": false,
+  "editor.formatOnSave": false,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
+  "eslint.alwaysShowStatus": true,
+  "eslint.validate": ["vue", "js", "ts", "typescript"],
+  "eslint.options": {
+    "extensions": [".js", ".jsx", ".ts", ".tsx"]
+  }
 }
