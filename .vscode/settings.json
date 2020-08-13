@@ -1,5 +1,6 @@
 {
 	"editor.tabSize": 2,
+	"editor.insertSpaces": true,
 	"eslint.enable": true,
 	"editor.formatOnType": false,
 	"editor.formatOnSave": false,
