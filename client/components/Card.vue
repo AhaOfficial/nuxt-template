@@ -38,11 +38,11 @@ const useAPI = async () => {
 	const _delete = await Service.sampleDELETE()
 	const _patch = await Service.samplePATCH({ title: 'foo' })
 
-	console.log(`_get    !!!! `, _get)
-	console.log('_post   !!!!', _post)
-	console.log('_put    !!!!', _put)
-	console.log('_patch  !!!!', _patch)
-	console.log('_delete !!!!', _delete)
+	// console.log(`_get    !!!! `, _get)
+	// console.log('_post   !!!!', _post)
+	// console.log('_put    !!!!', _put)
+	// console.log('_patch  !!!!', _patch)
+	// console.log('_delete !!!!', _delete)
 
 	return {}
 }

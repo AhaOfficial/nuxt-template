@@ -31,29 +31,25 @@ const nuxtConfig:
 			{
 				hid: 'description',
 				name: 'description',
-				content: 'Nuxt.js TypeScript project',
-			},
+				content: 'Nuxt.js TypeScript project'
+			}
 		],
-		link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
+		link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]
 	},
 	build: {
 		postcss: {
 			plugins: {
-				tailwindcss: path.resolve('./client/config/tailwind.config.js'),
-			},
+				tailwindcss: path.resolve('./client/config/tailwind.config.js')
+			}
 		},
 		cache: true,
 		parallel: true,
-		hardSource: true,
+		hardSource: true
 	},
 	loading: { color: '#3B8070' },
 	css: ['~/assets/css/main.css', '~/assets/css/tailwind.css'],
-	buildModules: [
-		'@nuxt/typescript-build',
-		'@nuxtjs/tailwindcss',
-		'@nuxtjs/pwa',
-	],
-	modules: ['@nuxtjs/axios'], //, 'nuxt-lifecycle'
+	buildModules: ['@nuxt/typescript-build', '@nuxtjs/tailwindcss', '@nuxtjs/pwa'],
+	modules: ['@nuxtjs/axios', 'nuxt-lifecycle'],
 	purgeCSS: {
 		enabled: ({ isDev, isClient }) => !isDev && isClient, // or `false` when in dev/debug mode
 		paths: ['components/**/*.vue', 'layouts/**/*.vue', 'pages/**/*.vue', 'plugins/**/*.js'],
@@ -71,7 +67,7 @@ const nuxtConfig:
 	tailwindcss: {
 		configPath: '~/config/tailwind.config.js',
 		cssPath: '~/assets/css/tailwind.css',
-		exposeConfig: false,
+		exposeConfig: false
 	},
 	pwa: {
 		// ? Workbox 공식 설명
@@ -105,21 +101,20 @@ const nuxtConfig:
 						cacheName: `global${cacheVersion}`,
 						cacheExpiration: {
 							// maxEntries: 500, // * 500 개 까지만 구성합니다.
-							maxAgeSeconds: 12 * (60 * 60), // * 12시간 동안 유효합니다.
-						},
-					},
-				},
-			],
-		},
-	},
+							maxAgeSeconds: 12 * (60 * 60) // * 12시간 동안 유효합니다.
+						}
+					}
+				}
+			]
+		}
+	}
 }
 
 // * 런타임 캐싱을 개발 모드에선 사용하지 않습니다.
 // * HMR 사용 시 캐싱을 막기위한 조치입니다.
 if (!isProductionMode) {
 	const config = nuxtConfig as NuxtConfig
-	if (config && config.pwa && config.pwa.runtimeCaching)
-		delete config.pwa.runtimeCaching
+	if (config && config.pwa && config.pwa.runtimeCaching) delete config.pwa.runtimeCaching
 }
 
 export default nuxtConfig
