@@ -6,7 +6,7 @@
         "@nuxt/typescript-runtime": "1.0.0",
         "@nuxtjs/axios": "5.12.1",
         "@nuxtjs/tailwindcss": "^3.0.0",
-        "@vue/composition-api": "^1.0.0-beta.9",
+        "@vue/composition-api": "^1.0.0-beta.8",
         "nuxt": "2.14.1",
         "nuxt-lifecycle": "^1.0.1",
         "vue-state-store": "^0.8.11"
