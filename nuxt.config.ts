@@ -53,7 +53,7 @@ const nuxtConfig:
 		'@nuxtjs/tailwindcss',
 		'@nuxtjs/pwa',
 	],
-	modules: ['@nuxtjs/axios', 'nuxt-lifecycle'],
+	modules: ['@nuxtjs/axios'], //, 'nuxt-lifecycle'
 	purgeCSS: {
 		enabled: ({ isDev, isClient }) => !isDev && isClient, // or `false` when in dev/debug mode
 		paths: ['components/**/*.vue', 'layouts/**/*.vue', 'pages/**/*.vue', 'plugins/**/*.js'],
