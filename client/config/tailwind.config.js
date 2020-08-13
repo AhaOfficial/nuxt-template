@@ -9,7 +9,20 @@ module.exports = {
 	variants: {},
 	plugins: [],
 	purge: {
-		enabled: false,
-		content: ['components/**/*.vue', 'layouts/**/*.vue', 'pages/**/*.vue', 'plugins/**/*.ts', 'mixins/**/*.ts']
+		enabled: true,
+		content: ['components/**/*.vue', 'layouts/**/*.vue', 'pages/**/*.vue', 'plugins/**/*.ts', 'nuxt.config.ts']
+	},
+	options: {
+		whitelist: ['body', 'html', 'nuxt-progress']
 	}
 };
+
+// styleExtensions: ['.css'],
+// 	paths: ['components/**/*.vue', 'layouts/**/*.vue', 'pages/**/*.vue', 'plugins/**/*.js'],
+// 	whitelist: ['body', 'html', 'nuxt-progress'],
+// 	extractors: [
+// 		{
+// 			extractor: content => content.match(/[A-z0-9-:\\/]+/g) || [],
+// 			extensions: ['html', 'vue', 'js']
+// 		}
+// 	]
