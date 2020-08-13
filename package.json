@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 {
     "name": "nuxt-template",
     "description": "Nuxt.js TypeScript project",
@@ -9,10 +8,7 @@
         "@nuxtjs/tailwindcss": "^3.0.0",
         "@vue/composition-api": "1.0.0-beta.8",
         "nuxt": "2.14.1",
-        "nuxt-lifecycle": "file:nuxt-lifecycle",
-        "nuxt-property-decorator": "2.7.2",
-        "vue-state-store": "^0.8.11",
-        "vuex-class": "0.3.2"
+        "vue-state-store": "^0.8.11"
     },
     "scripts": {
         "dev": "nuxt-ts",
@@ -30,7 +26,6 @@
         "@nuxtjs/eslint-module": "^2.0.0",
         "@nuxtjs/pwa": "^3.0.0-beta.20",
         "babel-eslint": "^10.1.0",
-        "direct-vuex": "^0.12.0",
         "eslint": "^7.6.0",
         "eslint-config-prettier": "^6.11.0",
         "eslint-plugin-nuxt": "^1.0.0",
@@ -40,51 +35,6 @@
         "postcss-nested": "^4.2.3",
         "prettier": "^2.0.5",
         "tailwindcss": "^1.6.2",
-        "vuex-module-decorators": "^0.17.0"
+        "purgecss-whitelister": "^2.4.0"
     }
 }
-=======
-{
-	"name": "nuxt-template",
-	"description": "Nuxt.js TypeScript project",
-	"version": "1.0.0",
-	"dependencies": {
-		"@nuxt/typescript-runtime": "1.0.0",
-		"@nuxtjs/axios": "5.12.1",
-		"@nuxtjs/tailwindcss": "^2.0.0",
-		"@vue/composition-api": "1.0.0-beta.8",
-		"nuxt": "2.14.1",
-		"nuxt-property-decorator": "2.7.2",
-		"vue-state-store": "^0.8.2",
-		"vuex-class": "0.3.2"
-	},
-	"scripts": {
-		"dev": "nuxt-ts",
-		"build": "nuxt-ts build",
-		"start": "nuxt-ts start",
-		"generate": "nuxt-ts build --target static && nuxt-ts export",
-		"lint": "prettier --write \"./**/*.{ts,vue}\"",
-		"clean": "rm -rf .nuxt"
-	},
-	"devDependencies": {
-		"@nuxt/types": "^2.14.1",
-		"@nuxt/typescript-build": "2.0.2",
-		"@nuxtjs/eslint-config": "^3.1.0",
-		"@nuxtjs/eslint-config-typescript": "^3.0.0",
-		"@nuxtjs/eslint-module": "^2.0.0",
-		"@nuxtjs/pwa": "^3.0.0-beta.20",
-		"babel-eslint": "^10.1.0",
-		"direct-vuex": "^0.12.0",
-		"eslint": "^7.6.0",
-		"eslint-config-prettier": "^6.11.0",
-		"eslint-plugin-nuxt": "^1.0.0",
-		"eslint-plugin-prettier": "^3.1.4",
-		"nuxt-purgecss": "^1.0.0",
-		"postcss-import": "^12.0.1",
-		"postcss-nested": "^4.2.3",
-		"prettier": "^2.0.5",
-		"purgecss-whitelister": "^2.4.0",
-		"vuex-module-decorators": "^0.17.0"
-	}
-}
->>>>>>> 7928b922f248cc9d6403dae1c24711f38a640609

@@ -1,21 +1,12 @@
 {
-    "trailingComma": "es5",
-    "tabWidth": 4,
+    "trailingComma": "none",
+    "tabWidth": 2,
     "semi": false,
     "singleQuote": true,
+		"useTabs": true,
+		"printWidth": 150,
+		"bracketSpacing": true,
+		"arrowParens": "avoid",
+		"endOfLine": "crlf",
     "vueIndentScriptAndStyle": false
 }
-=======
-{
-	"singleQuote": true,
-	"useTabs": true,
-	"semi": false,
-	"tabWidth": 2,
-	"trailingComma": "none",
-	"printWidth": 150,
-	"bracketSpacing": true,
-	"arrowParens": "avoid",
-	"endOfLine": "crlf",
-	"vueIndentScriptAndStyle": false 
-}
->>>>>>> 7928b922f248cc9d6403dae1c24711f38a640609

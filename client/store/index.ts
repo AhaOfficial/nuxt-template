@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 export * from './vote'
 export * from './todo'
 export * from './counter'
@@ -24,6 +23,3 @@ export * from './counter'
 //     console.log('prefetchClient ended')
 // })
 // Lifecycle.prefetch
-=======
-export * from './vote'
->>>>>>> 7928b922f248cc9d6403dae1c24711f38a640609

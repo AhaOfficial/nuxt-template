@@ -1,8 +1,5 @@
 {
-	"editor.fontWeight": "bold",
-	"editor.fontSize": 13,
 	"editor.tabSize": 2,
-
 	"eslint.enable": true,
 	"editor.formatOnType": false,
 	"editor.formatOnSave": false,
