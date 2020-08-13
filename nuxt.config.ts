@@ -55,6 +55,14 @@ const nuxtConfig: Config = {
 			}
 		},
 
+		// * 빌드된 결과물을 minify 합니다.
+		terser: isProductionMode ? true : false,
+
+		// * 모든 모듈을 트랜스파일합니다.
+		transpile: [
+			'*'
+		],
+
 		// * 빌드 가속용 옵션들입니다.
 		cache: true,
 		parallel: true,
@@ -71,15 +79,19 @@ const nuxtConfig: Config = {
 		'~/assets/css/tailwind.css'
 	],
 
+	// * Nuxt 의 빌드 시 빌드본에 포함될 모듈들을 지정합니다.
+	modules: [
+		'@nuxtjs/axios',
+		'nuxt-lifecycle',
+	],
+
 	// * Nuxt 의 빌드 시 작동되는 모듈들을 지정합니다.
 	buildModules: [
 		'@nuxt/typescript-build',
 		'@nuxtjs/tailwindcss',
-		'@nuxtjs/pwa'
+		'@nuxtjs/pwa',
+		"nuxt-compress"
 	],
-
-	// * Nuxt 의 빌드 시 빌드본에 포함될 모듈들을 지정합니다.
-	modules: ['@nuxtjs/axios', 'nuxt-lifecycle'],
 
 	// * Nuxt 의 기능을 확장할 플러그인들을 지정합니다.
 	plugins: ['~/plugins/composition-api'],
@@ -121,6 +133,16 @@ const nuxtConfig: Config = {
 		configPath: '~/config/tailwind.config.js',
 		cssPath: '~/assets/css/tailwind.css',
 		exposeConfig: false,
+	},
+
+	// * Brotli 압축을 적용합니다. (HTTPS 에 제한 적용)
+	"nuxt-compress": {
+		gzip: {
+			cache: true
+		},
+		brotli: {
+			threshold: 10240,
+		}
 	},
 
 	// * 프로그레시브 웹앱용 설정들을 명시합니다.
