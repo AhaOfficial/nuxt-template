@@ -1,5 +1,6 @@
 import type { NuxtConfig } from '@nuxt/types'
 import path from 'path'
+import webpack from 'webpack'
 
 // * 개발 모드인지를 확인합니다.
 const isProductionMode = process.env.NODE_ENV == 'production'
@@ -42,6 +43,11 @@ const nuxtConfig: Config = {
 			},
 		],
 
+		script: [
+			// * 사용하지 않는 Vuex 를 제거한 후 DI용으로 남은 의존성 만을 남깁니다.
+			{ innerHTML: 'window.vuex={Store:function(){return{replaceState:function(){}}}}', type: 'text/javascript', charset: 'utf-8' }
+		],
+
 		// * 파비콘 주소를 명시합니다.
 		link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]
 	},
@@ -67,6 +73,40 @@ const nuxtConfig: Config = {
 		cache: true,
 		parallel: true,
 		hardSource: true,
+
+		// * 번들을 최적화 할 수 있도록 시각화화여 알려줍니다.
+		analyze: false,
+
+		html: {
+			minify: {
+				collapseBooleanAttributes: true,
+				decodeEntities: true,
+				// * 인라인 CSS 미니파이어
+				// * Optimizer 가 있으므로 켤 필요 없습니다. https://github.com/nuxt/nuxt.js/blob/5fa768373da1adfd8c76145b2ec95b7824af93b4/packages/webpack/src/config/client.js#L62-L74
+				minifyCSS: false,
+				// * 인라인 JS 미니파이어
+				// * Terser 가 이미 있으므로 켤 필요 없습니다. https://github.com/nuxt/nuxt.js/blob/da4615a160f356d7368e66956758345d674948d0/packages/webpack/src/config/base.js#L183-L213
+				minifyJS: false,
+				processConditionalComments: true,
+				removeEmptyElements: true,
+				removeRedundantAttributes: true,
+				trimCustomFragments: true,
+				useShortDoctype: true
+			}
+		},
+
+		plugins: [
+			// * 
+			new webpack.IgnorePlugin(new RegExp("/vuex/")),
+		],
+
+		// * Nuxt 에서 사용하는 Webpack 설정을 확장합니다.
+		extend(config) {
+			// * 번들에서 제외할 모듈들을 명시합니다.
+			config.externals = {
+				vuex: 'vuex',
+			}
+		}
 	},
 
 
@@ -236,5 +276,13 @@ type Config = | NuxtConfig
 			postcss: any
 		}
 	}
+
+// * 빌드 결과물을 분석하기 위해 빌드 결과를 브라우저로 출력합니다.
+if (process.argv.length > 5 && process.argv[4] == '--analyze')
+	(nuxtConfig as NuxtConfig).build.analyze = true
+
+// * 빌드 결과물을 minify 하지 않고 그대로 내보냅니다.
+if (process.argv.length > 5 && process.argv[4] == '--plain')
+	(nuxtConfig as NuxtConfig).build.terser = false
 
 export default nuxtConfig

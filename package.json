@@ -3,11 +3,11 @@
     "description": "Nuxt.js TypeScript project",
     "version": "1.0.0",
     "dependencies": {
+        "@nuxt/core-edge": "^2.14.2-26618428.4a9c9a15",
         "@nuxt/typescript-runtime": "1.0.0",
         "@nuxtjs/axios": "5.12.1",
         "@nuxtjs/tailwindcss": "^3.0.0",
-        "@vue/composition-api": "^1.0.0-beta.8",
-        "nuxt": "2.14.1",
+        "@vue/composition-api": "1.0.0-beta.8",
         "nuxt-compress": "^2.0.0",
         "nuxt-lifecycle": "^1.0.1",
         "nuxt-ssr-cache": "^1.5.2",
@@ -16,12 +16,16 @@
     "scripts": {
         "dev": "nuxt-ts",
         "build": "nuxt-ts build --modern=server",
+        "build:report": "nuxt-ts build --modern=server --analyze",
+        "build:plain": "nuxt-ts build --modern=server --plain",
         "start": "nuxt-ts start --modern=server",
         "generate": "nuxt-ts build --target static && nuxt-ts export",
         "lint": "prettier --write \"./**/*.{ts,vue}\"",
         "clean": "rm -rf .nuxt"
     },
     "devDependencies": {
+        "@nuxt/builder-edge": "^2.14.2-26618428.4a9c9a15",
+        "@nuxt/cli-edge": "^2.14.2-26618428.4a9c9a15",
         "@nuxt/types": "^2.14.1",
         "@nuxt/typescript-build": "2.0.2",
         "@nuxtjs/eslint-config": "^3.1.0",
@@ -37,7 +41,7 @@
         "postcss-import": "^12.0.1",
         "postcss-nested": "^4.2.3",
         "prettier": "^2.0.5",
-        "tailwindcss": "^1.6.2",
-        "purgecss-whitelister": "^2.4.0"
+        "purgecss-whitelister": "^2.4.0",
+        "tailwindcss": "^1.6.2"
     }
 }
