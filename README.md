@@ -20,9 +20,9 @@
 
 ## 🥳 문서 모음
 
-- [🤔 기초 설명]([https://github.com/AhaOfficial/nuxt-template/blob/master/docs/%EA%B8%B0%EC%B4%88_%EC%84%A4%EB%AA%85.md](https://github.com/AhaOfficial/nuxt-template/blob/master/docs/기초_설명.md))
+- [🤔 기초 설명](https://github.com/AhaOfficial/nuxt-template/blob/master/docs/기초_설명.md)
 
-- [📔 사용하는 주요 기술]([https://github.com/AhaOfficial/nuxt-template/blob/master/docs/%EC%82%AC%EC%9A%A9%ED%95%98%EB%8A%94_%EC%A3%BC%EC%9A%94_%EA%B8%B0%EC%88%A0.md](https://github.com/AhaOfficial/nuxt-template/blob/master/docs/사용하는_주요_기술.md))
+- [📔 사용하는 주요 기술](https://github.com/AhaOfficial/nuxt-template/blob/master/docs/사용하는_주요_기술.md)
 - [👀 추천 강좌 목록]()
 
 <br/>
