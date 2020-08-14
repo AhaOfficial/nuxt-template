@@ -11,10 +11,24 @@ const cacheVersion = `_${Math.floor(+new Date() / 1000)}`
 
 // * 모든 Nuxt 설정이 여기에 담깁니다.
 const nuxtConfig: Config = {
+
+  // * USSR 을 적용합니다.
+  mode: 'universal',
+
+  // * 페이지 전체에 이동시 효과를 입힙니다. https://ko.nuxtjs.org/api/pages-transition/
+  transition: {
+    name: 'fade',
+    mode: 'out-in',
+  },
+
   // * HTML 헤더에 들어갈 내용을 명시합니다.
   head: {
+
     // * 브라우저 창 제목을 명시합니다.
     title: 'nuxt-template',
+
+    // * 브라우저 창 제목 템플릿을 명시합니다.
+    titleTemplate: '%s | with vue',
 
     // * 메타 태그들을 명시합니다.
     meta: [
@@ -68,9 +82,11 @@ const nuxtConfig: Config = {
       minify: {
         collapseBooleanAttributes: true,
         decodeEntities: true,
+
         // * 인라인 CSS 미니파이어
         // * Optimizer 가 있으므로 켤 필요 없습니다. https://github.com/nuxt/nuxt.js/blob/5fa768373da1adfd8c76145b2ec95b7824af93b4/packages/webpack/src/config/client.js#L62-L74
         minifyCSS: false,
+
         // * 인라인 JS 미니파이어
         // * Terser 가 이미 있으므로 켤 필요 없습니다. https://github.com/nuxt/nuxt.js/blob/da4615a160f356d7368e66956758345d674948d0/packages/webpack/src/config/base.js#L183-L213
         minifyJS: false,
@@ -83,7 +99,7 @@ const nuxtConfig: Config = {
     },
 
     plugins: [
-      // *
+      // * Vuex 의 의존 정보를 삭제합니다.
       new webpack.IgnorePlugin(new RegExp('/vuex/'))
     ],
 
@@ -145,17 +161,6 @@ const nuxtConfig: Config = {
       // * 몇 초 동안 보관할지를 명시합니다.
       ttl: 2
     }
-  },
-
-  // * Nuxt 의 기본 로딩 컴포넌트의 로딩바 설정이 담깁니다.
-  // * https://vue-nuxt.gitbook.io/nuxt/configuration/loading
-  loading: {
-    color: '#3B8070', // 로딩바 색상
-    failedColor: 'red', // 전환 중 오류 발생시 표시되는 로딩바 색상
-    height: '2px', // 화면에 표시되는 프로세스 바의 높이
-    throttle: 200, // 설정된 시간(ms)만큼 대기한 후, 프로세스 바를 화면에 표시합니다.
-    duration: 5000, // 프로세스 바의 최대 지속 시간(ms)
-    rtl: false // 프로세스 바의 진행 방향
   },
 
   // * 퍼지 CSS
@@ -229,7 +234,19 @@ const nuxtConfig: Config = {
         }
       ]
     }
-  }
+  },
+
+  // * Nuxt 의 기본 로딩 컴포넌트의 로딩바 설정이 담깁니다.
+  // * https://vue-nuxt.gitbook.io/nuxt/configuration/loading
+  loading: {
+    color: '#3B8070', // 로딩바 색상
+    failedColor: 'red', // 전환 중 오류 발생시 표시되는 로딩바 색상
+    height: '2px', // 화면에 표시되는 프로세스 바의 높이
+    throttle: 200, // 설정된 시간(ms)만큼 대기한 후, 프로세스 바를 화면에 표시합니다.
+    duration: 5000, // 프로세스 바의 최대 지속 시간(ms)
+    rtl: false // 프로세스 바의 진행 방향
+  },
+
 }
 
 // * 런타임 캐싱을 개발 모드에선 사용하지 않습니다.
@@ -246,10 +263,10 @@ process.removeAllListeners('warning')
 type Config =
   | NuxtConfig
   | {
-      build: {
-        postcss: any
-      }
+    build: {
+      postcss: any
     }
+  }
 
 // * 빌드 결과물을 분석하기 위해 빌드 결과를 브라우저로 출력합니다.
 if (process.argv.length > 5 && process.argv[4] == '--analyze') (nuxtConfig as NuxtConfig).build.analyze = true

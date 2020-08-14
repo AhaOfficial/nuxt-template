@@ -1,3 +1,13 @@
 .container {
   background-color: #2a272e;
 }
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: all .15s cubic-bezier(.55,0,.1,1);
+}
+
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
+}

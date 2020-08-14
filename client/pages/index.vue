@@ -6,6 +6,7 @@
 		-->
     <h1>upVoteCount: {{ $vote.upVoteCount }}</h1>
     <h1>downVoteCount: {{ $vote.downVoteCount }}</h1>
+    <nuxt-link to="/todo"><h1>페이지 이동</h1></nuxt-link>
     <Card />
   </div>
 </template>
