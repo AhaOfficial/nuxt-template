@@ -5,6 +5,7 @@
 <center><b>📮 넉스트 틀 버전:</b> 2020-베타</center>
 
 <br/>
+<br/>
 
 # 📦 넉스트 틀 (nuxt-template)
 
@@ -21,12 +22,10 @@
 ## 🥳 문서 모음
 
 - [🤔 기초 설명](https://github.com/AhaOfficial/nuxt-template/blob/master/docs/기초_설명.md)
-
 - [📔 사용하는 주요 기술](https://github.com/AhaOfficial/nuxt-template/blob/master/docs/사용하는_주요_기술.md)
 - [👀 추천 강좌 목록]()
 
 <br/>
-
 <br/>
 
 ## 🏷 저작권
