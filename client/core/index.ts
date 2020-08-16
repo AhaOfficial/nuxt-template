@@ -1,7 +1,15 @@
-import { Store, store } from 'vue-state-store'
-import * as VueAPI from '@vue/composition-api'
+// * 컴포지션 API 를 core 모듈로 선언합니다.
+export { VueAPI } from './vue-api'
 
-import { Service } from './api/index'
-import dayjs from './dayjs/index'
+// * vue-state-store 를 core 모듈로 선언합니다.
+export { Store, store } from './vue-state-store'
 
-export { store, Store, VueAPI, Service, dayjs }
+// * axios 의 래핑 클래스를 core 모듈로 선언합니다.
+export { RestAPI } from './rest-api'
+
+// * axios 로 백엔드와 직접 통신 가능하게
+// *래핑 해놓은 함수를 core 모듈로 선언합니다.
+export { BackEnd } from './backend'
+
+// * dayjs 의 래핑 함수를 core 모듈로 선언합니다.
+export { dayjs } from './dayjs'

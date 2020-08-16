@@ -23,20 +23,20 @@ import * as VueAPI from '@vue/composition-api'
 import { Service } from '~/core/index'
 
 const useAPI = async () => {
-  const _get = await Service.sampleGET()
-  const _post = await Service.samplePOST({
-    title: 'foo',
-    body: 'bar',
-    userId: 1
-  })
-  const _put = await Service.samplePUT({
-    id: 1,
-    title: 'foo',
-    body: 'bar',
-    userId: 1
-  })
-  const _delete = await Service.sampleDELETE()
-  const _patch = await Service.samplePATCH({ title: 'foo' })
+  // const _get = await Service.sampleGET()
+  // const _post = await Service.samplePOST({
+  //   title: 'foo',
+  //   body: 'bar',
+  //   userId: 1
+  // })
+  // const _put = await Service.samplePUT({
+  //   id: 1,
+  //   title: 'foo',
+  //   body: 'bar',
+  //   userId: 1
+  // })
+  // const _delete = await Service.sampleDELETE()
+  // const _patch = await Service.samplePATCH({ title: 'foo' })
 
   // console.log(`_get    !!!! `, _get)
   // console.log('_post   !!!!', _post)
