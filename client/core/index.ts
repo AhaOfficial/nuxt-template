@@ -1,5 +1,7 @@
-import * as VueAPI from '@vue/composition-api'
 import { Store, store } from 'vue-state-store'
-import { Service } from './api/index'
+import * as VueAPI from '@vue/composition-api'
 
-export { store, Store, VueAPI, Service }
+import { Service } from './api/index'
+import dayjs from './dayjs/index'
+
+export { store, Store, VueAPI, Service, dayjs }

@@ -1,5 +1,5 @@
-import type { NuxtConfig } from '@nuxt/types'
 import path from 'path'
+import type { NuxtConfig } from '@nuxt/types'
 import webpack from 'webpack'
 
 // * 개발 모드인지를 확인합니다.
@@ -11,19 +11,17 @@ const cacheVersion = `_${Math.floor(+new Date() / 1000)}`
 
 // * 모든 Nuxt 설정이 여기에 담깁니다.
 const nuxtConfig: Config = {
-
   // * USSR 을 적용합니다.
   mode: 'universal',
 
   // * 페이지 전체에 이동시 효과를 입힙니다. https://ko.nuxtjs.org/api/pages-transition/
   transition: {
     name: 'fade',
-    mode: 'out-in',
+    mode: 'out-in'
   },
 
   // * HTML 헤더에 들어갈 내용을 명시합니다.
   head: {
-
     // * 브라우저 창 제목을 명시합니다.
     title: 'nuxt-template',
 
@@ -65,7 +63,7 @@ const nuxtConfig: Config = {
     },
 
     // * 빌드된 결과물을 minify 합니다.
-    terser: isProductionMode ? true : false,
+    terser: !!isProductionMode,
 
     // * 모든 모듈을 트랜스파일합니다.
     transpile: ['*'],
@@ -119,7 +117,7 @@ const nuxtConfig: Config = {
   css: ['~/assets/css/main.css', '~/assets/css/tailwind.css'],
 
   // * Nuxt 의 빌드 시 빌드본에 포함될 모듈들을 지정합니다.
-  modules: ['@nuxtjs/axios', 'nuxt-lifecycle', 'nuxt-ssr-cache'],
+  modules: ['@nuxtjs/axios', 'nuxt-lifecycle', 'nuxt-ssr-cache', 'cookie-universal-nuxt'],
 
   // * Nuxt 의 빌드 시 작동되는 모듈들을 지정합니다.
   buildModules: ['@nuxt/typescript-build', '@nuxtjs/tailwindcss', '@nuxtjs/pwa', 'nuxt-compress'],
@@ -129,6 +127,11 @@ const nuxtConfig: Config = {
 
   // * 배포할 경로를 지정합니다.
   srcDir: './client',
+
+  // * 라우터 설정을 지정합니다.
+  router: {
+    middleware: ['auth']
+  },
 
   // * Nuxt-SSR-Cache 용 버전을 제공합니다.
   version: cacheVersion,
@@ -216,7 +219,7 @@ const nuxtConfig: Config = {
         // * Cache Only    : 캐싱 파일만 확인하고 없으면 에러를 뱉는 방식
         // * Network First : 항상 캐싱보다는 네트워크 요청을 먼저 진행하는 방식 (캐싱도 확인, 늦어지면 캐시표시)
         // * Network Only  : 해당 파일에 대해서는 캐싱 파일의 유무와 관계 없이 항상 네트워크 요청만 하는 방식
-        // * StaleWhileRevalidate :
+        // * StaleWhileRevalite :
         // *    캐싱을 먼저 시도하고 없으면 네트워크 요청을 진행하는 방식.
         // *    프로필 이미지와 같이 자주 업데이트 되면서 최신 데이터가 아니어도 되는 데이터 적용하면 좋음
 
@@ -245,8 +248,7 @@ const nuxtConfig: Config = {
     throttle: 200, // 설정된 시간(ms)만큼 대기한 후, 프로세스 바를 화면에 표시합니다.
     duration: 5000, // 프로세스 바의 최대 지속 시간(ms)
     rtl: false // 프로세스 바의 진행 방향
-  },
-
+  }
 }
 
 // * 런타임 캐싱을 개발 모드에선 사용하지 않습니다.
@@ -263,10 +265,10 @@ process.removeAllListeners('warning')
 type Config =
   | NuxtConfig
   | {
-    build: {
-      postcss: any
+      build: {
+        postcss: any
+      }
     }
-  }
 
 // * 빌드 결과물을 분석하기 위해 빌드 결과를 브라우저로 출력합니다.
 if (process.argv.length > 5 && process.argv[4] == '--analyze') (nuxtConfig as NuxtConfig).build.analyze = true

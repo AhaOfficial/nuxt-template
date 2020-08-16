@@ -5,7 +5,7 @@
     <button @click="counter.down()">-</button>
 
     <h3>계수자 명: {{ counter.value.author }}</h3>
-    <input type="text" v-model="counter.value.author" />
+    <input v-model="counter.value.author" type="text" />
   </div>
 </template>
 
