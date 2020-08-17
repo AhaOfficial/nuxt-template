@@ -8,7 +8,7 @@
     <h1>downVoteCount: {{ $vote.downVoteCount }}</h1>
     <nuxt-link to="/todo"><h1>페이지 이동</h1></nuxt-link>
     <!-- <Card /> -->
-    <Task />
+    <!-- <Task /> -->
   </div>
 </template>
 
