@@ -39,7 +39,7 @@ npx degit AhaOfficial/nuxt-template
 
 - [🤔 기초 설명](https://github.com/AhaOfficial/nuxt-template/blob/master/docs/기초_설명.md)
 - [📔 사용하는 주요 기술](https://github.com/AhaOfficial/nuxt-template/blob/master/docs/사용하는_주요_기술.md)
-- 👀 추천 강좌 목록
+- [👀 추천 강좌 목록](https://github.com/AhaOfficial/nuxt-template/blob/master/docs/%EC%B6%94%EC%B2%9C_%EA%B0%95%EC%A2%8C_%EB%AA%A9%EB%A1%9D.md)
 - 🛠 개발 환경 구성 방법
 - ⚗️ 실행/빌드/배포 방법
 - 🔬 기타 명령어 및 테스트 방법
