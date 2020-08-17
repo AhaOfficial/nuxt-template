@@ -2,6 +2,9 @@ import path from 'path'
 import type { NuxtConfig } from '@nuxt/types'
 import webpack from 'webpack'
 
+// * env 환경을 확인합니다.
+require('dotenv').config()
+
 // * 개발 모드인지를 확인합니다.
 const isProductionMode = process.env.NODE_ENV == 'production'
 
@@ -117,10 +120,16 @@ const nuxtConfig: Config = {
   css: ['~/assets/css/main.css', '~/assets/css/tailwind.css'],
 
   // * Nuxt 의 빌드 시 빌드본에 포함될 모듈들을 지정합니다.
-  modules: ['@nuxtjs/axios', 'nuxt-lifecycle', 'nuxt-ssr-cache', 'cookie-universal-nuxt'],
+  modules: ['@nuxtjs/axios', 'nuxt-lifecycle', 'nuxt-ssr-cache', 'cookie-universal-nuxt', '@nuxtjs/gtm'],
 
   // * Nuxt 의 빌드 시 작동되는 모듈들을 지정합니다.
-  buildModules: ['@nuxt/typescript-build', '@nuxtjs/tailwindcss', '@nuxtjs/pwa', 'nuxt-compress'],
+  buildModules: [
+    '@nuxt/typescript-build',
+    '@nuxtjs/tailwindcss',
+    '@nuxtjs/pwa',
+    'nuxt-compress',
+    ['@nuxtjs/dotenv', { path: './client/env', filename: isProductionMode ? '.env.prod' : '.env.dev' }]
+  ],
 
   // * Nuxt 의 기능을 확장할 플러그인들을 지정합니다.
   plugins: ['~/plugins/composition-api'],
@@ -188,6 +197,13 @@ const nuxtConfig: Config = {
     configPath: '~/config/tailwind.config.js',
     cssPath: '~/assets/css/tailwind.css',
     exposeConfig: false
+  },
+
+  // * gtm ( = 구글 에널리틱스 )
+  // * gtm 공식 문서 : https://github.com/nuxt-community/gtm-module#readme
+  gtm: {
+    id: process.env.GOOGLE_TAG_MANAGER_ID,
+    enbaled: !!isProductionMode
   },
 
   // * Brotli 압축을 적용합니다.

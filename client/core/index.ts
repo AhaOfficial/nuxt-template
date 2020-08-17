@@ -13,3 +13,6 @@ export { BackEnd } from './backend'
 
 // * dayjs 의 래핑 함수를 core 모듈로 선언합니다.
 export { dayjs } from './dayjs'
+
+// * bignumber.js의 래핑 함수를 core 모듈로 선언합니다.
+export { bigNumber } from './bignumber'

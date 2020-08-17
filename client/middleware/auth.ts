@@ -11,9 +11,9 @@ const auth: Middleware = ({ app, redirect }) => {
   const jwt = app.$cookies.get('jwt')
 
   // * jwt 없으면 -> redirect
-  if (jwt) {
-    redirect('/example')
-  }
+  // if (jwt) {
+  //   redirect('/example')
+  // }
 }
 
 export default auth
