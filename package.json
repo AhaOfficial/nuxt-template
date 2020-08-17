@@ -10,6 +10,7 @@
     "@vue/composition-api": "1.0.0-beta.10",
     "dayjs": "^1.8.33",
     "nuxt-compress": "^2.0.0",
+    "nuxt-edge": "^2.14.4-26627071.5e9d759d",
     "nuxt-lifecycle": "^1.0.1",
     "nuxt-ssr-cache": "^1.5.2",
     "vue-state-store": "^0.8.12"
@@ -22,7 +23,9 @@
     "start": "nuxt-ts start --modern=server",
     "generate": "nuxt-ts build --target static && nuxt-ts export",
     "lint": "prettier --write \"./**/*.{ts,vue,css,json}\"",
-    "clean": "rm -rf .nuxt"
+    "clean": "rm -rf .nuxt",
+    "storybook": "start-storybook -p 6006 -s public",
+    "storybook-build": "build-storybook"
   },
   "devDependencies": {
     "@nuxt/builder-edge": "^2.14.2-26618428.4a9c9a15",
@@ -35,7 +38,14 @@
     "@nuxtjs/eslint-module": "^2.0.0",
     "@nuxtjs/gtm": "^2.3.2",
     "@nuxtjs/pwa": "^3.0.0-beta.20",
+    "@storybook/addon-actions": "^6.0.10",
+    "@storybook/addon-knobs": "^6.0.10",
+    "@storybook/addon-links": "^6.0.10",
+    "@storybook/addon-storysource": "^6.0.10",
+    "@storybook/addon-viewport": "^6.0.10",
+    "@storybook/vue": "^6.0.10",
     "babel-eslint": "^10.1.0",
+    "babel-preset-vue": "^2.0.2",
     "bignumber.js": "^9.0.0",
     "cookie-universal-nuxt": "^2.1.4",
     "eslint": "^7.6.0",

@@ -47,6 +47,7 @@ const useAPI = () => {
 }
 
 export default VueAPI.defineComponent({
+  name: 'Card',
   setup(props, context) {
     // *
     // sample api
@@ -59,10 +60,10 @@ export default VueAPI.defineComponent({
 </script>
 
 <style lang="postcss" scoped>
-.badge {
+/* .badge {
   @apply inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700;
   &:hover {
     @apply bg-gray-300;
   }
-}
+} */
 </style>

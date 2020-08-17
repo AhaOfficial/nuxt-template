@@ -7,17 +7,18 @@
     <h1>upVoteCount: {{ $vote.upVoteCount }}</h1>
     <h1>downVoteCount: {{ $vote.downVoteCount }}</h1>
     <nuxt-link to="/todo"><h1>페이지 이동</h1></nuxt-link>
-    <Card />
+    <!-- <Card /> -->
+    <Task />
   </div>
 </template>
 
 <script lang="ts">
 import { VueAPI } from '~/core'
-import { Card } from '~/components'
+import { Card, Task } from '~/components'
 import { vote } from '~/store'
 
 export default VueAPI.defineComponent({
-  components: { Card },
+  components: { Card, Task },
   setup(props, context) {
     // * 1초마다 추천을 발생시킵니다.
     // * (1초마다 템플릿에 값이 반영되는 것을 볼 수 있습니다.)
