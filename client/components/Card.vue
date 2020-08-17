@@ -20,9 +20,8 @@
 
 <script lang="ts">
 import * as VueAPI from '@vue/composition-api'
-import { Service } from '~/core/index'
 
-const useAPI = async () => {
+const useAPI = () => {
   // const _get = await Service.sampleGET()
   // const _post = await Service.samplePOST({
   //   title: 'foo',

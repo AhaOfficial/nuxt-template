@@ -1,14 +1,13 @@
-import { AxiosResponse, AxiosRequestConfig } from 'axios'
-import axios from 'axios'
+import axios, { AxiosResponse, AxiosRequestConfig } from 'axios'
 
 /**
  * * Axios 를 타입스크립트 클래스로 래핑한 클래스 입니다.
  * @example
  * const BackEnd = new RestAPI({ address: 'http://localhost' })
- * 
+ *
  * // 서버로부터 받을 데이터 규격을 미리 정의합니다.
  * interface IData { message: 'hello' }
- * 
+ *
  * // 서버로 GET 요청을 보냅니다.
  * const { data } = await <IData>BackEnd.get('/info')
  */
@@ -67,15 +66,7 @@ export class RestAPI {
      */
     postprocess?: PostprocessType
   }) {
-    const {
-      address,
-      isUseSelfManagementToken,
-      getToken,
-      faultTolerance,
-      globalProcess,
-      preprocess,
-      postprocess,
-    } = params
+    const { address, isUseSelfManagementToken, getToken, faultTolerance, globalProcess, preprocess, postprocess } = params
 
     this.address = address
     this.getToken = getToken
@@ -96,38 +87,30 @@ export class RestAPI {
    * * (preprocess -> globalProcess -> postprocess 순)
    */
   protected async request<T>(params: IRequestParam) {
-    let {
+    const {
       link,
       process,
       option = {
         noPreprocess: false,
-        noAuthorization: false,
+        noAuthorization: false
       },
       processInfo = '',
       header,
-      axiosOption,
+      axiosOption
     } = params
 
     try {
       if (!option.noPreprocess) {
-        if (
-          typeof this.preprocess == 'function' &&
-          !this.preprocess(params)
-        )
-          return undefined
+        if (typeof this.preprocess === 'function' && !this.preprocess(params)) return undefined
       }
 
-      let response = await this.globalProcess<T>(params)
+      const response = await this.globalProcess<T>(params)
 
-      if (
-        typeof this.postprocess == 'function' &&
-        !this.postprocess(params, response)
-      )
-        return undefined
+      if (typeof this.postprocess === 'function' && !this.postprocess(params, response)) return undefined
 
       return response
     } catch (e) {
-      if (typeof this.faultTolerance == 'function') this.faultTolerance(e)
+      if (typeof this.faultTolerance === 'function') this.faultTolerance(e)
       return undefined
     }
   }
@@ -143,11 +126,10 @@ export class RestAPI {
     data,
     processInfo,
     header,
-    axiosOption,
+    axiosOption
   }: {
     link: string
-    process: ((link, header) => Promise<AxiosResponse<any>>) &
-    ((link, data, header) => Promise<AxiosResponse<any>>)
+    process: ((link, header) => Promise<AxiosResponse<any>>) & ((link, data, header) => Promise<AxiosResponse<any>>)
     option?: IRequestOption
     data?: any
     processInfo: string
@@ -169,31 +151,21 @@ export class RestAPI {
       option,
       processInfo,
       header,
-      axiosOption,
+      axiosOption
     })
   }
 
   /**
    * * 백엔드 서버로 GET 요청을 전송한 후 결과 값을 얻어옵니다.
    */
-  async get<T>({
-    link,
-    option,
-    header,
-    axiosOption,
-  }: {
-    link: string
-    option?: IRequestOption
-    header?: any
-    axiosOption?: AxiosRequestConfig
-  }) {
-    return this.saftyRequest<T>({
+  async get<T>({ link, option, header, axiosOption }: { link: string; option?: IRequestOption; header?: any; axiosOption?: AxiosRequestConfig }) {
+    return await this.saftyRequest<T>({
       link,
       option,
       process: axios.get,
       processInfo: `GET ${option ? JSON.stringify(option) : ''}`,
       header,
-      axiosOption,
+      axiosOption
     })
   }
 
@@ -205,7 +177,7 @@ export class RestAPI {
     data,
     option,
     header,
-    axiosOption,
+    axiosOption
   }: {
     link: string
     data: any
@@ -213,38 +185,28 @@ export class RestAPI {
     header?: any
     axiosOption?: AxiosRequestConfig
   }) {
-    return this.saftyRequest<T>({
+    return await this.saftyRequest<T>({
       link,
       option,
       process: axios.put,
       data,
       processInfo: `PUT ${option ? JSON.stringify(option) : ''}`,
       header,
-      axiosOption,
+      axiosOption
     })
   }
 
   /**
    * * 백엔드 서버로 DELETE 요청을 전송한 후 결과 값을 얻어옵니다.
    */
-  async delete<T>({
-    link,
-    option,
-    header,
-    axiosOption,
-  }: {
-    link: string
-    option?: IRequestOption
-    header?: any
-    axiosOption?: AxiosRequestConfig
-  }) {
-    return this.saftyRequest<T>({
+  async delete<T>({ link, option, header, axiosOption }: { link: string; option?: IRequestOption; header?: any; axiosOption?: AxiosRequestConfig }) {
+    return await this.saftyRequest<T>({
       link,
       option,
       process: axios.delete,
       processInfo: `DELETE ${option ? JSON.stringify(option) : ''}`,
       header,
-      axiosOption,
+      axiosOption
     })
   }
 
@@ -256,7 +218,7 @@ export class RestAPI {
     data,
     option,
     header,
-    axiosOption,
+    axiosOption
   }: {
     link: string
     data: any
@@ -264,85 +226,75 @@ export class RestAPI {
     header?: any
     axiosOption?: AxiosRequestConfig
   }) {
-    return this.saftyRequest<T>({
+    return await this.saftyRequest<T>({
       link,
       option,
       process: axios.post,
       data,
       processInfo: `POST ${option ? JSON.stringify(option) : ''}`,
-      header,
+      header
     })
   }
 
   protected defaultGlobalProcess: IGlobalProcess = async <T>(params: IRequestParam) => {
-    let {
+    const {
       link,
       process,
       option = {
         noPreprocess: false,
-        noAuthorization: false,
+        noAuthorization: false
       },
       processInfo = '',
       header,
-      axiosOption,
+      axiosOption
     } = params
 
-    let token: any = undefined
+    let token: any
     try {
       token = this.getToken()
-    } catch (e) { }
-    let processLink = `${this.address}${link}`
+    } catch (e) {}
+    const processLink = `${this.address}${link}`
 
-    let processHeader = {}
-    if (typeof token == 'string' && token.length > 0) {
+    let processHeader = {
+      headers: {}
+    }
+    if (typeof token === 'string' && token.length > 0) {
       processHeader = {
         ...processHeader,
 
-        ...(this.isUseSelfManagementToken && !option.noAuthorization
-          ? { headers: { Authorization: `Bearer ${token}` } }
-          : {}),
+        ...(this.isUseSelfManagementToken && !option.noAuthorization ? { headers: { Authorization: `Bearer ${token}` } } : {}),
 
-        ...(axiosOption ? axiosOption : {}),
+        ...(axiosOption || {})
       }
     }
     if (processHeader && header) {
-      if (processHeader['headers']) {
-        processHeader['headers'] = {
-          ...processHeader['headers'],
-          ...header,
+      if (processHeader.headers) {
+        processHeader.headers = {
+          ...processHeader.headers,
+          ...header
         }
       }
     }
 
-    let response = await params.process<T>(processLink, processHeader)
+    const response = await params.process<T>(processLink, processHeader)
     return response
   }
 
   protected defaultPostProcess: PostprocessType = (params, response) => {
-    console.log(
-      `%c🚧  ${params.link} ${params.processInfo}`,
-      'color: #908CFF;',
-      response
-    )
+    console.log(`%c🚧  ${params.link} ${params.processInfo}`, 'color: #908CFF;', response)
     return true
   }
 
   protected defaultPreProcess: PreprocessType = params => {
-    if (
-      params.option &&
-      this.isUseSelfManagementToken &&
-      !params.option.noAuthorization &&
-      typeof this.getToken == 'function'
-    ) {
-      let token = this.getToken()
-      let tokenIsValid = typeof token == 'string' && token.length > 0
+    if (params.option && this.isUseSelfManagementToken && !params.option.noAuthorization && typeof this.getToken === 'function') {
+      const token = this.getToken()
+      const tokenIsValid = typeof token === 'string' && token.length > 0
       if (!tokenIsValid) return false
     }
 
     return true
   }
 }
-
 
 /**
  * * 서버에 실제 요청을 보내게 되는 함수의 규격입니다.
@@ -357,18 +309,12 @@ export type PreprocessType = (params: IRequestParam) => boolean
 /**
  * * 서버에 요청이 전송된 이후 요청 정보를 확인할 수 있는 함수의 규격입니다.
  */
-export type PostprocessType = <T>(
-  params: IRequestParam,
-  response: AxiosResponse<T>
-) => boolean
+export type PostprocessType = <T>(params: IRequestParam, response: AxiosResponse<T>) => boolean
 
 /**
  * * 요청을 가장 먼저 받아서 내부 함수를 실행시킬 함수의 규격입니다.
  */
-export type IGlobalProcess = <T>(
-  params: IRequestParam
-) => Promise<AxiosResponse<T>>
-
+export type IGlobalProcess = <T>(params: IRequestParam) => Promise<AxiosResponse<T>>
 
 /**
  * * 서버로 요청을 발생시킬때 내부적으로 사용되는 파라메터들입니다.
@@ -414,8 +360,7 @@ export interface IRequestOption {
   /**
    * @description
    * * 이 옵션이 활성화 되면 isUseSelfManagementToken 가 참이여도
-   * * 해당 요청에서는 인증 필요 여부를 검증하지 않습니다. 
+   * * 해당 요청에서는 인증 필요 여부를 검증하지 않습니다.
    */
   noAuthorization: boolean
 }
-

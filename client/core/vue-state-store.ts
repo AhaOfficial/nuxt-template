@@ -1,8 +1,5 @@
 // * vue-state-store 를 core 모듈로 선언합니다.
-import {
-  store as _store,
-  Store as _Store,
-} from 'vue-state-store'
+import { store as _store, Store as _Store } from 'vue-state-store'
 
 /**
  * * 뷰 상태 저장소를 함수형으로 사용합니다.
@@ -18,7 +15,4 @@ const store = _store
  */
 const Store = _Store
 
-export {
-  store,
-  Store,
-}
+export { store, Store }
