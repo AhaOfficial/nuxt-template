@@ -23,7 +23,9 @@
 
 > 코드 샌드박스라는 웹 IDE 를 통해서 이 프로젝트를 설치 없이 웹에서 바로 실행할 수 있습니다.
 
-[🚀 CodeSandbox 웹 IDE 실행](https://githubbox.com/AhaOfficial/nuxt-template)
+> 빌드에 2분 가량 시간이 소요되며, 빌드가 완료되면 내부 브라우저가 바로 실행됩니다.
+
+[🚀 CodeSandbox 웹 IDE 실행](https://githubbox.com/AhaOfficial/nuxt-template)  [[실행모습 이미지]](https://i.imgur.com/EsxrjSA.png)
 
 <br/>
 
