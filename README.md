@@ -40,9 +40,9 @@ npx degit AhaOfficial/nuxt-template
 - [🤔 기초 설명](https://github.com/AhaOfficial/nuxt-template/blob/master/docs/기초_설명.md)
 - [📔 사용하는 주요 기술](https://github.com/AhaOfficial/nuxt-template/blob/master/docs/사용하는_주요_기술.md)
 - [👀 추천 강좌 목록](https://github.com/AhaOfficial/nuxt-template/blob/master/docs/%EC%B6%94%EC%B2%9C_%EA%B0%95%EC%A2%8C_%EB%AA%A9%EB%A1%9D.md)
-- 🛠 개발 환경 구성 방법
-- ⚗️ 실행/빌드/배포 방법
-- 🔬 기타 명령어 및 테스트 방법
+- [🛠 개발 환경 구성 방법](https://github.com/AhaOfficial/nuxt-template/blob/master/docs/%EA%B0%9C%EB%B0%9C_%ED%99%98%EA%B2%BD_%EA%B5%AC%EC%84%B1_%EB%B0%A9%EB%B2%95.md)
+- [⚗️ 실행/빌드/배포 방법](https://github.com/AhaOfficial/nuxt-template/blob/master/docs/%EC%8B%A4%ED%96%89_%EB%B9%8C%EB%93%9C_%EB%B0%B0%ED%8F%AC_%EB%B0%A9%EB%B2%95.md)
+- [🔬 기타 명령어 및 테스트 방법](https://github.com/AhaOfficial/nuxt-template/blob/master/docs/%EA%B8%B0%ED%83%80_%EB%AA%85%EB%A0%B9%EC%96%B4_%EB%B0%8F_%ED%85%8C%EC%8A%A4%ED%8A%B8_%EB%B0%A9%EB%B2%95.md)
 
 <br/>
 
