@@ -1,20 +1,17 @@
 <template>
-  <div></div>
+  <div>
+    <Task />
+  </div>
 </template>
 
 <script lang="ts">
-import { VueAPI, dayjs } from '~/core'
-
-// * dayjs example
-const useDayjs = () => {
-  console.log(dayjs(new Date()).format('YYYY년MM월DD일'))
-  console.log(dayjs(new Date('2020/01/01')).format('YYYY년MM월DD일'))
-}
+import { VueAPI } from '~/core'
+import { Task } from '~/components'
 
 export default VueAPI.defineComponent({
-  components: {},
+  components: { Task },
+  props: {},
   setup(props, context) {
-    useDayjs()
     return {}
   }
 })
