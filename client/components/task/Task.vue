@@ -1,15 +1,16 @@
 <!--src/components/Task.vue-->
 <template>
-  <div class="h-screen overflow-hidden p-10 flex justify-center">
-    <div class="max-w-sm rounded overflow-hidden content-center shadow-lg">
+  <div class="h-full p-10 flex justify-center">
+    <div class="max-w-sm rounded content-center shadow-lg">
       <!-- svg-inline  -->
       <img svg-inline src="~/assets/images/aha.svg" alt="testImg" class="w-full" />
       <div class="px-6 py-4">
         <input
-          v-model="todo"
           class="bg-white focus:outline-none focus:shadow-outline border border-gray-300 rounded-lg py-2 px-4 block w-full appearance-none leading-normal"
           type="text"
           placeholder="todos"
+          :value="todo"
+          @input="typingTodo"
         />
         <button
           class="inline-block w-full my-5 bg-aha hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
@@ -59,12 +60,17 @@ const useTodo = () => {
     { deep: true }
   )
 
-  const addTodo = () => !isEmptyTodo.value && todoList.value.push({ idx: todoList.value.length + 1, name: todo.value, done: false })
+  const addTodo = () =>
+    !isEmptyTodo.value && (todoList.value.push({ idx: todoList.value.length + 1, name: todo.value, done: false }), (todo.value = ''))
+  const typingTodo = e => (todo.value = e.target.value)
 
   return {
     todo,
     todoList,
+
     isEmptyTodo,
+
+    typingTodo,
     addTodo
   }
 }
