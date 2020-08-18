@@ -1,11 +1,11 @@
 <template>
-  <div>
+  <div class="container text-white">
     <!--
 		템플릿 태그에서 스토어 사용 시에도
 		타입스크립트 인텔리센스가 계속 지원됩니다.
 		-->
-    <h1>upVoteCount: {{ $vote.upVoteCount }}</h1>
-    <h1>downVoteCount: {{ $vote.downVoteCount }}</h1>
+    <h1 class="bg-black">upVoteCount: {{ $vote.upVoteCount }}</h1>
+    <h1 class="text-gray-400">downVoteCount: {{ $vote.downVoteCount }}</h1>
 
     <nuxt-link to="/todo"><h1>페이지 이동</h1></nuxt-link>
     <nuxt-link to="/example"><h1>스토리북</h1></nuxt-link>
