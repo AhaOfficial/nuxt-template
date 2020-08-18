@@ -23,6 +23,14 @@ const nuxtConfig: Config = {
     mode: 'out-in'
   },
 
+  // * 개발자 툴을 활성화할지 여부가 담깁니다.
+  vue: {
+    config: {
+      productionTip: false,
+      devtools: !isProductionMode
+    }
+  },
+
   // * HTML 헤더에 들어갈 내용을 명시합니다.
   head: {
     // * 브라우저 창 제목을 명시합니다.
@@ -281,10 +289,10 @@ process.removeAllListeners('warning')
 type Config =
   | NuxtConfig
   | {
-      build: {
-        postcss: any
-      }
+    build: {
+      postcss: any
     }
+  }
 
 // * 빌드 결과물을 분석하기 위해 빌드 결과를 브라우저로 출력합니다.
 if (process.argv.length > 5 && process.argv[4] == '--analyze') (nuxtConfig as NuxtConfig).build.analyze = true

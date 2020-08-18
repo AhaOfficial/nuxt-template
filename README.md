@@ -19,31 +19,6 @@
 
 <br/>
 
-## 🔮 브라우저 상에서 실행방법
-
-> 코드 샌드박스라는 **웹 IDE 를 통해서 이 프로젝트를 설치 없이 웹에서 바로 실행할 수 있습니다.**
-
-> 빌드에 2분 가량 시간이 소요되며, 빌드가 완료되면 내부 브라우저가 바로 실행됩니다.
-
-[🚀 CodeSandbox 웹 IDE 실행](https://githubbox.com/AhaOfficial/nuxt-template)  [[실행모습 이미지]](https://i.imgur.com/EsxrjSA.png)
-
-<br/>
-
-## ⚗️ 프로젝트 생성방법
-
-> 이 템플릿을 이용한 **프로젝트를 생성하려면 다음 명령어를 입력하세요.**
-```bash
-npx degit AhaOfficial/nuxt-template <프로젝트명>
-cd <프로젝트명>
-```
-
-> 또는 **원하는 폴더 안에 바로 프로젝트를 생성하려면 다음 명령어를 입력하세요.**
-```bash
-npx degit AhaOfficial/nuxt-template
-```
-
-<br/>
-
 ## 🥳 문서 모음
 
 > 문서를 기여해주시려면 `docs/` 에 md 파일을 작성해주시면 됩니다! [[작성방법]](https://github.com/AhaOfficial/nuxt-template/tree/master/docs#-%EB%AC%B8%EC%84%9C-%EC%9E%91%EC%84%B1-%EB%B0%A9%EB%B2%95)
@@ -54,6 +29,49 @@ npx degit AhaOfficial/nuxt-template
 - [🛠 개발 환경 구성 방법](https://github.com/AhaOfficial/nuxt-template/blob/master/docs/%EA%B0%9C%EB%B0%9C_%ED%99%98%EA%B2%BD_%EA%B5%AC%EC%84%B1_%EB%B0%A9%EB%B2%95.md)
 - [⚗️ 실행/빌드/배포 방법](https://github.com/AhaOfficial/nuxt-template/blob/master/docs/%EC%8B%A4%ED%96%89_%EB%B9%8C%EB%93%9C_%EB%B0%B0%ED%8F%AC_%EB%B0%A9%EB%B2%95.md)
 - [🔬 기타 명령어 및 테스트 방법](https://github.com/AhaOfficial/nuxt-template/blob/master/docs/%EA%B8%B0%ED%83%80_%EB%AA%85%EB%A0%B9%EC%96%B4_%EB%B0%8F_%ED%85%8C%EC%8A%A4%ED%8A%B8_%EB%B0%A9%EB%B2%95.md)
+
+<br/>
+
+## 🔮 브라우저 상에서 실행 방법
+
+> 프로젝트를 웹에서 바로 실행시키거나, 아니면 가볍게 시험 개발을 진행 할 수 있습니다.
+
+<br/>
+
+### 🔮 가벼운 시험개발용
+
+> 코드펜이라는 웹 에디터를 통해서 이 프로젝트 틀을 사용하면서 가볍게 한 페이지를 작성할 수 있습니다.
+
+> 간단한 예시를 만들어서 공유하거나, 어떠한 코드가 작동할지 간단히 시험 개발해보는데에 용이합니다.
+
+- [📦 Codepen.io 카운터 예시](https://codepen.io/pen/?template=xxVOwgg)
+
+- [📦 Codepen.io 빈 템플릿](https://codepen.io/pen/?template=xxVOYbB)
+
+<br/>
+
+### 🔮 프로젝트를 웹에서 실행
+
+> 코드 샌드박스라는 **웹 IDE 를 통해서 이 프로젝트를 설치 없이 웹에서 바로 실행할 수 있습니다.**
+
+> 웹 상 빌드에 2분 가량 시간이 소요되며, 빌드가 완료되면 내부 브라우저가 바로 실행됩니다.
+
+[🚀 CodeSandbox 웹 IDE 실행](https://githubbox.com/AhaOfficial/nuxt-template)  [[실행모습 이미지]](https://i.imgur.com/EsxrjSA.png)
+
+<br/>
+
+## ⚗️ 프로젝트 생성방법
+
+> 이 템플릿을 이용한 **프로젝트를 로컬에 생성하려면 다음 명령어를 입력하세요.**
+```bash
+npx degit AhaOfficial/nuxt-template <프로젝트명>
+cd <프로젝트명>
+```
+
+> 또는 **원하는 폴더 안에 바로 프로젝트를 생성하려면 다음 명령어를 입력하세요.**
+```bash
+npx degit AhaOfficial/nuxt-template
+```
 
 <br/>
 
