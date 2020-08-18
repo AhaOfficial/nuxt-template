@@ -16,3 +16,6 @@ export { dayjs } from './dayjs'
 
 // * bignumber.js의 래핑 함수를 core 모듈로 선언합니다.
 export { bigNumber } from './bignumber'
+
+// * vue composition-api의 helper 함수를 core 모듈로 선언합니다.
+export { helper } from './composition-helper'
