@@ -289,10 +289,10 @@ process.removeAllListeners('warning')
 type Config =
   | NuxtConfig
   | {
-    build: {
-      postcss: any
+      build: {
+        postcss: any
+      }
     }
-  }
 
 // * 빌드 결과물을 분석하기 위해 빌드 결과를 브라우저로 출력합니다.
 if (process.argv.length > 5 && process.argv[4] == '--analyze') (nuxtConfig as NuxtConfig).build.analyze = true

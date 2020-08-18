@@ -2,17 +2,17 @@
 <template>
   <div class="h-screen overflow-hidden p-10 flex justify-center">
     <div class="max-w-sm rounded overflow-hidden content-center shadow-lg">
-      <img src="~/assets/images/aha.svg" alt="testImg" class="w-full" />
+      <img svg-inline src="~/assets/images/aha.svg" alt="testImg" class="w-full" />
       <div class="px-6 py-4">
         <input
-          v-model="todos"
+          v-model="todo"
           class="bg-white focus:outline-none focus:shadow-outline border border-gray-300 rounded-lg py-2 px-4 block w-full appearance-none leading-normal"
           type="text"
           placeholder="todos"
         />
         <button
           class="inline-block w-full my-5 bg-aha hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-          :class="isEmptyTodos && ['cursor-not-allowed', 'opacity-50']"
+          :class="isEmptyTodo && ['cursor-not-allowed', 'opacity-50']"
           @click.prevent="addTodo"
         >
           등록
@@ -25,7 +25,7 @@
           class="my-3 py-4 w-full border-solid border-t-2 border-b-2"
           :class="item.done && 'opacity-50'"
         >
-          <span>1. 할일</span>
+          <span>{{ item.idx }}. {{ item.name }}</span>
           <label class="inline-block flex justify-start items-start float-right">
             <div
               class="bg-white border-2 rounded border-gray-400 w-6 h-6 flex flex-shrink-0 justify-center items-center mr-2 focus-within:border-blue-500"
@@ -38,21 +38,6 @@
           </label>
         </div>
       </div>
-
-      <!-- ! 스토리북 코드 -->
-      <!-- <h1>{{ taskClass }}</h1>
-    <label class="checkbox">
-      <input type="checkbox" :checked="isChecked" :disabled="true" name="checked" />
-      <span class="checkbox-custom" @click="$emit('archivetask', task.id)"></span>
-    </label>
-    <div class="title">
-      <input type="text" :readonly="true" :value="task.title" placeholder="Input title" />
-    </div>
-    <div class="actions">
-      <a v-if="!isChecked" @click.prevent="$emit('pintask', task.id)">
-        <span class="icon-start"></span>
-      </a>
-    </div> -->
     </div>
   </div>
 </template>
@@ -61,11 +46,11 @@
 import { VueAPI } from '~/core'
 
 const useTodo = () => {
-  const todos = VueAPI.ref('')
+  const todo = VueAPI.ref('')
   const todoList = VueAPI.ref([])
-  const isEmptyTodos = VueAPI.computed(() => todos.value === '')
+  const isEmptyTodo = VueAPI.computed(() => todo.value === '')
 
-  const watchTodos = VueAPI.watch(
+  VueAPI.watch(
     todoList,
     (newValue, oldValue) => {
       console.log(`value checkd :::::::::::::: > `, newValue)
@@ -73,12 +58,12 @@ const useTodo = () => {
     { deep: true }
   )
 
-  const addTodo = () => !isEmptyTodos.value && todoList.value.push({ idx: todoList.value.length + 1, name: todos.value, done: false })
+  const addTodo = () => !isEmptyTodo.value && todoList.value.push({ idx: todoList.value.length + 1, name: todo.value, done: false })
 
   return {
-    todos,
+    todo,
     todoList,
-    isEmptyTodos,
+    isEmptyTodo,
     addTodo
   }
 }

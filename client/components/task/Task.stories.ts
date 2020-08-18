@@ -2,11 +2,10 @@ import { action } from '@storybook/addon-actions'
 
 // ! TODO vue instance 주입 helper 함수 하나 만들기.
 
-import Vue from 'vue'
-import VueCompositionApi from '@vue/composition-api'
 import Task from './Task.vue'
+import { helper } from '~/core'
 
-Vue.use(VueCompositionApi)
+helper()
 
 // * Task 스토리의 기본 설정을 합니다.
 export default {
