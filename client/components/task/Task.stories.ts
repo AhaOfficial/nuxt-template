@@ -1,4 +1,5 @@
 import { action } from '@storybook/addon-actions'
+import '~/assets/css/tailwind.scss'
 
 // ! TODO vue instance 주입 helper 함수 하나 만들기.
 

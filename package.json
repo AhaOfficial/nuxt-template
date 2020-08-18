@@ -44,6 +44,7 @@
     "@storybook/addon-viewport": "^6.0.10",
     "@storybook/vue": "^6.0.10",
     "@svgr/webpack": "^5.4.0",
+    "autoprefixer": "^9.8.6",
     "babel-eslint": "^10.1.0",
     "babel-preset-vue": "^2.0.2",
     "bignumber.js": "^9.0.0",

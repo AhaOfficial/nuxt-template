@@ -2,6 +2,7 @@
 <template>
   <div class="h-screen overflow-hidden p-10 flex justify-center">
     <div class="max-w-sm rounded overflow-hidden content-center shadow-lg">
+      <!-- svg-inline  -->
       <img svg-inline src="~/assets/images/aha.svg" alt="testImg" class="w-full" />
       <div class="px-6 py-4">
         <input
@@ -26,7 +27,7 @@
           :class="item.done && 'opacity-50'"
         >
           <span>{{ item.idx }}. {{ item.name }}</span>
-          <label class="inline-block flex justify-start items-start float-right">
+          <label class="flex justify-start items-start float-right">
             <div
               class="bg-white border-2 rounded border-gray-400 w-6 h-6 flex flex-shrink-0 justify-center items-center mr-2 focus-within:border-blue-500"
             >
