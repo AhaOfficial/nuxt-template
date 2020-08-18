@@ -67,12 +67,6 @@ const nuxtConfig: Config = {
 
   // * 빌드 설정들을 명시합니다.
   build: {
-    postcss: {
-      plugins: {
-        tailwindcss: path.resolve('./client/config/tailwind.config.js')
-      }
-    },
-
     // * 빌드된 결과물을 minify 합니다.
     terser: !!isProductionMode,
 
@@ -125,7 +119,7 @@ const nuxtConfig: Config = {
   env: {},
 
   // * 전역으로 사용될 CSS 파일들을 여기 지정할 수 있습니다.
-  css: ['~/assets/css/main.css', '~/assets/css/tailwind.css'],
+  css: [],
 
   // * Nuxt 의 빌드 시 빌드본에 포함될 모듈들을 지정합니다.
   modules: ['@nuxtjs/axios', 'nuxt-lifecycle', 'nuxt-ssr-cache', 'cookie-universal-nuxt', '@nuxtjs/gtm'],
@@ -181,20 +175,6 @@ const nuxtConfig: Config = {
       // * 몇 초 동안 보관할지를 명시합니다.
       ttl: 2
     }
-  },
-
-  // * 퍼지 CSS
-  purgeCSS: {
-    enabled: ({ isDev, isClient }) => !isDev && isClient, // or `false` when in dev/debug mode
-    paths: ['components/**/*.vue', 'layouts/**/*.vue', 'pages/**/*.vue', 'plugins/**/*.js'],
-    styleExtensions: ['.css'],
-    whitelist: ['body', 'html', 'nuxt-progress'],
-    extractors: [
-      {
-        extractor: content => content.match(/[A-z0-9-:\\/]+/g) || [],
-        extensions: ['html', 'vue', 'js']
-      }
-    ]
   },
 
   // * 엑시오스
@@ -289,10 +269,10 @@ process.removeAllListeners('warning')
 type Config =
   | NuxtConfig
   | {
-    build: {
-      postcss: any
+      build: {
+        postcss: any
+      }
     }
-  }
 
 // * 빌드 결과물을 분석하기 위해 빌드 결과를 브라우저로 출력합니다.
 if (process.argv.length > 5 && process.argv[4] == '--analyze') (nuxtConfig as NuxtConfig).build.analyze = true
