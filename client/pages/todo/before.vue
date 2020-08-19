@@ -73,7 +73,6 @@ export default VueAPI.defineComponent({
   //     //
   // },
   data() {
-    console.log('aa')
     return {
       todoList: [
         {

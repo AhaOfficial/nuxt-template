@@ -8,10 +8,11 @@ export interface ICounter {
 export class Counter extends Store<ICounter> {
   value = this.bind()
 
-  async up() {
+  up() {
     this.value.count++
   }
-  async down() {
+
+  down() {
     this.value.count--
   }
 }

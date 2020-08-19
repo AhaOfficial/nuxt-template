@@ -4,4 +4,4 @@
   </div>
 </template>
 
-<style src="~/assets/css/tailwind.css"></style>
+<style lang="scss" src="~/assets/css/tailwind.scss"></style>

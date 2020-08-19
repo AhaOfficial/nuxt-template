@@ -24,7 +24,7 @@ export interface ITodo {
   /**
    * * 새로 제목을 입력하는 중인 할일
    */
-  new_todo: ''
+  newTodo: ''
   /**
    * * 완료된 할 일을 보여줄지 여부
    */
@@ -71,7 +71,7 @@ export class Todo extends Store<ITodo> {
     const today: any = new Date()
     let dd = today.getDate()
     let mm = today.getMonth() + 1
-    let yyyy = today.getFullYear()
+    const yyyy = today.getFullYear()
 
     if (dd < 10) dd = '0' + dd
     if (mm < 10) mm = '0' + mm
@@ -97,7 +97,7 @@ export class Todo extends Store<ITodo> {
    */
   getTodos() {
     try {
-      if (typeof window != 'undefined' && window.localStorage.getItem('todo_list')) {
+      if (typeof window !== 'undefined' && window.localStorage.getItem('todo_list')) {
         this.value.todoList = JSON.parse(window.localStorage.getItem('todo_list') as string)
       }
     } catch (e) {}
@@ -108,16 +108,16 @@ export class Todo extends Store<ITodo> {
    */
   addItem() {
     // * 하려는 일의 제목이 작성되어 있는 경우만
-    if (this.value.new_todo) {
+    if (this.value.newTodo) {
       this.value.todoList.unshift({
         id: this.value.todoList.length,
-        title: this.value.new_todo,
+        title: this.value.newTodo,
         done: false
       })
     }
 
     // * 하려는 일의 제목을 초기화합니다.
-    this.value.new_todo = ''
+    this.value.newTodo = ''
     return true
   }
 
@@ -161,7 +161,7 @@ export const useTodo = () => {
       { id: 1, title: '고양이 츄르 주기', done: false },
       { id: 4, title: '뷰 예시 만들기', done: true }
     ],
-    new_todo: '',
+    newTodo: '',
 
     showComplete: false
   })
