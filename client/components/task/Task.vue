@@ -2,7 +2,6 @@
 <template>
   <div class="h-full p-10 flex justify-center">
     <div class="max-w-sm rounded content-center shadow-lg">
-      <!-- svg-inline  -->
       <img svg-inline src="~/assets/images/aha.svg" alt="testImg" class="w-full" />
       <div class="px-6 py-4">
         <input
@@ -12,6 +11,7 @@
           :value="todo"
           @input="typingTodo"
         />
+
         <button
           class="inline-block w-full my-5 bg-aha hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
           :class="isEmptyTodo && ['cursor-not-allowed', 'opacity-50']"
@@ -32,7 +32,7 @@
             <div
               class="bg-white border-2 rounded border-gray-400 w-6 h-6 flex flex-shrink-0 justify-center items-center mr-2 focus-within:border-blue-500"
             >
-              <input v-model="item.done" :value="item.done" type="checkbox" class="opacity-0 absolute" />
+              <input v-model="item.done" :value="item.done" type="checkbox" class="opacity-0 absolute" @change="emitCheckTodo" />
               <svg class="fill-current hidden w-4 h-4 text-teal-300 pointer-events-none" viewBox="0 0 20 20">
                 <path d="M0 11l2-2 5 5L18 3l2 2L7 18z" />
               </svg>
@@ -47,22 +47,41 @@
 <script lang="ts">
 import { VueAPI } from '~/core'
 
+/**
+ * * 스토리북 관련 로직 입니다.
+ */
+const useStory = props => {
+  const { todoMock } = props
+  const todo = VueAPI.ref('')
+  const todoList = VueAPI.ref([])
+  const isEmptyTodo = VueAPI.computed(() => todo.value === '')
+
+  const typingTodo = e => (todo.value = e.target.value)
+
+  todoList.value.push(todoMock)
+
+  return { todo, todoList, isEmptyTodo, typingTodo }
+}
+
+/**
+ * * 스토리북에서 테스트한 로직들을 운영 로직으로 포팅한 로직 입니다.
+ */
 const useTodo = () => {
   const todo = VueAPI.ref('')
   const todoList = VueAPI.ref([])
   const isEmptyTodo = VueAPI.computed(() => todo.value === '')
 
-  VueAPI.watch(
-    todoList,
-    (newValue, oldValue) => {
-      console.log(`value checkd :::::::::::::: > `, newValue)
-    },
-    { deep: true }
-  )
-
   const addTodo = () =>
     !isEmptyTodo.value && (todoList.value.push({ idx: todoList.value.length + 1, name: todo.value, done: false }), (todo.value = ''))
   const typingTodo = e => (todo.value = e.target.value)
+
+  VueAPI.watch(
+    todoList,
+    (newValue, oldValue) => {
+      todoList.value.push(newValue)
+    },
+    { deep: true }
+  )
 
   return {
     todo,
@@ -77,13 +96,21 @@ const useTodo = () => {
 
 export default VueAPI.defineComponent({
   name: 'Task',
-  props: {},
+  props: {
+    todoMock: {
+      type: Object,
+      required: true,
+      default: () => {}
+    }
+  },
   components: {},
 
   setup(props, context) {
-    return {
-      ...useTodo()
-    }
+    const { todo, todoList, isEmptyTodo, typingTodo } = useStory(props)
+
+    const emitCheckTodo = () => context.emit('checkTodo', todoList.value)
+
+    return { todo, todoList, isEmptyTodo, typingTodo, emitCheckTodo }
   }
 })
 </script>
