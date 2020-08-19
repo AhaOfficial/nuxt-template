@@ -131,7 +131,8 @@ const nuxtConfig: Config = {
     '@nuxtjs/pwa',
     'nuxt-compress',
     ['@nuxtjs/dotenv', { path: './client/env', filename: isProductionMode ? '.env.prod' : '.env.dev' }],
-    '@nuxtjs/stylelint-module'
+    '@nuxtjs/stylelint-module',
+    '@nuxtjs/eslint-module'
   ],
 
   // * Nuxt 의 기능을 확장할 플러그인들을 지정합니다.

@@ -7,6 +7,9 @@
   "printWidth": 150,
   "bracketSpacing": true,
   "arrowParens": "avoid",
+<<<<<<< HEAD
   "endOfLine": "lf",
+=======
+>>>>>>> a5df2f62b0f797b1089aa84451c252af2196cdfb
   "vueIndentScriptAndStyle": false
 }

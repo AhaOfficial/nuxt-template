@@ -7,14 +7,14 @@
       <!-- 입력폼  -->
       <form @keydown.enter.prevent="">
         <input
+          v-model="new_todo"
           type="text"
           class="input-todo"
-          v-bind:class="{ active: new_todo }"
+          :class="{ active: new_todo }"
           placeholder="할 일을 여기 적고 +를 누릅니다."
-          v-model="new_todo"
-          v-on:keyup.enter="addItem"
+          @keyup.enter="addItem"
         />
-        <div class="btn btn-add" v-bind:class="{ active: new_todo }" @click="addItem">
+        <div class="btn btn-add" :class="{ active: new_todo }" @click="addItem">
           +
         </div>
       </form>
@@ -23,9 +23,9 @@
       <div v-if="pending.length > 0">
         <p class="status busy">현재 할 일이 {{ pending.length }}가지 있습니다.<span v-if="pending.length > 1"></span></p>
         <transition-group name="todo-item" tag="ul" class="todo-list">
-          <li v-for="item in pending" v-bind:key="item.title">
-            <input class="todo-checkbox" v-bind:id="'item_' + item.id" v-model="item.done" type="checkbox" />
-            <label v-bind:for="'item_' + item.id"></label>
+          <li v-for="item in pending" :key="item.title">
+            <input :id="'item_' + item.id" v-model="item.done" class="todo-checkbox" type="checkbox" />
+            <label :for="'item_' + item.id"></label>
             <span class="todo-text">{{ item.title }}</span>
             <span class="delete" @click="deleteItem(item)"></span>
           </li>
@@ -44,9 +44,9 @@
       <div v-if="completed.length > 0 && showComplete">
         <p class="status">완료된 사항: {{ completedPercentage }}</p>
         <transition-group name="todo-item" tag="ul" class="todo-list archived">
-          <li v-for="item in completed" v-bind:key="item.title">
-            <input class="todo-checkbox" v-bind:id="'item_' + item.id" v-model="item.done" type="checkbox" />
-            <label v-bind:for="'item_' + item.id"></label>
+          <li v-for="item in completed" :key="item.title">
+            <input :id="'item_' + item.id" v-model="item.done" class="todo-checkbox" type="checkbox" />
+            <label :for="'item_' + item.id"></label>
             <span class="todo-text">{{ item.title }}</span>
             <span class="delete" @click="deleteItem(item)"></span>
           </li>
@@ -55,10 +55,10 @@
 
       <!-- 할 일 목록 제어 버튼 -->
       <div class="control-buttons">
-        <div class="btn btn-secondary" v-if="completed.length > 0" @click="toggleShowComplete">
+        <div v-if="completed.length > 0" class="btn btn-secondary" @click="toggleShowComplete">
           <span v-if="!showComplete">완료한 사항 보이기</span><span v-else>완료한 사항 감추기</span>
         </div>
-        <div class="btn btn-secondary" v-if="todoList.length > 0" @click="clearAll">
+        <div v-if="todoList.length > 0" class="btn btn-secondary" @click="clearAll">
           알림 다 지우기
         </div>
       </div>
@@ -73,6 +73,7 @@ export default VueAPI.defineComponent({
   //     //
   // },
   data() {
+    console.log('aa')
     return {
       todoList: [
         {
@@ -93,32 +94,32 @@ export default VueAPI.defineComponent({
   },
   watch: {
     todoList: {
-      handler: function (updatedList) {
+      handler(updatedList) {
         localStorage.setItem('todo_list', JSON.stringify(updatedList))
       },
       deep: true
     }
   },
   computed: {
-    pending: function () {
+    pending() {
       return (this.todoList as any).filter(function (item: any) {
         return !item.done
       })
     },
-    completed: function () {
+    completed() {
       return (this.todoList as any).filter(function (item: any) {
         return item.done
       })
     },
-    completedPercentage: function () {
+    completedPercentage() {
       return Math.floor(((this.completed as any).length / (this.todoList as any).length) * 100) + '%'
     },
-    today: function () {
-      let weekday = ['일요일', '월요일', '화요일', '수요일', '목요일', '금요일', '토요일']
+    today() {
+      const weekday = ['일요일', '월요일', '화요일', '수요일', '목요일', '금요일', '토요일']
       let today: any = new Date()
       let dd = today.getDate()
-      let mm = today.getMonth() + 1 //January is 0!
-      let yyyy = today.getFullYear()
+      let mm = today.getMonth() + 1 // January is 0!
+      const yyyy = today.getFullYear()
 
       if (dd < 10) {
         dd = '0' + dd
