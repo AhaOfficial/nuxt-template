@@ -3,11 +3,7 @@
     "target": "esnext",
     "module": "esnext",
     "moduleResolution": "node",
-    "lib": [
-      "esnext",
-      "esnext.asynciterable",
-      "dom"
-    ],
+    "lib": ["esnext", "esnext.asynciterable", "dom"],
     "esModuleInterop": true,
     "experimentalDecorators": true,
     "sourceMap": true,
@@ -17,13 +13,8 @@
     "resolveJsonModule": true,
     "importsNotUsedAsValues": "preserve",
     "paths": {
-      "~/*": [
-        "./client/*"
-      ]
+      "~/*": ["./client/*"]
     },
-    "types": [
-      "@nuxt/types",
-      "@nuxtjs/axios"
-    ]
+    "types": ["@nuxt/types", "@nuxtjs/axios"]
   }
 }

@@ -14,11 +14,11 @@
 
 <script lang="ts">
 import { VueAPI } from '~/core'
-import { Card, Task } from '~/components'
+import { Card } from '~/components'
 import { vote } from '~/store'
 
 export default VueAPI.defineComponent({
-  components: { Card, Task },
+  components: { Card },
   setup(props, context) {
     // * 1초마다 추천을 발생시킵니다.
     // * (1초마다 템플릿에 값이 반영되는 것을 볼 수 있습니다.)

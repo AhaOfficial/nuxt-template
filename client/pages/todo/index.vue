@@ -83,4 +83,4 @@ export default VueAPI.defineComponent({
 })
 </script>
 
-<style src="./index.css" scoped/>
+<style src="./index.css" scoped />
