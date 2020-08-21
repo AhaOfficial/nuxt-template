@@ -28,9 +28,6 @@ export const Default = (args, { argTypes }) => ({
       })
     },
     example: Object.keys(argTypes)
-  },
-  argTypes: {
-    backgroundColor: { control: 'color' }
   }
 })
 

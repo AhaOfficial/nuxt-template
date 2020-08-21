@@ -13,12 +13,14 @@
         />
 
         <!-- ! TC는 여기서 -->
+        <!-- w-full -->
         <button
-          class="inline-block w-full my-5 bg-aha hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-          :class="isEmptyTodo && ['cursor-not-allowed', 'opacity-50']"
+          class="inline-block my-5 bg-aha text-white font-bold py-2 px-4 rounded"
+          :class="[props.btnSize, emptyClass]"
+          :style="{ 'background-color': props.btnColor }"
           @click.prevent="addTodo"
         >
-          등록
+          {{ props.btnText }}
         </button>
       </div>
       <div class="px-6 py-4 w-400">
@@ -56,17 +58,30 @@ const useTodo = () => {
   const addTodo = () =>
     !isEmptyTodo.value && (todoList.value.push({ idx: todoList.value.length + 1, name: todo.value, done: false }), (todo.value = ''))
   const typingTodo = e => (todo.value = e.target.value)
+  const emptyClass = VueAPI.computed(() => isEmptyTodo && ['cursor-not-allowed', 'opacity-50'])
 
-  return { todo, todoList, isEmptyTodo, addTodo, typingTodo }
+  return { todo, todoList, isEmptyTodo, addTodo, typingTodo, emptyClass }
 }
 
 export default VueAPI.defineComponent({
   name: 'Todo',
   components: {},
+  props: {
+    btnText: {
+      type: String
+    },
+    btnColor: {
+      type: String
+    },
+    btnSize: {
+      type: String
+    }
+  },
 
   setup(props, context) {
     return {
-      ...useTodo()
+      ...useTodo(),
+      props
     }
   }
 })
