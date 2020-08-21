@@ -1,4 +1,3 @@
-import { action } from '@storybook/addon-actions'
 import '~/assets/css/tailwind.scss'
 
 import Todo from './Todo.vue'
@@ -13,31 +12,26 @@ export default {
   excludeStories: /.*Data$/
 }
 
-// * storybook에서 사용할 actionsData 선언합니다.
-export const actionsData = {
-  onCheckTodo: action('onCheckTodo')
-}
-
-// * storybook에서 사용할 todoData를 선언합니다.
-export const todoData = {
-  idx: 1,
-  name: '테스트',
-  done: false
-}
-
 // * storybook에서 사용할 Template 입니다.
-const taskTemplate = `<todo :todo="todo" @checkTodo="onCheckTodo"/>`
+const taskTemplate = `<todo :todo="todo" />`
 
 // * 기본 상태를 설정한 케이스 입니다.
-export const Default = () => ({
+export const Default = (args, { argTypes }) => ({
   components: { Todo },
   template: taskTemplate,
   props: {
     todo: {
-      default: () => ({ ...todoData })
-    }
+      default: () => ({
+        idx: 1,
+        name: 'Todo 1',
+        done: false
+      })
+    },
+    example: Object.keys(argTypes)
   },
-  methods: actionsData
+  argTypes: {
+    backgroundColor: { control: 'color' }
+  }
 })
 
 // * 투두 리스트에서 체크한 케이스 입니다.
@@ -46,8 +40,11 @@ export const CheckTodo = () => ({
   template: taskTemplate,
   props: {
     todo: {
-      default: () => ({ ...todoData, done: true })
+      default: () => ({
+        idx: 1,
+        name: 'Todo 1',
+        done: true
+      })
     }
-  },
-  methods: actionsData
+  }
 })

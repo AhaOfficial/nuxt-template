@@ -1,12 +1,16 @@
-import { action } from '@storybook/addon-actions'
+import { action, actions } from '@storybook/addon-actions'
 import '~/assets/css/tailwind.scss'
 
 import TodoList from './TodoList.vue'
-import { actionsData, todoData } from './Todo.stories'
 import { helper } from '~/core'
 
 // * vue instace를 주입합니다.
 helper()
+
+// * 애드온 action을 정의합니다.
+export const actionsData = {
+  onCheckedTodo: action('onCheckedTodo')
+}
 
 export default {
   title: 'TodoList',
@@ -14,56 +18,24 @@ export default {
   decorators: [] // * 데코레이터는 <story>에 적용할 스타일을 지정합니다.
 }
 
-export const dTodoData = [
-  { ...todoData, idx: '1', name: 'Todo 1' },
-  { ...todoData, idx: '2', name: 'Todo 2' },
-  { ...todoData, idx: '3', name: 'Todo 3' },
-  { ...todoData, idx: '4', name: 'Todo 4' },
-  { ...todoData, idx: '5', name: 'Todo 5' },
-  { ...todoData, idx: '6', name: 'Todo 6' }
-]
-export const cTodoData = [...dTodoData.slice(0, 5), { idx: '6', name: 'Tod 6 Checked', done: true }]
-
 export const Default = () => ({
   components: { TodoList },
-  template: '<todo-list :todos="todos" @checkTodo="onCheckTodo"/>',
-  props: {
-    todos: {
-      default: () => dTodoData
-    }
-  },
+  template: '<todo-list @checkTodo="onCheckedTodo" />',
   methods: actionsData
 })
 
 export const CheckedTodo = () => ({
   components: { TodoList },
-  template: '<todo-list :todos="todos" @checkTodo="onCheckTodo"/>',
-  props: {
-    todos: {
-      default: () => cTodoData
-    }
-  },
+  template: '<todo-list @onCheckedTodo="onCheckedTodo" />',
   methods: actionsData
 })
 
 export const Loading = () => ({
   components: { TodoList },
-  template: '<todo-list loading :todos="todos" @checkTodo="onCheckTodo"/>',
-  props: {
-    todos: {
-      default: () => cTodoData
-    }
-  },
-  methods: actionsData
+  template: '<todo-list loading />'
 })
 
 export const Empty = () => ({
   components: { TodoList },
-  template: '<todo-list @checkTodo="onCheckTodo"/>',
-  props: {
-    todos: {
-      default: () => cTodoData
-    }
-  },
-  methods: actionsData
+  template: '<todo-list />'
 })
