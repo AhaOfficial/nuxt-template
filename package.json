@@ -3,6 +3,7 @@
   "description": "Nuxt.js TypeScript project",
   "version": "1.0.0",
   "dependencies": {
+    "@nuxt/components": "^1.1.0",
     "@nuxt/core-edge": "^2.14.2-26618428.4a9c9a15",
     "@nuxt/typescript-runtime": "1.0.0",
     "@nuxtjs/axios": "5.12.1",

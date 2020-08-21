@@ -3,9 +3,9 @@ const path = require('path')
 module.exports = {
   stories: ['../**/*.stories.@(ts|js)'],
   addons: [
-    '@storybook/addon-actions',
     '@storybook/addon-viewport',
-    '@storybook/addon-knobs'
+    '@storybook/addon-knobs',
+    '@storybook/addon-docs'
   ],
   webpackFinal: async config => {
     config.resolve.alias = {
