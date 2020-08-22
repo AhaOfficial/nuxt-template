@@ -1,5 +1,4 @@
-const { addParameters } = require('@storybook/vue')
-const newViewports = {
+export const newViewport = {
   iphone5: {
     name: 'iPhone 5',
     styles: {
@@ -129,7 +128,3 @@ const newViewports = {
     type: 'mobile'
   }
 }
-
-addParameters({
-  viewport: { viewports: newViewports, defaultViewport: 'iphone5' }
-})
