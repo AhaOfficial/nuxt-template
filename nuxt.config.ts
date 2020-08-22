@@ -56,10 +56,7 @@ const nuxtConfig: Config = {
       }
     ],
 
-    script: [
-      // * 사용하지 않는 Vuex 를 제거한 후 DI용으로 남은 의존성 만을 남깁니다.
-      { innerHTML: 'window.vuex={Store:function(){return{replaceState:function(){}}}}', type: 'text/javascript', charset: 'utf-8' }
-    ],
+    script: [],
 
     // * 파비콘 주소를 명시합니다.
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]
@@ -287,5 +284,20 @@ if (process.argv.length > 5 && process.argv[4] == '--analyze') (nuxtConfig as Nu
 
 // * 빌드 결과물을 minify 하지 않고 그대로 내보냅니다.
 if (process.argv.length > 5 && process.argv[4] == '--plain') (nuxtConfig as NuxtConfig).build.terser = false
+
+
+
+// * 사용하지 않는 Vuex 를 제거한 후 DI용으로 남은 의존성 만을 남깁니다.
+if (isProductionMode) {
+  nuxtConfig.head.script.push({
+    innerHTML: 'window.vuex={Store:function(){return{replaceState:function(){}}}}',
+    type: 'text/javascript',
+    charset: 'utf-8'
+  })
+}
+
+// * vue-devtools 에서 vue-state-store 를 사용하기 위한 코드 인젝션입니다.
+if (!isProductionMode) nuxtConfig.head.script.push({ src: 'https://unpkg.com/vue-state-store-devtools@1.0.2/export/devtools.js' })
+
 
 export default nuxtConfig
