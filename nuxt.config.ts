@@ -256,7 +256,11 @@ const nuxtConfig: Config = {
     throttle: 200, // 설정된 시간(ms)만큼 대기한 후, 프로세스 바를 화면에 표시합니다.
     duration: 5000, // 프로세스 바의 최대 지속 시간(ms)
     rtl: false // 프로세스 바의 진행 방향
-  }
+  },
+
+  // * global component를 등록합니다.
+  // * 경로는 기본적으로 ~/components를 바라봅니다.
+  components: true
 }
 
 // * 런타임 캐싱을 개발 모드에선 사용하지 않습니다.

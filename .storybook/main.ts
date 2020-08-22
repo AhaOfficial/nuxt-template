@@ -1,4 +1,4 @@
-const path = require('path')
+import path from 'path'
 
 module.exports = {
   stories: ['../**/*.stories.@(ts|js)'],
@@ -32,7 +32,7 @@ module.exports = {
     return config
   },
   typescript: {
-    check: false,
+    check: true,
     checkOptions: {}
   }
 }

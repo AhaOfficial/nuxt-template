@@ -13,7 +13,6 @@
         />
 
         <!-- ! TC는 여기서 -->
-        <!-- w-full -->
         <button
           class="inline-block my-5 bg-aha text-white font-bold py-2 px-4 rounded"
           :class="[props.btnSize, emptyClass]"
