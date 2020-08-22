@@ -2,7 +2,7 @@ import { withKnobs, select, text, color } from '@storybook/addon-knobs'
 
 import '~/assets/css/tailwind.scss'
 
-import Todo from './Todo.vue'
+import Todo from './TodoExample.vue'
 import { helper } from '~/core'
 
 // * vue instace를 주입합니다.
