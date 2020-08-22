@@ -109,8 +109,10 @@ const nuxtConfig: Config = {
     // * Nuxt 에서 사용하는 Webpack 설정을 확장합니다.
     extend(config) {
       // * 번들에서 제외할 모듈들을 명시합니다.
-      config.externals = {
-        vuex: 'vuex'
+      if (isProductionMode) {
+        config.externals = {
+          vuex: 'vuex'
+        }
       }
     }
   },
@@ -271,10 +273,10 @@ process.removeAllListeners('warning')
 type Config =
   | NuxtConfig
   | {
-      build: {
-        postcss: any
-      }
+    build: {
+      postcss: any
     }
+  }
 
 // * 빌드 결과물을 분석하기 위해 빌드 결과를 브라우저로 출력합니다.
 if (process.argv.length > 5 && process.argv[4] == '--analyze') (nuxtConfig as NuxtConfig).build.analyze = true
