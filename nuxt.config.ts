@@ -1,6 +1,6 @@
-import path from 'path'
 import type { NuxtConfig } from '@nuxt/types'
 import webpack from 'webpack'
+import path from 'path'
 
 // * env 환경을 확인합니다.
 require('dotenv').config()
@@ -17,11 +17,10 @@ const nuxtConfig: Config = {
   // * USSR 을 적용합니다.
   mode: 'universal',
 
-  // * 페이지 전체에 이동시 효과를 입힙니다. https://ko.nuxtjs.org/api/pages-transition/
-  transition: {
-    name: 'fade',
-    mode: 'out-in'
-  },
+  // * 페이지 전체에 이동시 효과를 입힙니다. https://nuxtjs.org/api/configuration-transition
+  pageTransition: 'fade',
+  // @ts-ignore
+  layoutTransition: 'fade',
 
   // * 개발자 툴을 활성화할지 여부가 담깁니다.
   vue: {
@@ -65,7 +64,7 @@ const nuxtConfig: Config = {
   // * 빌드 설정들을 명시합니다.
   build: {
     // * 빌드된 결과물을 minify 합니다.
-    terser: !!isProductionMode,
+    terser: true,
 
     // * 모든 모듈을 트랜스파일합니다.
     transpile: ['*'],
@@ -77,6 +76,13 @@ const nuxtConfig: Config = {
 
     // * 번들을 최적화 할 수 있도록 시각화화여 알려줍니다.
     analyze: false,
+
+    // * PostCSS 용 설정들이 담깁니다.
+    postcss: {
+      plugins: {
+        tailwindcss: path.join(__dirname, 'client/config/tailwind.config.js'),
+      }
+    },
 
     html: {
       minify: {
@@ -208,6 +214,10 @@ const nuxtConfig: Config = {
 
   // * 프로그레시브 웹앱용 설정들을 명시합니다.
   pwa: {
+    // * PWA 아이콘 공식 설명 https://pwa.nuxtjs.org/icon/
+    icon: {
+      fileName: 'favicon.png'
+    },
     // * Workbox 공식 설명 https://pwa.nuxtjs.org/modules/workbox.html#options
     // * PWA-Module 원본파일 참조 https://github.com/nuxt-community/pwa-module/blob/dev/lib/workbox/defaults.js
 
@@ -289,7 +299,7 @@ if (process.argv.length > 5 && process.argv[4] == '--plain') (nuxtConfig as Nuxt
 
 // * 사용하지 않는 Vuex 를 제거한 후 DI용으로 남은 의존성 만을 남깁니다.
 if (isProductionMode) {
-  nuxtConfig.head.script.push({
+  (nuxtConfig as NuxtConfig).head.script.push({
     innerHTML: 'window.vuex={Store:function(){return{replaceState:function(){}}}}',
     type: 'text/javascript',
     charset: 'utf-8'
@@ -297,7 +307,7 @@ if (isProductionMode) {
 }
 
 // * vue-devtools 에서 vue-state-store 를 사용하기 위한 코드 인젝션입니다.
-if (!isProductionMode) nuxtConfig.head.script.push({ src: 'https://unpkg.com/vue-state-store-devtools@1.0.2/export/devtools.js' })
+if (!isProductionMode) (nuxtConfig as NuxtConfig).head.script.push({ src: 'https://unpkg.com/vue-state-store-devtools@1.0.2/export/devtools.js' })
 
 
 export default nuxtConfig
