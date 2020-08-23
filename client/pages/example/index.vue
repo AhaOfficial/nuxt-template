@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Todo />
+    <TodoExample />
   </div>
 </template>
 
