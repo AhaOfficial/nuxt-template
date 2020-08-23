@@ -6,10 +6,9 @@
 
 <script lang="ts">
 import { VueAPI } from '~/core'
-import Todo from '~/components/Todo.vue'
 
 export default VueAPI.defineComponent({
-  components: { Todo },
+  components: {},
   props: {},
   setup(props, context) {
     return {}

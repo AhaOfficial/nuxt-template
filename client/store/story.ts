@@ -25,12 +25,14 @@ export class Story extends Store<IStory> {
 
 // * 정의
 export const story = new Story({
-  todos: [
-    { idx: '1', name: 'Todo 1', done: false },
-    { idx: '2', name: 'Todo 2', done: false },
-    { idx: '3', name: 'Todo 3', done: false }
-  ]
+  todos: []
 })
+
+/**
+ *	{ idx: '1', name: 'Todo 1', done: false },
+ *	{ idx: '2', name: 'Todo 2', done: false },
+ *	{ idx: '3', name: 'Todo 3', done: false }
+ */
 
 // * 사용
 // * 상태 관련 공유 로직을 작성합니다
@@ -43,6 +45,7 @@ export const useStory = () => {
   const isEmptyTodo = VueAPI.computed(() => todo.value === '')
   const isTodoShow = VueAPI.computed(() => todos.value.length > 0)
   const isTodosEmpty = VueAPI.computed(() => todos.value.length === 0)
+  const emptyClass = VueAPI.computed(() => isEmptyTodo && ['cursor-not-allowed', 'opacity-50'])
 
   // * event 로직 입니다.
   const addTodo = () => !isEmptyTodo.value && (story.addTodo({ name: todo.value }), (todo.value = ''))
@@ -54,6 +57,7 @@ export const useStory = () => {
     isEmptyTodo,
     isTodoShow,
     isTodosEmpty,
+    emptyClass,
     addTodo,
     typingTodo
   }
