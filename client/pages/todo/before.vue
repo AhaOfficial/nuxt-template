@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="background">
     <section class="todo-wrapper">
       <!-- 제목  -->
       <h1 class="todo-title">할 일 목록<br />{{ today.date }} {{ today.day }}</h1>
@@ -171,4 +171,4 @@ export default VueAPI.defineComponent({
 })
 </script>
 
-<style src="./index.css" />
+<style src="./index.css" scoped />

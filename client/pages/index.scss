@@ -1,0 +1,50 @@
+.background {
+  @apply p-8;
+  font-size: 15px;
+  font-family: 'Open Sans', sans-serif;
+  color: #444;
+  background-color: #ffc796;
+  background-image: linear-gradient(-45deg, #ffc796 0%, #ff6b95 100%);
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin: 0;
+  min-height: 100vh;
+  position: relative;
+}
+
+// 폼
+.form {
+  @apply flex;
+  @apply w-2/3 h-auto bg-white rounded-lg m-auto p-4 mb-3 shadow-xl;
+}
+
+.form:hover {
+  @apply bg-pink-100;
+}
+
+// 타이틀
+.form>*>.title {
+  @apply font-bold;
+}
+
+// 한 문단을 사용하는 설명이 담깁니다.
+.form>.info-block {
+  @apply text-pink-400 font-bold;
+}
+
+// 짧은 설명이 담깁니다.
+.form>*>.info-short {
+  @apply text-gray-600;
+}
+
+@media (max-width: 800px) {
+  .form>*>.info-short {
+    @apply hidden;
+  }
+}
+
+// 링크 설명
+.form>*>.info-link {
+  @apply whitespace-no-wrap truncate;
+  @apply block;
+}

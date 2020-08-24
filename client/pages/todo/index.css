@@ -2,7 +2,7 @@
   box-sizing: border-box;
 }
 
-body {
+.background {
   font-size: 15px;
   font-family: 'Open Sans', sans-serif;
   color: #444;
