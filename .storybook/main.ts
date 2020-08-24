@@ -22,8 +22,14 @@ module.exports = {
 
     config.module.rules.push({
       test: /\.scss$/,
-      use: ['style-loader', 'css-loader', 'sass-loader', 'postcss-loader'],
-      include: path.resolve(__dirname, '../client')
+      use: ['style-loader', 'css-loader', 'sass-loader', {
+        loader: 'postcss-loader',
+        options: {
+          config: {
+            path: './.storybook/'
+          }
+        }
+      }]
     }, {
       test: /\.svg$/,
       use: ['@svgr/webpack', 'url-loader'],

@@ -34,6 +34,6 @@ module.exports = {
     // whitelist: ['body', 'html', 'nuxt-progress']
   },
   future: {
-    removeDeprecatedGapUtilities: true,
+    removeDeprecatedGapUtilities: true
   }
 }
