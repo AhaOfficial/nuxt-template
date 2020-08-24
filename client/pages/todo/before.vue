@@ -69,9 +69,6 @@
 <script lang="ts">
 import { VueAPI } from '~/core'
 export default VueAPI.defineComponent({
-  // setup(props, context) {
-  //     //
-  // },
   data() {
     return {
       todoList: [

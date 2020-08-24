@@ -62,6 +62,12 @@ export default VueAPI.defineComponent({
      */
     const exampleList = VueAPI.ref([
       {
+        emoji: '🎚',
+        title: '카운터',
+        infoShort: 'vue-state-store 의 기본 예시입니다.',
+        link: '/counter'
+      },
+      {
         emoji: '📝',
         title: '할 일 목록',
         infoShort: 'TODO 리스트 예시입니다.',
@@ -78,12 +84,6 @@ export default VueAPI.defineComponent({
         title: '스토리북',
         infoShort: '스토리북과 연동된 컴포넌트 예시입니다.',
         link: '/example'
-      },
-      {
-        emoji: '🎛',
-        title: '카운터',
-        infoShort: 'vue-state-store 의 기본 예시입니다.',
-        link: '/counter'
       }
     ] as IExampletem[])
 
