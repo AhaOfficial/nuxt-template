@@ -69,7 +69,7 @@
     "sass-loader": "^9.0.3",
     "stylelint": "^13.6.1",
     "stylelint-config-prettier": "^8.0.2",
-    "stylelint-config-standard": "^20.0.0",
+    "stylelint-config-recommended": "^3.0.0",
     "svg-sprite-loader": "^5.0.0",
     "tailwindcss": "^1.7.3",
     "vue-svg-inline-loader": "^1.5.0",

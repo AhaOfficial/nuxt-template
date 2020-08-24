@@ -1,31 +1,95 @@
+<!-- 프로젝트의 예시 페이지들에 대한 인덱스 페이지입니다. -->
 <template>
-  <div class="container text-white">
-    <!--
-		템플릿 태그에서 스토어 사용 시에도
-		타입스크립트 인텔리센스가 계속 지원됩니다.
-		-->
-    <h1 class="bg-black">upVoteCount: {{ $vote.upVoteCount }}</h1>
-    <h1 class="text-gray-400">downVoteCount: {{ $vote.downVoteCount }}</h1>
-
-    <nuxt-link to="/todo"><h1>페이지 이동</h1></nuxt-link>
-    <nuxt-link to="/example"><h1>스토리북</h1></nuxt-link>
+  <div class="background">
+    <!-- 인덱스 페이지 설명 -->
+    <div class="form">
+      <span class="pr-3">
+        🎉
+      </span>
+      <span class="info-block">
+        넉스트 템플릿의 예시 페이지들이 아래 나열됩니다.
+      </span>
+    </div>
+    <!-- 이동가능한 예시 페이지 목록 -->
+    <div v-for="item in exampleList" :key="item.title">
+      <nuxt-link :to="item.link">
+        <div class="form">
+          <!-- 주 내용이 담기는 넓은 레이아웃 -->
+          <div class="w-9/12">
+            <span class="pr-2">{{ item.emoji }}</span>
+            <span class="title">{{ item.title }}</span>
+            <span class="info-short">&nbsp;-&nbsp;{{ item.infoShort }}</span>
+          </div>
+          <!-- 주소용 좁은 레이아웃 -->
+          <div class="w-3/12 text-right">
+            <span class="info-link">{{ item.link }}</span>
+          </div>
+        </div>
+      </nuxt-link>
+    </div>
   </div>
 </template>
 
 <script lang="ts">
 import { VueAPI } from '~/core'
-import { vote } from '~/store'
 
 export default VueAPI.defineComponent({
   setup(props, context) {
-    // * 1초마다 추천을 발생시킵니다.
-    // * (1초마다 템플릿에 값이 반영되는 것을 볼 수 있습니다.)
-    setInterval(() => vote.upVote(), 1000)
-
-    // * 스토어 값을 자동으로 템플릿 태그에 바인딩합니다.
-    return {
-      $vote: vote.bind()
+    /**
+     * 예시 항목에 작성되어야하는 필수 정보입니다.
+     */
+    interface IExampletem {
+      /**
+       * 예시 항목의 이모지입니다.
+       */
+      emoji: string
+      /**
+       * 예시 항목의 제목입니다.
+       */
+      title: string
+      /**
+       * 예시 항목에 대한 짧은 설명입니다.
+       */
+      infoShort: string
+      /**
+       * 예시 항목을 볼 수 있는 페이지 주소입니다.
+       */
+      link: string
     }
+
+    /**
+     * 예시 항목들이 담깁니다.
+     */
+    const exampleList = VueAPI.ref([
+      {
+        emoji: '📝',
+        title: '할 일 목록',
+        infoShort: 'TODO 리스트 예시입니다.',
+        link: '/todo'
+      },
+      {
+        emoji: '📝',
+        title: '할 일 목록 (구형)',
+        infoShort: '기존 형식 TODO 리스트 예시입니다.',
+        link: '/todo/before'
+      },
+      {
+        emoji: '⚗️',
+        title: '스토리북',
+        infoShort: '스토리북과 연동된 컴포넌트 예시입니다.',
+        link: '/example'
+      },
+      {
+        emoji: '🎛',
+        title: '카운터',
+        infoShort: 'vue-state-store 의 기본 예시입니다.',
+        link: '/counter'
+      }
+    ] as IExampletem[])
+
+    return { exampleList }
   }
 })
 </script>
+
+<style lang="scss" src="./index.scss" scoped></style>

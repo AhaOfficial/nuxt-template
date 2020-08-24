@@ -8,8 +8,21 @@
     "source.fixAll.eslint": true
   },
   "eslint.alwaysShowStatus": true,
-  "eslint.validate": ["vue", "js", "ts", "typescript"],
+  "eslint.validate": [
+    "vue",
+    "js",
+    "ts",
+    "typescript"
+  ],
   "eslint.options": {
-    "extensions": [".js", ".jsx", ".ts", ".tsx"]
-  }
+    "extensions": [
+      ".js",
+      ".jsx",
+      ".ts",
+      ".tsx"
+    ]
+  },
+  "css.validate": false,
+  "less.validate": false,
+  "scss.validate": false,
 }

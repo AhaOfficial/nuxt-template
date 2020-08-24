@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="background">
     <section class="todo-wrapper">
       <!-- 제목  -->
       <h1 class="todo-title">
