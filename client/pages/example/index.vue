@@ -9,8 +9,7 @@ import { VueAPI } from '~/core'
 import { Sample } from '~/service'
 
 const useExample = async () => {
-  await Sample.SampleGet()
-  await Sample.SampleGetQueryParams({ userId: 10 })
+  await Sample.SampleGet({ userId: 4 })
   await Sample.SamplePost()
   await Sample.SamplePut()
   await Sample.SampleDelete()

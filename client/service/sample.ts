@@ -1,10 +1,7 @@
 import { BackEnd } from '~/core'
 
-export const SampleGet = () => {
-  return BackEnd.get({ link: '/posts' })
-}
-export const SampleGetQueryParams = <T>(target: T) => {
-  return BackEnd.get({ link: '/posts', axiosOption: { params: target } })
+export const SampleGet = <T>(value: T) => {
+  return BackEnd.get({ link: '/posts', axiosOption: { params: value } })
 }
 export const SamplePost = () => {
   return BackEnd.post({ link: '/posts', data: { title: 'foo', body: 'bar', userId: 1 } })

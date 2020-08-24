@@ -258,13 +258,16 @@ export class RestAPI {
     let processHeader = {
       headers: {}
     }
+
+    processHeader = {
+      ...processHeader,
+      ...(axiosOption || {})
+    }
+
     if (typeof token === 'string' && token.length > 0) {
       processHeader = {
         ...processHeader,
-
-        ...(this.isUseSelfManagementToken && !option.noAuthorization ? { headers: { Authorization: `Bearer ${token}` } } : {}),
-
-        ...(axiosOption || {})
+        ...(this.isUseSelfManagementToken && !option.noAuthorization ? { headers: { Authorization: `Bearer ${token}` } } : {})
       }
     }
     if (processHeader && header) {
