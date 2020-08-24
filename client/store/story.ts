@@ -17,7 +17,11 @@ export class Story extends Store<IStory> {
    */
   async addTodo(todo: ITodo) {
     await this.update(data => {
-      data.todos.push({ idx: data.todos.length + 1, name: todo.name, done: false })
+      data.todos.push({
+        idx: data.todos.length + 1,
+        name: todo.name,
+        done: false
+      })
       return data
     })
   }
