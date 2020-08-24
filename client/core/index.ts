@@ -8,7 +8,7 @@ export { Store, store } from './vue-state-store'
 export { RestAPI } from './rest-api'
 
 // * axios 로 백엔드와 직접 통신 가능하게
-// *래핑 해놓은 함수를 core 모듈로 선언합니다.
+// * 래핑 해놓은 함수를 core 모듈로 선언합니다.
 export { BackEnd } from './backend'
 
 // * dayjs 의 래핑 함수를 core 모듈로 선언합니다.
