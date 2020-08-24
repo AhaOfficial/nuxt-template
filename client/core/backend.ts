@@ -5,5 +5,6 @@ import { RestAPI } from './rest-api'
  */
 export const BackEnd = new RestAPI({
   // * 여기에 백엔드 서버 주소가 담겨야합니다.
-  address: ''
+  // ! sample rest api url
+  address: 'https://jsonplaceholder.typicode.com'
 })
