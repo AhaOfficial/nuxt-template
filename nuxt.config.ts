@@ -135,7 +135,13 @@ const nuxtConfig: Config = {
     '@nuxtjs/tailwindcss',
     '@nuxtjs/pwa',
     'nuxt-compress',
-    ['@nuxtjs/dotenv', { path: './client/env', filename: isProductionMode ? '.env.prod' : '.env.dev' }],
+    [
+      '@nuxtjs/dotenv',
+      {
+        path: './client/env',
+        filename: isProductionMode ? '.env.prod' : '.env.dev'
+      }
+    ],
     '@nuxtjs/stylelint-module',
     '@nuxtjs/eslint-module'
   ],
@@ -305,6 +311,9 @@ if (isProductionMode) {
 }
 
 // * vue-devtools 에서 vue-state-store 를 사용하기 위한 코드 인젝션입니다.
-if (!isProductionMode) (nuxtConfig as NuxtConfig).head.script.push({ src: 'https://unpkg.com/vue-state-store-devtools@1.0.2/export/devtools.js' })
+if (!isProductionMode)
+  (nuxtConfig as NuxtConfig).head.script.push({
+    src: 'https://unpkg.com/vue-state-store-devtools@1.0.2/export/devtools.js'
+  })
 
 export default nuxtConfig
