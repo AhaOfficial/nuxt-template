@@ -11,12 +11,12 @@ export interface ICounter {
 }
 
 /**
- * 카운터 상태 저장소 정의
+ * 카운터 상태 저장소 규격 정의
  */
 export class Counter extends Store<ICounter> {}
 
 /**
- * 카운터 상태 저장소 초기 값 정의
+ * 카운터 상태 저장소 정의
  */
 export const counter = new Counter({
   count: 0
@@ -45,7 +45,7 @@ export class UseCount {
 }
 
 /**
- * 카운터 상태 사용
+ * 카운터 상태 사용 함수
  */
 export const useCount = () => {
   const countInstance = new UseCount()

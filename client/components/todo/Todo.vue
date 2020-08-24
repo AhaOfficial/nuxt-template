@@ -54,7 +54,7 @@
 
 <script lang="ts">
 import { VueAPI } from '~/core'
-import { useStory } from '~/store'
+import { Story } from '~/store'
 
 export default VueAPI.defineComponent({
   name: 'Todo',
@@ -89,7 +89,7 @@ export default VueAPI.defineComponent({
 
   setup(props, context) {
     return {
-      story: useStory(),
+      story: Story.useStory(),
       props
     }
   }

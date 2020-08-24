@@ -4,13 +4,13 @@
     <!-- 래퍼 -->
     <div class="counter">
       <!-- 제목 -->
-      <h1 class="title">😊&nbsp;&nbsp;간단한 카운터: {{ counter.$count.count }}</h1>
+      <h1 class="title">😊&nbsp;&nbsp;간단한 카운터: {{ counter.$counter.count }}</h1>
 
       <!-- - 버튼 -->
       <button class="up-button" @click="counter.down()">-</button>
 
       <!-- 중간 입력칸 -->
-      <input v-model="counter.$count.count" class="self-input" />
+      <input v-model="counter.$counter.count" class="self-input" />
 
       <!-- + 버튼 -->
       <button class="down-button" @click="counter.up()">+</button>
