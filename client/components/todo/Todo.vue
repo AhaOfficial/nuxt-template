@@ -60,14 +60,27 @@ export default VueAPI.defineComponent({
   name: 'Todo',
   components: {},
   props: {
+    /**
+     * 버튼 텍스트
+     */
     btnText: {
       type: String,
       default: '등록'
     },
+    /**
+     * 버튼 색상
+     */
     btnColor: {
       type: String,
       default: '#5dc4c0'
     },
+    /**
+     * 버튼 사이즈
+     * @description
+     * small : w-20,
+     * middle : w-64,
+     * large: w-full
+     */
     btnSize: {
       type: String,
       default: 'w-full'

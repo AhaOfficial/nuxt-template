@@ -1,0 +1,35 @@
+import { Meta, Canvas, Story, ArgsTable } from '@storybook/addon-docs/blocks';
+import { select, text, color } from '@storybook/addon-knobs'
+import Todo from './Todo.vue';
+import '~/assets/css/tailwind.scss'
+import { helper } from '~/core'
+helper()
+
+<Meta
+  title="Todo component"
+  component={Todo}
+  argTypes={{
+    btnColor: { control: 'color' },
+    btnSize: { control: { type: 'select', options: { small: 'w-20', middle: 'w-64', large: 'w-full' } } }
+  }}
+/>
+
+export const Template = (args, { argTypes }) => ({
+  props: Object.keys(argTypes),
+  components: { Todo },
+  template: '<Todo :btnText="btnText" :btnColor="btnColor" :btnSize="btnSize" />',
+});
+
+# MDX 예제 입니다 😄
+
+Props types를 정의합니다
+
+## Default
+
+<Canvas>
+  <Story  name="Default" args={{	btnText: '등록',	btnColor: '#5dc4c0',	btnSize: 'w-full'}}>
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+<ArgsTable story="Default" />

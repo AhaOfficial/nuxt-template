@@ -1,11 +1,18 @@
 import path from 'path'
 
 module.exports = {
-  stories: ['../**/*.stories.@(ts|js)'],
+  stories: ['../**/*.stories.@(ts|js|mdx)'],
   addons: [
     '@storybook/addon-viewport',
-    '@storybook/addon-knobs',
-    '@storybook/addon-docs'
+    {
+      name: '@storybook/addon-docs',
+      options: {
+        configureJSX: true,
+        babelOptions: {},
+        sourceLoaderOptions: null
+      }
+    },
+    '@storybook/addon-controls',
   ],
   webpackFinal: async config => {
     config.resolve.alias = {
