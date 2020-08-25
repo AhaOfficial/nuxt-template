@@ -1,6 +1,7 @@
 import path from 'path'
 import type { NuxtConfig } from '@nuxt/types'
 import webpack from 'webpack'
+import HardSourceWebpackPlugin from 'hard-source-webpack-plugin'
 
 // * env 환경을 확인합니다.
 require('dotenv').config()
@@ -72,7 +73,7 @@ const nuxtConfig: Config = {
     // * 빌드 가속용 옵션들입니다.
     cache: true,
     parallel: true,
-    hardSource: true,
+    // hardSource: true,
 
     // * 번들을 최적화 할 수 있도록 시각화화여 알려줍니다.
     analyze: false,
@@ -106,7 +107,14 @@ const nuxtConfig: Config = {
 
     plugins: [
       // * Vuex 의 의존 정보를 삭제합니다.
-      new webpack.IgnorePlugin(new RegExp('/vuex/'))
+      new webpack.IgnorePlugin(new RegExp('/vuex/')),
+      // * Hardsource 에러 메시지가 해결된 버전을 받습니다.
+      new HardSourceWebpackPlugin({
+        info: {
+          mode: 'none',
+          level: 'error'
+        }
+      })
     ],
 
     // * Nuxt 에서 사용하는 Webpack 설정을 확장합니다.
