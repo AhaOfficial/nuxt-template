@@ -1,6 +1,8 @@
 import path from 'path'
-import type { NuxtConfig } from '@nuxt/types'
 import webpack from 'webpack'
+import postbuild from './postbuild'
+
+import type { NuxtConfig } from '@nuxt/types'
 import HardSourceWebpackPlugin from 'hard-source-webpack-plugin'
 
 // * env 환경을 확인합니다.
@@ -112,7 +114,7 @@ const nuxtConfig: Config = {
       new HardSourceWebpackPlugin({
         info: {
           mode: 'none',
-          level: 'error'
+          level: 'none'
         }
       })
     ],
@@ -319,9 +321,13 @@ if (isProductionMode) {
 }
 
 // * vue-devtools 에서 vue-state-store 를 사용하기 위한 코드 인젝션입니다.
-if (!isProductionMode)
-  (nuxtConfig as NuxtConfig).head.script.push({
+if (!isProductionMode) {
+  ;(nuxtConfig as NuxtConfig).head.script.push({
     src: 'https://unpkg.com/vue-state-store-devtools@1.0.2/export/devtools.js'
   })
+}
+
+// * 프로젝트에서 사용하는 모듈을 
+;(nuxtConfig as NuxtConfig).build.transpile = postbuild()
 
 export default nuxtConfig
