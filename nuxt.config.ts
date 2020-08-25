@@ -122,10 +122,8 @@ const nuxtConfig: Config = {
     // * Nuxt 에서 사용하는 Webpack 설정을 확장합니다.
     extend(config) {
       // * 번들에서 제외할 모듈들을 명시합니다.
-      if (isProductionMode) {
-        config.externals = {
-          vuex: 'vuex'
-        }
+      config.externals = {
+        vuex: 'vuex'
       }
     }
   },
@@ -309,16 +307,15 @@ type Config =
 if (process.argv.length > 5 && process.argv[4] == '--analyze') (nuxtConfig as NuxtConfig).build.analyze = true
 
 // * 빌드 결과물을 minify 하지 않고 그대로 내보냅니다.
-if (process.argv.length > 5 && process.argv[4] == '--plain') (nuxtConfig as NuxtConfig).build.terser = false
+if (process.argv.length > 5 && process.argv[4] == '--plain')
+  (nuxtConfig as NuxtConfig).build.terser = false
 
-// * 사용하지 않는 Vuex 를 제거한 후 DI용으로 남은 의존성 만을 남깁니다.
-if (isProductionMode) {
-  ;(nuxtConfig as NuxtConfig).head.script.push({
-    innerHTML: 'window.vuex={Store:function(){return{replaceState:function(){}}}}',
-    type: 'text/javascript',
-    charset: 'utf-8'
-  })
-}
+  // * 사용하지 않는 Vuex 를 제거한 후 DI용으로 남은 의존성 만을 남깁니다.
+;(nuxtConfig as NuxtConfig).head.script.push({
+  innerHTML: 'window.vuex={Store:function(){return{replaceState:function(){}}}}',
+  type: 'text/javascript',
+  charset: 'utf-8'
+})
 
 // * vue-devtools 에서 vue-state-store 를 사용하기 위한 코드 인젝션입니다.
 if (!isProductionMode) {
@@ -327,7 +324,7 @@ if (!isProductionMode) {
   })
 }
 
-// * 프로젝트에서 사용하는 모듈을 
+// * 프로젝트에서 사용하는 모듈을
 ;(nuxtConfig as NuxtConfig).build.transpile = postbuild()
 
 export default nuxtConfig
