@@ -17,13 +17,13 @@ module.exports = {
   rules: {
     'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
     'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
-    'eqeqeq': 'warn',
+    eqeqeq: 'warn',
     'no-empty-function': 'off',
     'no-useless-constructor': 'off',
     'no-unused-vars': 'off',
     '@typescript-eslint/no-unused-vars': 'off',
     '@typescript-eslint/no-empty-function': 'off',
     '@typescript-eslint/no-var-requires': 'off',
-    '@typescript-eslint/interface-name-prefix': 'off',
+    '@typescript-eslint/interface-name-prefix': 'off'
   }
 }

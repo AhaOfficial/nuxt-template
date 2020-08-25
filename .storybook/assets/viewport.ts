@@ -1,3 +1,4 @@
+// * 뷰포트 설정 입니다.
 export const newViewport = {
   iphone5: {
     name: 'iPhone 5',

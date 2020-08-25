@@ -1,3 +1,5 @@
+// * 스토리북 메인 설정 파일 입니다.
+
 import path from 'path'
 
 module.exports = {
@@ -22,9 +24,15 @@ module.exports = {
 
     config.module.rules.push({
       test: /\.vue$/,
-      use: [{
-        loader: "vue-svg-inline-loader",
-      }]
+      use: [
+        'vue-svg-inline-loader'
+        // {
+        //   loader: path.resolve(__dirname, 'sourceCodeUtils/sourceLoader.ts'),
+        //   options: {
+        //     root: { root: path.resolve(__dirname, '../client') }
+        //   }
+        // }
+      ]
     })
 
     config.module.rules.push({
