@@ -9,7 +9,7 @@ import postbuild from './postbuild'
 require('dotenv').config()
 
 // * 개발 모드인지를 확인합니다.
-const isProductionMode = process.env.NODE_ENV == 'production'
+const isProductionMode = process.env.NODE_ENV === 'production'
 
 // * 매 빌드마다 캐싱 버전이 자동으로 색인됩니다.
 // * (서비스워커를 통한 브라우저 상의 캐싱을 위해 사용되는 버전입니다.)
@@ -19,6 +19,17 @@ const cacheVersion = `_${Math.floor(+new Date() / 1000)}`
 const nuxtConfig: Config = {
   // * USSR 을 적용합니다.
   mode: 'universal',
+
+  // * Nuxt Server 연결 변수를 설정합니다.
+  server: {
+    // * 포트
+    port: '3000',
+    // * 호스트
+    host: process.env.BASE_URL || 'localhost',
+    // * SSR 걸리는 시간을 측정하는 미들웨어를 추가합니다.
+    // * Server-Timing이라는 값이 header에 추가됩니다.
+    timing: false
+  },
 
   // * 페이지 전체에 이동시 효과를 입힙니다. https://nuxtjs.org/api/configuration-transition
   pageTransition: 'fade',
