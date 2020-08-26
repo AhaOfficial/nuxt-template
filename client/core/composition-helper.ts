@@ -6,4 +6,4 @@ import VueCompositionApi from '@vue/composition-api'
  * @see https://composition-api.vuejs.org/#summary
  * @see https://github.com/vuejs/composition-api
  */
-export const helper = () => Vue.use(VueCompositionApi)
+export const injectVueInstance = () => Vue.use(VueCompositionApi)

@@ -1,8 +1,8 @@
 import { Meta, Canvas, Story, ArgsTable } from '@storybook/addon-docs/blocks';
 import Todo from './Todo.vue';
 import '~/assets/css/tailwind.scss'
-import { helper } from '~/core'
-helper()
+import { injectVueInstance } from '~/core'
+injectVueInstance()
 
 <Meta
   title="Todo component"

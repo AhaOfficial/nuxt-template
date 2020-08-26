@@ -18,4 +18,4 @@ export { dayjs } from './dayjs'
 export { bigNumber } from './bignumber'
 
 // * vue composition-api의 helper 함수를 core 모듈로 선언합니다.
-export { helper } from './composition-helper'
+export { injectVueInstance } from './composition-helper'
