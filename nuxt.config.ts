@@ -135,7 +135,7 @@ const nuxtConfig: Config = {
   css: [],
 
   // * Nuxt 의 빌드 시 빌드본에 포함될 모듈들을 지정합니다.
-  modules: ['@nuxtjs/axios', 'nuxt-lifecycle', 'nuxt-ssr-cache', 'cookie-universal-nuxt', '@nuxtjs/gtm'],
+  modules: ['@nuxtjs/axios', 'nuxt-lifecycle', 'nuxt-ssr-cache', 'cookie-universal-nuxt', '@nuxtjs/gtm', '@nuxtjs/svg-sprite', 'nuxt-helmet'],
 
   // * Nuxt 의 빌드 시 작동되는 모듈들을 지정합니다.
   buildModules: [
@@ -281,7 +281,13 @@ const nuxtConfig: Config = {
 
   // * global component를 등록합니다.
   // * 경로는 기본적으로 ~/components를 바라봅니다.
-  components: true
+  components: true,
+
+  // * svgSprite 라이브러리 옵션을 설정합니다.
+  svgSprite: {
+    // * default url 입니다.
+    input: '~/assets/images/icons'
+  }
 }
 
 // * 런타임 캐싱을 개발 모드에선 사용하지 않습니다.
