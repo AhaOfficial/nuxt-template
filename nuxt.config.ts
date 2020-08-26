@@ -4,9 +4,7 @@ import webpack from 'webpack'
 import type { NuxtConfig } from '@nuxt/types'
 import HardSourceWebpackPlugin from 'hard-source-webpack-plugin'
 import postbuild from './postbuild'
-
-// * env 환경을 확인합니다.
-require('dotenv').config()
+import { dev, prod } from './client/env'
 
 // * 개발 모드인지를 확인합니다.
 const isProductionMode = process.env.NODE_ENV === 'production'
@@ -145,7 +143,9 @@ const nuxtConfig: Config = {
   },
 
   // * Nuxt 의 환경 설정을 여기에 지정합니다.
-  env: {},
+  env: {
+    ...(isProductionMode ? prod : dev)
+  },
 
   // * 전역으로 사용될 CSS 파일들을 여기 지정할 수 있습니다.
   css: [],
@@ -159,13 +159,6 @@ const nuxtConfig: Config = {
     '@nuxtjs/tailwindcss',
     '@nuxtjs/pwa',
     'nuxt-compress',
-    [
-      '@nuxtjs/dotenv',
-      {
-        path: './client/env',
-        filename: isProductionMode ? '.env.prod' : '.env.dev'
-      }
-    ],
     '@nuxtjs/stylelint-module',
     '@nuxtjs/eslint-module'
   ],
@@ -326,10 +319,10 @@ type Config =
     }
 
 // * 빌드 결과물을 분석하기 위해 빌드 결과를 브라우저로 출력합니다.
-if (process.argv.length > 5 && process.argv[4] == '--analyze') (nuxtConfig as NuxtConfig).build.analyze = true
+if (process.argv.length > 5 && process.argv[4] === '--analyze') (nuxtConfig as NuxtConfig).build.analyze = true
 
 // * 빌드 결과물을 minify 하지 않고 그대로 내보냅니다.
-if (process.argv.length > 5 && process.argv[4] == '--plain')
+if (process.argv.length > 5 && process.argv[4] === '--plain')
   (nuxtConfig as NuxtConfig).build.terser = false
 
   // * 사용하지 않는 Vuex 를 제거한 후 DI용으로 남은 의존성 만을 남깁니다.
