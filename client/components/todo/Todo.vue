@@ -2,7 +2,7 @@
 <template>
   <div class="h-full p-10 flex justify-center">
     <div class="max-w-sm rounded content-center shadow-lg">
-      <img svg-inline src="~/assets/images/aha.svg" alt="testImg" class="w-full" />
+      <img svg-inline src="~/assets/icons/aha.svg" alt="testImg" class="w-full" />
       <div class="px-6 py-4">
         <input
           class="bg-white focus:outline-none focus:shadow-outline border border-gray-300 rounded-lg py-2 px-4 block w-full appearance-none leading-normal"
