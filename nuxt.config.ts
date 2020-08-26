@@ -46,8 +46,13 @@ const nuxtConfig: Config = {
 
   // * HTML 헤더에 들어갈 내용을 명시합니다.
   head: {
+    htmlAttrs: {
+      // * 언어셋을 한국어로 설정합니다.
+      lang: 'ko'
+    },
+
     // * 브라우저 창 제목을 명시합니다.
-    title: 'nuxt-template',
+    title: '아하 커넥츠',
 
     // * 브라우저 창 제목 템플릿을 명시합니다.
     titleTemplate: '%s | with vue',
@@ -65,7 +70,7 @@ const nuxtConfig: Config = {
       {
         hid: 'description',
         name: 'description',
-        content: 'Nuxt.js TypeScript project'
+        content: '아하 커넥츠'
       }
     ],
 
