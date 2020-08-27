@@ -8,10 +8,16 @@ import { injectVueInstance } from '../client/core'
 import '../client/assets/css/tailwind.scss'
 injectVueInstance()
 
+const SOURCE_REGEX = /^\(\) => `(.*)`$/
+
 addParameters({
   viewport: { viewports: newViewport },
   docs: {
     container: DocsContainer,
-    page: DocsPage
+    page: DocsPage,
+    transformSource: (src, storyId) => {
+      const match = SOURCE_REGEX.exec(src)
+      return match ? match[1] : src
+    }
   }
 })

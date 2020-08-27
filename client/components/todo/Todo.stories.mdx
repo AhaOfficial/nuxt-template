@@ -1,13 +1,18 @@
 import { Meta, Canvas, Story, ArgsTable } from '@storybook/addon-docs/blocks';
+import { withKnobs } from '@storybook/addon-knobs';
 import Todo from './Todo.vue';
+
+export const args = {
+  btnText: { control: 'text' },
+  btnColor: { control: 'color' },
+  btnSize: { control: { type: 'select', options: { small: 'w-20', middle: 'w-64', large: 'w-full' } } }
+}
 
 <Meta
   title="Todo component"
   component={Todo}
-  argTypes={{
-    btnColor: { control: 'color' },
-    btnSize: { control: { type: 'select', options: { small: 'w-20', middle: 'w-64', large: 'w-full' } } }
-  }}
+  argTypes={{...args}}
+  decorators={[withKnobs]}
 />
 
 export const Template = (args, { argTypes }) => ({
