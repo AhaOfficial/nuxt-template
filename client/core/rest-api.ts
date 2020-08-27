@@ -13,7 +13,7 @@ import axios, { AxiosResponse, AxiosRequestConfig } from 'axios'
  */
 export class RestAPI {
   protected address: string = 'http://localhost'
-  protected preprocess?: PreprocessType
+  protected preprocess?: (params: IRequestParam) => boolean
   protected globalProcess: IGlobalProcess
   protected postprocess?: PostprocessType
   protected isUseSelfManagementToken?: boolean = false
@@ -58,7 +58,7 @@ export class RestAPI {
      * * 서버로 요청이 전달되기 전 먼저 요청을 받아서
      * * 요청을 변조할 수 있는 콜백입니다.
      */
-    preprocess?: PreprocessType
+    preprocess?: (params: IRequestParam) => boolean
 
     /**
      * * 서버로 요청이 전달 된 후 요청 값을
@@ -77,8 +77,6 @@ export class RestAPI {
 
     if (globalProcess) this.globalProcess = globalProcess
     if (isUseSelfManagementToken !== undefined) this.isUseSelfManagementToken = isUseSelfManagementToken
-
-    if (!this.postprocess) this.postprocess = this.defaultPostProcess
     if (!this.globalProcess) this.globalProcess = this.defaultGlobalProcess
   }
 
@@ -282,32 +280,12 @@ export class RestAPI {
     const response = await params.process<T>(processLink, processHeader)
     return response
   }
-
-  protected defaultPostProcess: PostprocessType = (params, response) => {
-    console.log(`%c🚧  ${params.link} ${params.processInfo}`, 'color: #908CFF;', response)
-    return true
-  }
-
-  protected defaultPreProcess: PreprocessType = params => {
-    if (params.option && this.isUseSelfManagementToken && !params.option.noAuthorization && typeof this.getToken === 'function') {
-      const token = this.getToken()
-      const tokenIsValid = typeof token === 'string' && token.length > 0
-      if (!tokenIsValid) return false
-    }
-
-    return true
-  }
 }
 
 /**
  * * 서버에 실제 요청을 보내게 되는 함수의 규격입니다.
  */
 export type ProcessType = <T>(link: string, header) => Promise<AxiosResponse<T>>
-
-/**
- * * 서버에 요청이 전송되기 전 미리 요청을 변조할 수 있는 함수의 규격입니다.
- */
-export type PreprocessType = (params: IRequestParam) => boolean
 
 /**
  * * 서버에 요청이 전송된 이후 요청 정보를 확인할 수 있는 함수의 규격입니다.
