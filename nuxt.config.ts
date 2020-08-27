@@ -164,7 +164,7 @@ const nuxtConfig: Config = {
   ],
 
   // * Nuxt 의 기능을 확장할 플러그인들을 지정합니다.
-  plugins: ['~/plugins/composition-api'],
+  plugins: ['~/plugins/composition-api', '~/plugins/nuxt'],
 
   // * 배포할 경로를 지정합니다.
   srcDir: './client',
@@ -335,11 +335,11 @@ if (process.argv.length > 5 && process.argv[4] === '--plain')
 // * vue-devtools 에서 vue-state-store 를 사용하기 위한 코드 인젝션입니다.
 if (!isProductionMode) {
   ;(nuxtConfig as NuxtConfig).head.script.push({
-    src: 'https://unpkg.com/vue-state-store-devtools@1.0.2/export/devtools.js'
+    src: 'https://unpkg.com/vue-state-store-devtools@1.0.5/export/devtools.js'
   })
 }
 
-// * 프로젝트에서 사용하는 모듈을
+// * 프로젝트에서 사용하는 모듈을 트랜스파일링 합니다.
 ;(nuxtConfig as NuxtConfig).build.transpile = postbuild()
 
 export default nuxtConfig
