@@ -13,10 +13,12 @@ import axios, { AxiosResponse, AxiosRequestConfig } from 'axios'
  */
 export class RestAPI {
   protected address: string = 'http://localhost'
+  protected isUseSelfManagementToken?: boolean = false
+  protected axiosOption: AxiosRequestConfig = {}
+
   protected preprocess?: (params: IRequestParam) => boolean
   protected globalProcess: IGlobalProcess
   protected postprocess?: PostprocessType
-  protected isUseSelfManagementToken?: boolean = false
   protected getToken?: () => string | null
   protected faultTolerance?: (error: Error) => void
 
@@ -65,16 +67,29 @@ export class RestAPI {
      * * 확인할 수 있는 콜백입니다.
      */
     postprocess?: PostprocessType
+
+    /**
+     * * 매 요청마다 기본적으로 설정될
+     * * Axios 옵션들을 명시할 수 있습니다.
+     */
+    axiosOption?: AxiosRequestConfig
   }) {
-    const { address, isUseSelfManagementToken, getToken, faultTolerance, globalProcess, preprocess, postprocess } = params
+    const { address, axiosOption, isUseSelfManagementToken, getToken, faultTolerance, globalProcess, preprocess, postprocess } = params
 
     this.address = address
+    if (axiosOption) this.axiosOption = axiosOption
+
     this.getToken = getToken
     this.faultTolerance = faultTolerance
     this.preprocess = preprocess
     this.postprocess = postprocess
-    this.address = address
 
+    // * 서버 주소 뒤에 / 가 붙는 경우 / 를 제거합니다.
+    if (this.address && this.address.length > 0 && this.address[this.address.length - 1] === '/') {
+      const _address = this.address.split('')
+      _address.pop()
+      this.address = _address.join('')
+    }
     if (globalProcess) this.globalProcess = globalProcess
     if (isUseSelfManagementToken !== undefined) this.isUseSelfManagementToken = isUseSelfManagementToken
     if (!this.globalProcess) this.globalProcess = this.defaultGlobalProcess
@@ -156,7 +171,20 @@ export class RestAPI {
   /**
    * * 백엔드 서버로 GET 요청을 전송한 후 결과 값을 얻어옵니다.
    */
-  async get<T>({ link, option, header, axiosOption }: { link: string; option?: IRequestOption; header?: any; axiosOption?: AxiosRequestConfig }) {
+  async get<T>({
+    link,
+    option,
+    header,
+    axiosOption
+  }: {
+    /**
+     * 요청이 전송될 API 주소가 담깁니다.
+     */
+    link: string
+    option?: IRequestOption
+    header?: any
+    axiosOption?: AxiosRequestConfig
+  }) {
     return await this.saftyRequest<T>({
       link,
       option,
@@ -242,7 +270,6 @@ export class RestAPI {
         noPreprocess: false,
         noAuthorization: false
       },
-      processInfo = '',
       header,
       axiosOption
     } = params
@@ -251,33 +278,40 @@ export class RestAPI {
     try {
       token = this.getToken()
     } catch (e) {}
-    const processLink = `${this.address}${link}`
 
-    let processHeader = {
-      headers: {}
+    // * API 경로명이 / 로 시작하지 않는 경우 이를 붙여줍니다.
+    let _link = link
+    if (_link[0] !== '/') _link += '/'
+
+    const processLink = `${this.address}${_link}`
+
+    let _axiosOption: AxiosRequestConfig = {
+      withCredentials: true,
+      ...this.axiosOption
     }
+    if (!_axiosOption.headers) _axiosOption.headers = {}
 
-    processHeader = {
-      ...processHeader,
+    _axiosOption = {
+      ..._axiosOption,
       ...(axiosOption || {})
     }
 
     if (typeof token === 'string' && token.length > 0) {
-      processHeader = {
-        ...processHeader,
+      _axiosOption = {
+        ..._axiosOption,
         ...(this.isUseSelfManagementToken && !option.noAuthorization ? { headers: { Authorization: `Bearer ${token}` } } : {})
       }
     }
-    if (processHeader && header) {
-      if (processHeader.headers) {
-        processHeader.headers = {
-          ...processHeader.headers,
+    if (_axiosOption && header) {
+      if (_axiosOption.headers) {
+        _axiosOption.headers = {
+          ..._axiosOption.headers,
           ...header
         }
       }
     }
 
-    const response = await params.process<T>(processLink, processHeader)
+    const response = await params.process<T>(processLink, _axiosOption)
     return response
   }
 }
@@ -285,7 +319,7 @@ export class RestAPI {
 /**
  * * 서버에 실제 요청을 보내게 되는 함수의 규격입니다.
  */
-export type ProcessType = <T>(link: string, header) => Promise<AxiosResponse<T>>
+export type ProcessType = <T>(link: string, axiosOption: AxiosRequestConfig) => Promise<AxiosResponse<T>>
 
 /**
  * * 서버에 요청이 전송된 이후 요청 정보를 확인할 수 있는 함수의 규격입니다.
