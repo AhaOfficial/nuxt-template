@@ -50,7 +50,7 @@ const nuxtConfig: Config = {
     },
 
     // * 브라우저 창 제목을 명시합니다.
-    title: '아하 커넥츠',
+    title: 'nuxt-template',
 
     // * 브라우저 창 제목 템플릿을 명시합니다.
     titleTemplate: '%s | with vue',
@@ -68,7 +68,7 @@ const nuxtConfig: Config = {
       {
         hid: 'description',
         name: 'description',
-        content: '아하 커넥츠'
+        content: 'nuxt-template'
       }
     ],
 
