@@ -15,6 +15,7 @@ module.exports = {
       }
     },
     '@storybook/addon-controls',
+    'storybook-zeplin/register'
   ],
   webpackFinal: async config => {
     config.resolve.alias = {
@@ -24,15 +25,7 @@ module.exports = {
 
     config.module.rules.push({
       test: /\.vue$/,
-      use: [
-        'vue-svg-inline-loader'
-        // {
-        //   loader: path.resolve(__dirname, 'sourceCodeUtils/sourceLoader.ts'),
-        //   options: {
-        //     root: { root: path.resolve(__dirname, '../client') }
-        //   }
-        // }
-      ]
+      use: ['vue-svg-inline-loader']
     })
 
     config.module.rules.push({
