@@ -1,4 +1,4 @@
-import axios, { AxiosResponse, AxiosRequestConfig } from 'axios'
+import axios, { AxiosResponse, AxiosRequestConfig, AxiosError } from 'axios'
 
 /**
  * * Axios 를 타입스크립트 클래스로 래핑한 클래스 입니다.
@@ -20,7 +20,7 @@ export class RestAPI {
   protected globalProcess: IGlobalProcess
   protected postprocess?: PostprocessType
   protected getToken?: () => string | null
-  protected faultTolerance?: (error: Error) => void
+  protected faultTolerance?: (error: AxiosError) => void
 
   /**
    * * Axios 를 타입스크립트 클래스로 래핑한 클래스 입니다.
@@ -48,7 +48,7 @@ export class RestAPI {
      * * 요청 중 오류가 발생했을때 이 오류를 받아서
      * * 핸들링하는 중앙 함수를 선택적으로 명시할 수 있습니다.
      */
-    faultTolerance?: (error: Error) => void
+    faultTolerance?: (error: AxiosError) => void
 
     /**
      * * 클래스 내부 함수를 호출해서 서버로 보낼 요청을
