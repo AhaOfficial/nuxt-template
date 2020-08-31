@@ -27,5 +27,7 @@
   },
   "[json]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
-  }
+  },
+  "html.format.wrapLineLength": 80,
+  "html.format.wrapAttributes": "force-expand-multiline"
 }
