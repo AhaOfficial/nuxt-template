@@ -1,6 +1,3 @@
-// * process.env 에 타입 추론을 적용하여 선언합니다.
-export { env } from './env'
-
 // * 컴포지션 API 를 core 모듈로 선언합니다.
 export { VueAPI } from './vue-api'
 
