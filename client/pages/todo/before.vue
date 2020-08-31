@@ -63,7 +63,9 @@
 </template>
 
 <script lang="ts">
+import * as Core from '~/core'
 import { VueAPI } from '~/core'
+
 export default VueAPI.defineComponent({
   data() {
     return {

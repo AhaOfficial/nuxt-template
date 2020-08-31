@@ -19,7 +19,8 @@
 </template>
 
 <script lang="ts">
-import * as VueAPI from '@vue/composition-api'
+import * as Core from '~/core'
+import { VueAPI } from '~/core'
 
 const useAPI = () => {
   // const _get = await Service.sampleGET()

@@ -13,6 +13,7 @@
       "</template>",
       "",
       "<script lang=\"ts\">",
+      "import * as Core from '~/core'",
       "import { VueAPI } from '~/core'",
       "export default VueAPI.defineComponent({",
       "  setup(props, context) {",
@@ -38,6 +39,7 @@
       "</template>",
       "",
       "<script lang=\"ts\">",
+      "import * as Core from '~/core'",
       "import { VueAPI } from '~/core'",
       "export default VueAPI.defineComponent({",
       "  name: '',",
@@ -97,5 +99,27 @@
       "",
     ],
     "description": "넉스트 미들웨어를 생성합니다."
+  },
+  "Nuxt Service": {
+    "scope": "typescript",
+    "prefix": [
+      "nuxt-service-network-api",
+      "ns",
+      "service",
+      "api"
+    ],
+    "body": [
+      "\/\/ * API 요청을 사용합니다. ",
+      "\/\/ * Core.useService 에 await 적용도 가능",
+      "Core.useService({",
+      "  action: async ({ service, isClient }) => {",
+      "    \/\/ * 여기 안에서 서비스를 사용해주세요.",
+      "  },",
+      "  exception: async ({ error, service, isClient }) => {",
+      "    \/\/ * 여기 안에서 예외처리를 해주세요.",
+      "  }",
+      "})",
+    ],
+    "description": "넉스트에서 API 서비스를 사용합니다."
   },
 }
