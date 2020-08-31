@@ -237,9 +237,6 @@ ul.todo-list li:hover .delete:after {
   border-width: 0 0 2px 2px;
   transform-origin: center center;
   transform: rotate(-45deg) translate(-50%, -50%);
-}
-
-.todo-checkbox:checked + label:after {
   display: block;
 }
 
