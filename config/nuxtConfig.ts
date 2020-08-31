@@ -43,19 +43,6 @@ export const NuxtConfig = {
     '@nuxtjs/stylelint-module',
     '@nuxtjs/eslint-module'
   ],
-
-  // * Nuxt Server 연결 변수를 설정합니다.
-  server: {
-    // * 개발용 서버포트 정보
-    port: '3000',
-
-    // * 서버 호스트 정보
-    host: process.env.BASE_URL || 'localhost',
-    // * SSR 걸리는 시간을 측정하는 미들웨어를 추가합니다.
-    // * Server-Timing이라는 값이 header에 추가됩니다.
-    timing: false
-  },
-
   // * Nuxt 의 환경 설정을 여기에 지정합니다.
   env: {
     ...(Config.Interface.isProductionMode ? prod : dev)
