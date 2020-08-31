@@ -19,3 +19,5 @@ export { bigNumber } from './bignumber'
 
 // * vue composition-api의 helper 함수를 core 모듈로 선언합니다.
 export { injectVueInstance } from './composition-helper'
+
+export { useService } from '../service'
