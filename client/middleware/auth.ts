@@ -8,7 +8,7 @@ const auth: Middleware = ({ app }) => {
   const storage = app.$storage.getUniversal('aaa')
 
   // * jwt check
-  console.log(storage)
+  // console.log(storage)
 }
 
 export default auth
