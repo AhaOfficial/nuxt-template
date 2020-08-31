@@ -125,17 +125,12 @@ export class RestAPI {
    * * 클래스 내부함수로 생명주기에 따라 요청을 발생시킵니다.
    * * (preprocess -> globalProcess -> postprocess 순)
    */
-  protected async request<T>(params: IRequestParam) {
+  protected async request<T>(params: IRequestParam): Promise<AxiosResponse<T>> {
     const {
-      link,
-      process,
       option = {
         noPreprocess: false,
         noAuthorization: false
       },
-      processInfo = '',
-      header,
-      axiosOption
     } = params
 
     try {
@@ -153,9 +148,9 @@ export class RestAPI {
         return undefined
 
       return response
-    } catch (e) {
-      if (typeof this.faultTolerance === 'function') this.faultTolerance(e)
-      return undefined
+    } catch (error) {
+      if (typeof this.faultTolerance === 'function') this.faultTolerance(error)
+      throw error
     }
   }
 

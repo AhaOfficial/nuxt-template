@@ -1,11 +1,13 @@
 import Axios from 'axios'
 import { RestAPI } from './rest-api'
 
+/**
+ * Nuxt 프로그레스바와 axios 를 동기화합니다.
+ */
 export const setupProgress = (api: RestAPI) => {
   if (process.server) return
   const axios: any = api.extends.getAxios()
 
-  // A noop loading inteterface for when $nuxt is not yet ready
   const noopLoading = {
     finish: () => {},
     start: () => {},

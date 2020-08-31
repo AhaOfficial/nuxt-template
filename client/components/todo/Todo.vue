@@ -2,7 +2,12 @@
 <template>
   <div class="h-full p-10 flex justify-center">
     <div class="max-w-sm rounded content-center shadow-lg">
-      <img svg-inline src="~/assets/icons/aha.svg" alt="testImg" class="w-full" />
+      <img
+        svg-inline
+        src="~/assets/icons/aha.svg"
+        alt="testImg"
+        class="w-full"
+      />
       <div class="px-6 py-4">
         <input
           class="bg-white focus:outline-none focus:shadow-outline border border-gray-300 rounded-lg py-2 px-4 block w-full appearance-none leading-normal"
@@ -33,8 +38,16 @@
             <div
               class="bg-white border-2 rounded border-gray-400 w-6 h-6 flex flex-shrink-0 justify-center items-center mr-2 focus-within:border-blue-500"
             >
-              <input v-model="item.done" :value="item.done" type="checkbox" class="opacity-0 absolute" />
-              <svg class="fill-current hidden w-4 h-4 text-teal-300 pointer-events-none" viewBox="0 0 20 20">
+              <input
+                v-model="item.done"
+                :value="item.done"
+                type="checkbox"
+                class="opacity-0 absolute"
+              />
+              <svg
+                class="fill-current hidden w-4 h-4 text-teal-300 pointer-events-none"
+                viewBox="0 0 20 20"
+              >
                 <path d="M0 11l2-2 5 5L18 3l2 2L7 18z" />
               </svg>
             </div>
@@ -42,7 +55,9 @@
         </div>
 
         <div v-if="story.isTodosEmpty.value">
-          <div class="border border-gray-300 rounded-md p-4 max-w-sm w-full mx-auto py-4 my-3 text-center">
+          <div
+            class="border border-gray-300 rounded-md p-4 max-w-sm w-full mx-auto py-4 my-3 text-center"
+          >
             <h1>🤔</h1>
             투두를 등록해주세요!
           </div>
@@ -53,6 +68,7 @@
 </template>
 
 <script lang="ts">
+import * as Core from '~/core'
 import { VueAPI } from '~/core'
 import { Story } from '~/store'
 
