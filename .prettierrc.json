@@ -4,10 +4,9 @@
   "semi": false,
   "singleQuote": true,
   "useTabs": false,
-  "printWidth": 150,
+  "printWidth": 80,
   "bracketSpacing": true,
   "arrowParens": "avoid",
-  "endOfLine": "lf",
-  "vueIndentScriptAndStyle": false,
-  "proseWrap": "preserve"
+  "endOfLine": "auto",
+  "vueIndentScriptAndStyle": false
 }
