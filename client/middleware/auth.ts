@@ -1,19 +1,14 @@
 import type { Middleware } from '@nuxt/types'
 
-const auth: Middleware = ({ app, redirect }) => {
-  // * middleware test
-  app.$cookies.set('jwt', '111', {
-    path: '/',
-    maxAge: 60 * 60 * 24 * 30
-  })
+const auth: Middleware = ({ app }) => {
+  // * jwt set
+  app.$storage.setUniversal('aaa', 123)
 
-  // * jwt 체크
-  const jwt = app.$cookies.get('jwt')
+  // * jwt get
+  const storage = app.$storage.getUniversal('aaa')
 
-  // * jwt 없으면 -> redirect
-  // if (jwt) {
-  //   redirect('/example')
-  // }
+  // * jwt check
+  console.log(storage)
 }
 
 export default auth

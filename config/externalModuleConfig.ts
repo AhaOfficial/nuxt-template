@@ -37,5 +37,15 @@ export const ExternalModuleConfig = {
   svgSprite: {
     // * default url 입니다.
     input: '~/assets/images/icons'
+  },
+
+  // * universal-storage 옵션을 설정합니다.
+  // * ssr 모드 시 window 접근 불가 케이스가 있어서 사용했습니다.
+  storage: {
+    vuex: false, // boolean or {namespace}
+    localStorage: true, // boolean or {prefix }
+    cookie: false, // boolean or {prefix, options }
+    initialState: {},  // Object {}
+    ignoreExceptions: false //
   }
 } as Config.Interface.IConfig

@@ -2,7 +2,7 @@ import { dev, prod } from '../client/env'
 import * as Config from '.'
 
 /**
- * 모든 Nuxt 설정이 여기에 담깁니다.
+ * * 모든 Nuxt 설정이 여기에 담깁니다.
  */
 export const NuxtConfig = {
   // * USSR 을 적용합니다.
@@ -28,7 +28,7 @@ export const NuxtConfig = {
     '@nuxtjs/axios',
     'nuxt-lifecycle',
     'nuxt-ssr-cache',
-    'cookie-universal-nuxt',
+    '@nuxtjs/universal-storage',
     '@nuxtjs/gtm',
     '@nuxtjs/svg-sprite',
     'nuxt-helmet'
