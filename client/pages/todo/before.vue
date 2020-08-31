@@ -14,9 +14,7 @@
           placeholder="할 일을 여기 적고 +를 누릅니다."
           @keyup.enter="addItem"
         />
-        <div class="btn btn-add" :class="{ active: new_todo }" @click="addItem">
-          +
-        </div>
+        <div class="btn btn-add" :class="{ active: new_todo }" @click="addItem">+</div>
       </form>
 
       <!-- 할 일 목록  -->
@@ -58,9 +56,7 @@
         <div v-if="completed.length > 0" class="btn btn-secondary" @click="toggleShowComplete">
           <span v-if="!showComplete">완료한 사항 보이기</span><span v-else>완료한 사항 감추기</span>
         </div>
-        <div v-if="todoList.length > 0" class="btn btn-secondary" @click="clearAll">
-          알림 다 지우기
-        </div>
+        <div v-if="todoList.length > 0" class="btn btn-secondary" @click="clearAll">알림 다 지우기</div>
       </div>
     </section>
   </div>
