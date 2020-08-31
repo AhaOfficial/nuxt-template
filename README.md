@@ -102,6 +102,10 @@ npx degit AhaOfficial/nuxt-template
   >
   > (이 폴더는 npm install 명령어가 실행된 시점에 생성됩니다. 삭제해도 매 설치마다 재생성됩니다.)
 
+- 📝 .eslintignore
+
+  > **ESLint 에서 린트 적용시 배제할 대상 규칙**이 여기에 담깁니다.
+
 - 📝 .eslintrc.js
 
   > **ESLint 에서 사용할 자동정렬 규칙**이 여기에 담깁니다.
@@ -136,6 +140,14 @@ npx degit AhaOfficial/nuxt-template
   >
   > (프로젝트에서 사용하는 모듈관계를 확인할 때에 중요한 파일이나, 삭제시 재생성이 가능합니다.)
 
+- 📝 postbuild.ts
+
+  > **nuxt 의 transpile 모듈 대상을 자동으로 명시해주는 함수**가 담겨있습니다.
+
+- 📝 qawolf.config.ts
+
+  > **QAWolf 의 설정**이 여기에 담깁니다.
+
 - 📝 README.md
 
   > **이 프로젝트를 설명하는 Markdown 형태의 문서**입니다.
@@ -145,6 +157,8 @@ npx degit AhaOfficial/nuxt-template
 - 📝 sandbox.config.json
 
   > **클라우드 IDE 설정파일** 입니다. 웹에서 Codesandbox 나 Github IDE 를 통해서 바로 편집 및 실행이 될 때에, 이 프로젝트는 node 를 기반으로 하는 프로젝트라는 것을 알립니다. [[설명문서]](https://codesandbox.io/docs/importing#import-from-github)
+
+- 📝 stylelint.config.js
 
 - 📝 tsconfig.json
 
