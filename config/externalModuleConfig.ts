@@ -1,0 +1,41 @@
+import * as Config from './'
+
+/**
+ * 프로젝트에서 사용하는 기타 모듈들에 대한
+ * 옵션 설정들이 여기에 담깁니다.
+ */
+export const ExternalModuleConfig = {
+  // * 엑시오스
+  axios: {},
+
+  // * 테일윈드
+  tailwindcss: {
+    configPath: '~/config/tailwind.config.js',
+    cssPath: '~/assets/css/tailwind.css',
+    exposeConfig: false
+  },
+
+  // * gtm ( = 구글 에널리틱스 )
+  // * gtm 공식 문서 : https://github.com/nuxt-community/gtm-module#readme
+  gtm: {
+    id: process.env.GOOGLE_TAG_MANAGER_ID,
+    enbaled: !!Config.Interface.isProductionMode
+  },
+
+  // * Brotli 압축을 적용합니다.
+  // * (Brotli 는 HTTPS 상태에 한해서만 제한 적용됩니다.)
+  'nuxt-compress': {
+    gzip: {
+      cache: true
+    },
+    brotli: {
+      threshold: 10240
+    }
+  },
+
+  // * svgSprite 라이브러리 옵션을 설정합니다.
+  svgSprite: {
+    // * default url 입니다.
+    input: '~/assets/images/icons'
+  }
+} as Config.Interface.IConfig
