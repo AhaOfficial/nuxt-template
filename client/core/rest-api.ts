@@ -1,4 +1,9 @@
-import axios, { AxiosResponse, AxiosRequestConfig, AxiosError } from 'axios'
+import Axios, {
+  AxiosResponse,
+  AxiosRequestConfig,
+  AxiosError,
+  AxiosInstance
+} from 'axios'
 
 /**
  * * Axios 를 타입스크립트 클래스로 래핑한 클래스 입니다.
@@ -12,6 +17,7 @@ import axios, { AxiosResponse, AxiosRequestConfig, AxiosError } from 'axios'
  * const { data } = await <IData>BackEnd.get('/info')
  */
 export class RestAPI {
+  protected axios: AxiosInstance
   protected address: string = 'http://localhost'
   protected isUseSelfManagementToken?: boolean = false
   protected axiosOption: AxiosRequestConfig = {}
@@ -74,10 +80,25 @@ export class RestAPI {
      */
     axiosOption?: AxiosRequestConfig
   }) {
-    const { address, axiosOption, isUseSelfManagementToken, getToken, faultTolerance, globalProcess, preprocess, postprocess } = params
+    const {
+      address,
+      axiosOption,
+      isUseSelfManagementToken,
+      getToken,
+      faultTolerance,
+      globalProcess,
+      preprocess,
+      postprocess
+    } = params
 
     this.address = address
     if (axiosOption) this.axiosOption = axiosOption
+
+    this.axios = Axios.create(axiosOption)
+    // @ts-ignore
+    this.axios.CancelToken = Axios.CancelToken
+    // @ts-ignore
+    this.axios.isCancel = Axios.isCancel
 
     this.getToken = getToken
     this.faultTolerance = faultTolerance
@@ -85,13 +106,18 @@ export class RestAPI {
     this.postprocess = postprocess
 
     // * 서버 주소 뒤에 / 가 붙는 경우 / 를 제거합니다.
-    if (this.address && this.address.length > 0 && this.address[this.address.length - 1] === '/') {
+    if (
+      this.address &&
+      this.address.length > 0 &&
+      this.address[this.address.length - 1] === '/'
+    ) {
       const _address = this.address.split('')
       _address.pop()
       this.address = _address.join('')
     }
     if (globalProcess) this.globalProcess = globalProcess
-    if (isUseSelfManagementToken !== undefined) this.isUseSelfManagementToken = isUseSelfManagementToken
+    if (isUseSelfManagementToken !== undefined)
+      this.isUseSelfManagementToken = isUseSelfManagementToken
     if (!this.globalProcess) this.globalProcess = this.defaultGlobalProcess
   }
 
@@ -114,12 +140,17 @@ export class RestAPI {
 
     try {
       if (!option.noPreprocess) {
-        if (typeof this.preprocess === 'function' && !this.preprocess(params)) return undefined
+        if (typeof this.preprocess === 'function' && !this.preprocess(params))
+          return undefined
       }
 
       const response = await this.globalProcess<T>(params)
 
-      if (typeof this.postprocess === 'function' && !this.postprocess(params, response)) return undefined
+      if (
+        typeof this.postprocess === 'function' &&
+        !this.postprocess(params, response)
+      )
+        return undefined
 
       return response
     } catch (e) {
@@ -142,7 +173,8 @@ export class RestAPI {
     axiosOption
   }: {
     link: string
-    process: ((link, header) => Promise<AxiosResponse<any>>) & ((link, data, header) => Promise<AxiosResponse<any>>)
+    process: ((link, header) => Promise<AxiosResponse<any>>) &
+      ((link, data, header) => Promise<AxiosResponse<any>>)
     option?: IRequestOption
     data?: any
     processInfo: string
@@ -188,8 +220,86 @@ export class RestAPI {
     return await this.saftyRequest<T>({
       link,
       option,
-      process: axios.get,
+      process: this.axios.get,
       processInfo: `GET ${option ? JSON.stringify(option) : ''}`,
+      header,
+      axiosOption
+    })
+  }
+
+  /**
+   * * 백엔드 서버로 DELETE 요청을 전송한 후 결과 값을 얻어옵니다.
+   */
+  async delete<T>({
+    link,
+    option,
+    header,
+    axiosOption
+  }: {
+    link: string
+    option?: IRequestOption
+    header?: any
+    axiosOption?: AxiosRequestConfig
+  }) {
+    return await this.saftyRequest<T>({
+      link,
+      option,
+      process: this.axios.delete,
+      processInfo: `DELETE ${option ? JSON.stringify(option) : ''}`,
+      header,
+      axiosOption
+    })
+  }
+
+  /**
+   * * 백엔드 서버로 HEAD 요청을 전송한 후 결과 값을 얻어옵니다.
+   */
+  async head<T>({
+    link,
+    option,
+    header,
+    axiosOption
+  }: {
+    /**
+     * 요청이 전송될 API 주소가 담깁니다.
+     */
+    link: string
+    option?: IRequestOption
+    header?: any
+    axiosOption?: AxiosRequestConfig
+  }) {
+    return await this.saftyRequest<T>({
+      link,
+      option,
+      process: this.axios.head,
+      processInfo: `HEAD ${option ? JSON.stringify(option) : ''}`,
+      header,
+      axiosOption
+    })
+  }
+
+  /**
+   * * 백엔드 서버로 OPTIONS 요청을 전송한 후 결과 값을 얻어옵니다.
+   */
+  async options<T>({
+    link,
+    option,
+    header,
+    axiosOption
+  }: {
+    /**
+     * 요청이 전송될 API 주소가 담깁니다.
+     */
+    link: string
+    option?: IRequestOption
+    header?: any
+    axiosOption?: AxiosRequestConfig
+  }) {
+    return await this.saftyRequest<T>({
+      link,
+      option,
+      process: this.axios.options,
+      processInfo: `OPTIONS ${option ? JSON.stringify(option) : ''}`,
       header,
       axiosOption
     })
@@ -214,23 +324,9 @@ export class RestAPI {
     return await this.saftyRequest<T>({
       link,
       option,
-      process: axios.put,
+      process: this.axios.put,
       data,
       processInfo: `PUT ${option ? JSON.stringify(option) : ''}`,
-      header,
-      axiosOption
-    })
-  }
-
-  /**
-   * * 백엔드 서버로 DELETE 요청을 전송한 후 결과 값을 얻어옵니다.
-   */
-  async delete<T>({ link, option, header, axiosOption }: { link: string; option?: IRequestOption; header?: any; axiosOption?: AxiosRequestConfig }) {
-    return await this.saftyRequest<T>({
-      link,
-      option,
-      process: axios.delete,
-      processInfo: `DELETE ${option ? JSON.stringify(option) : ''}`,
       header,
       axiosOption
     })
@@ -255,14 +351,42 @@ export class RestAPI {
     return await this.saftyRequest<T>({
       link,
       option,
-      process: axios.post,
+      process: this.axios.post,
       data,
       processInfo: `POST ${option ? JSON.stringify(option) : ''}`,
       header
     })
   }
 
-  protected defaultGlobalProcess: IGlobalProcess = async <T>(params: IRequestParam) => {
+  /**
+   * * 백엔드 서버로 PATCH 요청을 전송한 후 결과 값을 얻어옵니다.
+   */
+  async patch<T>({
+    link,
+    data,
+    option,
+    header,
+    axiosOption
+  }: {
+    link: string
+    data: any
+    option?: IRequestOption
+    header?: any
+    axiosOption?: AxiosRequestConfig
+  }) {
+    return await this.saftyRequest<T>({
+      link,
+      option,
+      process: this.axios.patch,
+      data,
+      processInfo: `PATCH ${option ? JSON.stringify(option) : ''}`,
+      header
+    })
+  }
+
+  protected defaultGlobalProcess: IGlobalProcess = async <T>(
+    params: IRequestParam
+  ) => {
     const {
       link,
       process,
@@ -299,7 +423,9 @@ export class RestAPI {
     if (typeof token === 'string' && token.length > 0) {
       _axiosOption = {
         ..._axiosOption,
-        ...(this.isUseSelfManagementToken && !option.noAuthorization ? { headers: { Authorization: `Bearer ${token}` } } : {})
+        ...(this.isUseSelfManagementToken && !option.noAuthorization
+          ? { headers: { Authorization: `Bearer ${token}` } }
+          : {})
       }
     }
     if (_axiosOption && header) {
@@ -314,22 +440,60 @@ export class RestAPI {
     const response = await params.process<T>(processLink, _axiosOption)
     return response
   }
+
+  get extends() {
+    return {
+      getAxios: () => this.axios,
+      onRequest: fn => {
+        this.axios.interceptors.request.use(config => fn(config) || config)
+      },
+      onResponse: fn => {
+        this.axios.interceptors.response.use(
+          response => fn(response) || response
+        )
+      },
+      onRequestError: fn => {
+        this.axios.interceptors.request.use(
+          undefined,
+          error => fn(error) || Promise.reject(error)
+        )
+      },
+      onResponseError: fn => {
+        this.axios.interceptors.response.use(
+          undefined,
+          error => fn(error) || Promise.reject(error)
+        )
+      },
+      onError: fn => {
+        this.extends.onRequestError(fn)
+        this.extends.onResponseError(fn)
+      }
+    }
+  }
 }
 
 /**
  * * 서버에 실제 요청을 보내게 되는 함수의 규격입니다.
  */
-export type ProcessType = <T>(link: string, axiosOption: AxiosRequestConfig) => Promise<AxiosResponse<T>>
+export type ProcessType = <T>(
+  link: string,
+  axiosOption: AxiosRequestConfig
+) => Promise<AxiosResponse<T>>
 
 /**
  * * 서버에 요청이 전송된 이후 요청 정보를 확인할 수 있는 함수의 규격입니다.
  */
-export type PostprocessType = <T>(params: IRequestParam, response: AxiosResponse<T>) => boolean
+export type PostprocessType = <T>(
+  params: IRequestParam,
+  response: AxiosResponse<T>
+) => boolean
 
 /**
  * * 요청을 가장 먼저 받아서 내부 함수를 실행시킬 함수의 규격입니다.
  */
-export type IGlobalProcess = <T>(params: IRequestParam) => Promise<AxiosResponse<T>>
+export type IGlobalProcess = <T>(
+  params: IRequestParam
+) => Promise<AxiosResponse<T>>
 
 /**
  * * 서버로 요청을 발생시킬때 내부적으로 사용되는 파라메터들입니다.
