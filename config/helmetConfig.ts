@@ -28,26 +28,6 @@ export const HelmetConfig = {
     referrerPolicy: {
       policy: 'strict-origin' // * 기본 no-referrer
     },
-
-    /**
-     * Content-Security-Policy
-     * XSS 공격을 방지할 수 있는 설정입니다.
-     */
-    contentSecurityPolicy: {
-      directives: {
-        'default-src': ["'self'"], // 기본 값: ["'self'"]
-        'base-uri': ["'self'"], // 기본 값: ["'self'"]
-        'block-all-mixed-content': [], // 기본 값: []
-        'font-src': ["'self'", 'https:', 'data:'], // 기본 값: ["'self'", 'https:', 'data:']
-        'frame-ancestors': ["'self'"], // 기본 값: ["'self'"]
-        'img-src': ["'self'", 'data:'], // 기본 값: ["'self'", 'data:']
-        'object-src': ["'none'"], // 기본 값: ["'none'"]
-        'script-src': ["'self'"], // 기본 값: ["'self'"]
-        'script-src-attr': ["'none'"], // 기본 값: ["'none'"]
-        'style-src': ["'self'", 'https:', "'unsafe-inline'"], // 기본 값: ["'self'", 'https:', "'unsafe-inline'"]
-        'upgrade-insecure-requests': [] // 기본 값: []
-      }
-    },
     /**
      * X-DNS-Prefetch-Control
      * 도메인을 통해 접근할 IP를 페이지에서 미리 불러올 수 있게 합니다.
