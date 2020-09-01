@@ -101,7 +101,7 @@
     "description": "넉스트 미들웨어를 생성합니다."
   },
   "Nuxt Service": {
-    "scope": "typescript",
+    "scope": "typescript,vue",
     "prefix": [
       "nuxt-service-network-api",
       "ns",
@@ -121,5 +121,17 @@
       "})",
     ],
     "description": "넉스트에서 API 서비스를 사용합니다."
+  },
+  "Nuxt Import ": {
+    "scope": "typescript,vue",
+    "prefix": [
+      "nuxt-import",
+      "ni"
+    ],
+    "body": [
+      "import * as Core from '~/core'",
+      "import { VueAPI } from '~/core'",
+    ],
+    "description": "넉스트 프로젝트용 임포트를 불러옵니다."
   },
 }

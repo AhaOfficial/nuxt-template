@@ -1,5 +1,6 @@
 import { ITodoItem } from './declare'
 import { todo } from './define'
+import * as Core from '~/core'
 import { VueAPI } from '~/core'
 
 /**

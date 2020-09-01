@@ -1,4 +1,5 @@
 import { Store } from 'vue-state-store'
+import * as Core from '~/core'
 
 /**
  * 카운터 상태 선언
