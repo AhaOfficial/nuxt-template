@@ -69,6 +69,7 @@ export default VueAPI.defineComponent({
     },
     /**
      * 버튼 색상
+     * @type { string }
      */
     btnColor: {
       type: String,
