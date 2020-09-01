@@ -26,10 +26,8 @@
 on:
   push:
     branches: 
-      - feature/ecs
-  release:
-    types: [created]
-
+      - master
+    
 name: Deploy to Amazon ECS
 
 jobs:
