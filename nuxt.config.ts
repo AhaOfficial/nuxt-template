@@ -12,6 +12,7 @@ const NuxtConfig = Merge.all([
   Config.SSRCacheConfig, // * SSR 캐싱
   Config.DevtoolsConfig, // * vue-devtools
   Config.PWAConfig, // * PWA
+  Config.HelmetConfig, // * nuxt-helmet
   Config.ExternalModuleConfig // * 기타 모듈
 ])
 
