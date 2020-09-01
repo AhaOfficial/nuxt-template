@@ -24,6 +24,9 @@
 #    and best practices on handling the access key credentials.
 
 on:
+  push:
+    branches: 
+      - feature/ecs
   release:
     types: [created]
 
