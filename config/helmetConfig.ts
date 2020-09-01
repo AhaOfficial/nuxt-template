@@ -15,7 +15,7 @@ export const HelmetConfig = {
      *
      * 기본 설명
      * @see https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Referrer-Policy#Browser_compatibility
-     *
+     * 
      * GA가 referrer 를 확보하지 못하는 경우
      * @see https://www.artience.com/archives/4777
      *
