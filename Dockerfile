@@ -1,19 +1,24 @@
-# Docker 환경 이미지 파일 입니다.
-FROM node:12.18.1
-
-# project 경로를 설정합니다.
-RUN mkdir -p /usr/src/nuxt-app
-WORKDIR /usr/src/nuxt-app
-
-# nuxt-app 폴더 하위에 프로젝트 폴더를 복사 후 npm install을 진행합니다.
-COPY . /usr/src/nuxt-app/
+FROM node:lts
+# Project directory
+WORKDIR /usr/scr/app
+# Install dependencies
+COPY package*.json ./
 RUN npm install
-RUN npm run build
-
-# 3000번 포트
+# Set environment variables
+# ENV NODE_ENV production
+# ENV HOST 0.0.0.0
+# ENV API_URL https://api.a-ha.io
+# ENV ATTEND_STAMP_EVENT _X10
+# ENV FACEBOOK_APP_ID 800157016982211
+# ENV GOOGLE_TAG_MANAGER_ID GTM-PLKF6PJ
+# ENV KAKAO_API_KEY 34dac78171b54633121b15d015efa895
+# ENV NAVER_CLIENT_ID lTyIlepDELk5xk8dWle2
+# ENV SESSION_LIFETIME 3
+# ENV STATIC_URL https://static.a-ha.io
+# ENV WEB_URL https://www.a-ha.io
+# Copy sources and expose a port
+COPY . .
 EXPOSE 3000
-
-ENV HOST 0.0.0.0
-ENV PORT 3000
-
-CMD ["npm", "start"]
+# Build
+RUN npm run build:modern
+CMD [ "npm", "run", "start:modern" ]
