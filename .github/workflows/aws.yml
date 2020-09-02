@@ -54,7 +54,7 @@ jobs:
       id: build-image
       env:
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-        ECR_REPOSITORY: aws-ecs-test
+        ECR_REPOSITORY: aws-ecs-test-new
         IMAGE_TAG: ${{ github.sha }}
       run: |
         # Build a docker container and
@@ -66,20 +66,20 @@ jobs:
 
     - name: Download task definition
       run: |
-        aws ecs describe-task-definition --task-definition ecs-test-definition:1 --query taskDefinition > task-definition.json
+        aws ecs describe-task-definition --task-definition aws-ecs-test-new:1 --query taskDefinition > task-definition.json
     
     - name: Fill in the new image ID in the Amazon ECS task definition
       id: task-def
       uses: aws-actions/amazon-ecs-render-task-definition@v1
       with:
         task-definition: task-definition.json
-        container-name: aws-ecs-container
+        container-name: aws-ecs-test-container
         image: ${{ steps.build-image.outputs.image }}
 
     - name: Deploy Amazon ECS task definition
       uses: aws-actions/amazon-ecs-deploy-task-definition@v1
       with:
         task-definition: ${{ steps.task-def.outputs.task-definition }}
-        service: aws-ecs-test-service
-        cluster: aws-ecs-test
+        service: aws-ecs-test-new-service
+        cluster: aws-ecs-test-new
         wait-for-service-stability: true
