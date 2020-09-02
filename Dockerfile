@@ -1,6 +1,6 @@
 FROM node:lts
 # Project directory
-WORKDIR /usr/scr/app
+WORKDIR /usr/home/aha
 # Install dependencies
 COPY package*.json ./
 RUN npm install
@@ -18,7 +18,7 @@ RUN npm install
 # ENV WEB_URL https://www.a-ha.io
 # Copy sources and expose a port
 COPY . .
-EXPOSE 3000
+EXPOSE 80
 # Build
 RUN npm run build:modern
 CMD [ "npm", "run", "start:modern" ]
