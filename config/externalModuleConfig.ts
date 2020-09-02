@@ -22,17 +22,6 @@ export const ExternalModuleConfig = {
     enbaled: !!Config.Interface.isProductionMode
   },
 
-  // * Brotli 압축을 적용합니다.
-  // * (Brotli 는 HTTPS 상태에 한해서만 제한 적용됩니다.)
-  'nuxt-compress': {
-    gzip: {
-      cache: true
-    },
-    brotli: {
-      threshold: 10240
-    }
-  },
-
   // * svgSprite 라이브러리 옵션을 설정합니다.
   svgSprite: {
     // * default url 입니다.

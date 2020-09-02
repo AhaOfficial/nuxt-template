@@ -9,7 +9,7 @@ const NuxtConfig = Merge.all([
   Config.HeadConfig, // * <head>
   Config.CssConfig, // * 스타일
   Config.BuildConfig, // * 빌드
-  Config.SSRCacheConfig, // * SSR 캐싱
+  // Config.SSRCacheConfig, // * SSR 캐싱
   Config.DevtoolsConfig, // * vue-devtools
   Config.PWAConfig, // * PWA
   Config.HelmetConfig, // * nuxt-helmet

@@ -64,6 +64,11 @@ export const BuildConfig = {
     },
 
     // * 이전 브라우저에 맞게 Babel 로 트랜스파일 할 빌드 목록입니다.
-    transpile: []
+    transpile: [],
+
+    // * gzip 을 사용하지 않습니다.
+    performance: {
+      gzip: false
+    }
   }
 } as Config.Interface.IConfig

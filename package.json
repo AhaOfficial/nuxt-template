@@ -21,7 +21,6 @@
     "dayjs": "^1.8.34",
     "deepmerge": "^4.2.2",
     "fingerprintjs2": "^2.1.2",
-    "nuxt-compress": "^2.0.0",
     "nuxt-edge": "^2.15.0-26597854.60f68638",
     "nuxt-esbuild": "^1.0.2",
     "nuxt-helmet": "^2.0.0",

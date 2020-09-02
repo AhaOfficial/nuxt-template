@@ -39,7 +39,6 @@ export const NuxtConfig = {
     '@nuxt/typescript-build',
     '@nuxtjs/tailwindcss',
     '@nuxtjs/pwa',
-    'nuxt-compress',
     '@nuxtjs/stylelint-module',
     '@nuxtjs/eslint-module'
   ],
