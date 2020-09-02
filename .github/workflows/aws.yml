@@ -41,6 +41,7 @@ jobs:
 
     - name: Configure AWS credentials
       uses: aws-actions/configure-aws-credentials@v1
+      # aws 인증 키
       with:
         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
@@ -54,6 +55,7 @@ jobs:
       id: build-image
       env:
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+        # ecr repo 이름
         ECR_REPOSITORY: aws-ecs-test-new
         IMAGE_TAG: ${{ github.sha }}
       run: |
@@ -64,22 +66,25 @@ jobs:
         docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
         echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
 
+    # definition.json 파일 다운
     - name: Download task definition
       run: |
-        aws ecs describe-task-definition --task-definition aws-ecs-test-new:1 --query taskDefinition > task-definition.json
+        aws ecs describe-task-definition --task-definition aws-ecs-final:1 --query taskDefinition > task-definition.json
     
     - name: Fill in the new image ID in the Amazon ECS task definition
       id: task-def
       uses: aws-actions/amazon-ecs-render-task-definition@v1
       with:
         task-definition: task-definition.json
-        container-name: aws-ecs-test-container
+        # ecs 컨테이너 명
+        container-name: aws-ecs-final-container
         image: ${{ steps.build-image.outputs.image }}
 
     - name: Deploy Amazon ECS task definition
       uses: aws-actions/amazon-ecs-deploy-task-definition@v1
       with:
         task-definition: ${{ steps.task-def.outputs.task-definition }}
-        service: aws-ecs-test-new-service
-        cluster: aws-ecs-test-new
+        # ecs cluster service
+        service: aws-ecs-final-service
+        cluster: aws-ecs-final
         wait-for-service-stability: true
