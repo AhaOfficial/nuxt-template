@@ -77,7 +77,7 @@ jobs:
       with:
         task-definition: task-definition.json
         # ecs 컨테이너 명 
-        container-name: aws-ecs-final-container
+        container-name: aws-ecs-final-mook-container
         image: ${{ steps.build-image.outputs.image }}
 
     - name: Deploy Amazon ECS task definition
