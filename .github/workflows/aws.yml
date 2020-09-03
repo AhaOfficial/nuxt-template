@@ -55,7 +55,7 @@ jobs:
       id: build-image
       env:
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-        # ecr repo 이름 
+        # ecr repo 이름
         ECR_REPOSITORY: aws-ecs-test-new
         IMAGE_TAG: ${{ github.sha }}
       run: |
@@ -69,7 +69,7 @@ jobs:
     # definition.json 파일 다운
     - name: Download task definition
       run: |
-        aws ecs describe-task-definition --task-definition aws-ecs-final-mook --query taskDefinition > task-definition.json
+        aws ecs describe-task-definition --task-definition aws-ecs-final --query taskDefinition > task-definition.json
     
     - name: Fill in the new image ID in the Amazon ECS task definition
       id: task-def
@@ -77,7 +77,7 @@ jobs:
       with:
         task-definition: task-definition.json
         # ecs 컨테이너 명 
-        container-name: aws-ecs-final-mook-container
+        container-name: aws-ecs-final-container
         image: ${{ steps.build-image.outputs.image }}
 
     - name: Deploy Amazon ECS task definition
