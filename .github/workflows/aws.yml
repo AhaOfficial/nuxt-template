@@ -24,67 +24,67 @@
 #    and best practices on handling the access key credentials.
 
 on:
-	push:
-		branches:
-			- master
-		
+  push:
+    branches:
+      - master
+    
 name: Deploy to Amazon ECS
 
 jobs:
-	deploy:
-		name: Deploy
-		runs-on: ubuntu-latest
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
 
-		steps:
-		- name: Checkout
-			uses: actions/checkout@v2
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
 
-		- name: Configure AWS credentials
-			uses: aws-actions/configure-aws-credentials@v1
-			# aws 인증 키
-			with:
-				aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-				aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-				aws-region: ap-southeast-1
+    - name: Configure AWS credentials
+      uses: aws-actions/configure-aws-credentials@v1
+      # aws 인증 키
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: ap-southeast-1
 
-		- name: Login to Amazon ECR
-			id: login-ecr
-			uses: aws-actions/amazon-ecr-login@v1
+    - name: Login to Amazon ECR
+      id: login-ecr
+      uses: aws-actions/amazon-ecr-login@v1
 
-		- name: Build, tag, and push image to Amazon ECR
-			id: build-image
-			env:
-				ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-				# ecr repo 이름
-				ECR_REPOSITORY: aws-ecs-test-new
-				IMAGE_TAG: ${{ github.sha }}
-			run: |
-				# Build a docker container and
-				# push it to ECR so that it can
-				# be deployed to ECS.
-				docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
-				docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
-				echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
+    - name: Build, tag, and push image to Amazon ECR
+      id: build-image
+      env:
+        ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+        # ecr repo 이름
+        ECR_REPOSITORY: aws-ecs-test-new
+        IMAGE_TAG: ${{ github.sha }}
+      run: |
+        # Build a docker container and
+        # push it to ECR so that it can
+        # be deployed to ECS.
+        docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
+        docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+        echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
 
-		# definition.json 파일 다운
-		- name: Download task definition
-			run: |
-				aws ecs describe-task-definition --task-definition cmlim-3-definition --query taskDefinition > task-definition.json
-		
-		- name: Fill in the new image ID in the Amazon ECS task definition
-			id: task-def
-			uses: aws-actions/amazon-ecs-render-task-definition@v1
-			with:
-				task-definition: task-definition.json
-				# ecs 컨테이너 명  
-				container-name: cmlim-3-container
-				image: ${{ steps.build-image.outputs.image }}
+    # definition.json 파일 다운 
+    - name: Download task definition
+      run: |
+        aws ecs describe-task-definition --task-definition cmlim-final-definition --query taskDefinition > task-definition.json
+    
+    - name: Fill in the new image ID in the Amazon ECS task definition
+      id: task-def
+      uses: aws-actions/amazon-ecs-render-task-definition@v1
+      with:
+        task-definition: task-definition.json
+        # ecs 컨테이너 명  
+        container-name: cmlim-final-container
+        image: ${{ steps.build-image.outputs.image }}
 
     - name: Deploy Amazon ECS task definition
       uses: aws-actions/amazon-ecs-deploy-task-definition@v1
       with:
         task-definition: ${{ steps.task-def.outputs.task-definition }}
         # ecs cluster service
-        service: cmlim-final-3-service
-        cluster: cmlim-final-3
+        service: cmlim-final-2-service
+        cluster: cmlim-final-2
         wait-for-service-stability: true
