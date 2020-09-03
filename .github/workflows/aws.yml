@@ -85,6 +85,6 @@ jobs:
       with:
         task-definition: ${{ steps.task-def.outputs.task-definition }}
         # ecs cluster service
-        service: cmlim-result-service
-        cluster: cmlim-result
+        service: cmlim-final-service
+        cluster: cmlim-final
         wait-for-service-stability: true
