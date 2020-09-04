@@ -70,7 +70,7 @@ export class UseStory {
 
   // * event 로직 입니다.
   addTodo = () => !this.isEmptyTodo.value && (story.addTodo({ name: this.todo.value }), (this.todo.value = ''))
-  typingTodo = e => (this.todo.value = e.target.value)
+  typingTodo = (e) => (this.todo.value = e.target.value)
 }
 
 /**
