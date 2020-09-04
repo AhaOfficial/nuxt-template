@@ -43,6 +43,12 @@ export const HeadConfig = {
     script: [],
 
     // * 파비콘 주소를 명시합니다.
-    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]
+    link: [
+      {
+        rel: 'icon',
+        type: 'image/x-icon',
+        href: 'https://d1uevki2ixpef8.cloudfront.net/favicon.ico'
+      }
+    ]
   }
 } as Config.Interface.IConfig
