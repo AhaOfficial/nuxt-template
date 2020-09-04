@@ -5,7 +5,7 @@ import * as Config from './'
  */
 export const PWAConfig = {
   pwa: {
-    // * PWA 아이콘 공식 설명 https://pwa.nuxtjs.org/icon/
+    // * PWA 아이콘 공식 설명 https://pwa.nuxtjs.org/icon/      
     icon: {
       fileName: 'favicon.png'
     },
