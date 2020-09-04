@@ -55,7 +55,7 @@ jobs:
       id: build-image
       env:
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-        # ecr repo 이름 입니다.
+        # ecr repo 이름 입니다. 
         ECR_REPOSITORY: aws-ecs-test-new
         IMAGE_TAG: ${{ github.sha }}
       run: |
