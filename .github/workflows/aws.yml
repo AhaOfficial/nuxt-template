@@ -69,7 +69,7 @@ jobs:
     # definition.json 파일 다운 
     - name: Download task definition
       run: |
-        aws ecs describe-task-definition --task-definition ecs-test-1-definition --query taskDefinition > task-definition.json
+        aws ecs describe-task-definition --task-definition ecs-test-1 --query taskDefinition > task-definition.json
     
     - name: Fill in the new image ID in the Amazon ECS task definition
       id: task-def
