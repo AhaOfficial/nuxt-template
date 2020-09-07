@@ -85,7 +85,7 @@ jobs:
       with:
         task-definition: ${{ steps.task-def.outputs.task-definition }}
         # ecs cluster service
-        service: mook-7-service
+        service: mook-7-sub-service
         cluster: mook-7
         wait-for-service-stability: true
 
