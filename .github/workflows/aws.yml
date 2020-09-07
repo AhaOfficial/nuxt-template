@@ -69,7 +69,7 @@ jobs:
     # definition.json 파일 다운
     - name: Download task definition
       run: |
-        aws ecs describe-task-definition --task-definition mook-5-definition --query taskDefinition > task-definition.json
+        aws ecs describe-task-definition --task-definition mook-definition --query taskDefinition > task-definition.json
     
     - name: Fill in the new image ID in the Amazon ECS task definition
       id: task-def
@@ -77,7 +77,7 @@ jobs:
       with:
         task-definition: task-definition.json
         # ecs 컨테이너 명  
-        container-name: mook-5-container
+        container-name: mook-container
         image: ${{ steps.build-image.outputs.image }}
 
     - name: Deploy Amazon ECS task definition
@@ -85,6 +85,6 @@ jobs:
       with:
         task-definition: ${{ steps.task-def.outputs.task-definition }}
         # ecs cluster service
-        service: mook-5-service
-        cluster: mook-5
+        service: mook-service
+        cluster: mook
         wait-for-service-stability: true
