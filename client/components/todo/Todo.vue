@@ -59,7 +59,7 @@
             class="border border-gray-300 rounded-md p-4 max-w-sm w-full mx-auto py-4 my-3 text-center"
           >
             <h1>🤔</h1>
-            어서어서!!
+            두잇두잇!!
             투두를 등록해주세요!
           </div>
         </div>
