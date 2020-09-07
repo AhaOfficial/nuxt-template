@@ -88,3 +88,15 @@ jobs:
         service: mook-6-service
         cluster: mook-6
         wait-for-service-stability: true
+
+    # - name: 🔮  CDN 갱신 (AWS Invalidation)
+    #   uses: awact/cloudfront-action@master
+    #   env:
+    #     # 무효화시킬 경로
+    #     SOURCE_PATH: ${{ secrets.CLOUDFRONT_INVALIDATION_PATH }}
+    #     # S3 리전
+    #     AWS_REGION: ${{ secrets.CLOUDFRONT_S3_REGION }}
+    #     # 클라우드 프론트 ID
+    #     DISTRIBUTION_ID: ${{ secrets.DISTRIBUTION_ID }}
+    #     AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+    #     AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
