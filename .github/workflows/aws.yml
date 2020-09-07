@@ -47,11 +47,11 @@ jobs:
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         aws-region: ap-southeast-1
 
-    - name: Login to Amazon ECR
+    - name: ECR 레포지토리에 로그인 합니다.
       id: login-ecr
       uses: aws-actions/amazon-ecr-login@v1
 
-    - name: Build, tag, and push image to Amazon ECR
+    - name: ECR에 이미지 작성, 태그 지정 및 이미지를 푸시합니다.
       id: build-image
       env:
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
@@ -67,24 +67,24 @@ jobs:
         echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
 
     # definition.json 파일 다운
-    - name: Download task definition
+    - name: 작업 정의 파일을 다운로드 받습니다.
       run: |
-        aws ecs describe-task-definition --task-definition mook-definition --query taskDefinition > task-definition.json
+        aws ecs describe-task-definition --task-definition mook-6-definition --query taskDefinition > task-definition.json
     
-    - name: Fill in the new image ID in the Amazon ECS task definition
+    - name: ECS 작업 정의에 새 이미지 ID를 입력합니다.
       id: task-def
       uses: aws-actions/amazon-ecs-render-task-definition@v1
       with:
         task-definition: task-definition.json
         # ecs 컨테이너 명  
-        container-name: mook-container
+        container-name: mook-6-container
         image: ${{ steps.build-image.outputs.image }}
 
-    - name: Deploy Amazon ECS task definition
+    - name: ECS 배포 작업을 정의합니다.
       uses: aws-actions/amazon-ecs-deploy-task-definition@v1
       with:
         task-definition: ${{ steps.task-def.outputs.task-definition }}
         # ecs cluster service
-        service: mook-service
-        cluster: mook
+        service: mook-6-service
+        cluster: mook-6
         wait-for-service-stability: true
