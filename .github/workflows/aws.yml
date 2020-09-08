@@ -69,7 +69,7 @@ jobs:
     # definition.json 파일 다운
     - name: 작업 정의 파일을 다운로드 받습니다.
       run: |
-        aws ecs describe-task-definition --task-definition mook-test-definition --query taskDefinition > task-definition.json
+        aws ecs describe-task-definition --task-definition mook-final-definition --query taskDefinition > task-definition.json
     
     - name: ECS 작업 정의에 새 이미지 ID를 입력합니다.
       id: task-def
@@ -77,7 +77,7 @@ jobs:
       with:
         task-definition: task-definition.json
         # ecs 컨테이너 명  
-        container-name: mook-test-container
+        container-name: mook-final-container
         image: ${{ steps.build-image.outputs.image }}
 
     - name: ECS 배포 작업을 정의합니다.
@@ -85,8 +85,8 @@ jobs:
       with:
         task-definition: ${{ steps.task-def.outputs.task-definition }}
         # ecs cluster service
-        service: mook-test-sub-service
-        cluster: mook-test
+        service: mook-final-service
+        cluster: mook-final
         wait-for-service-stability: true
 
     # - name: 🔮  CDN 갱신 (AWS Invalidation)
