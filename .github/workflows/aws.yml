@@ -86,7 +86,7 @@ jobs:
         task-definition: ${{ steps.task-def.outputs.task-definition }}
         # ecs cluster service
         service: mook-final-awsvpc-service
-        cluster: mook-final-awsvpc
+        cluster: mook-final
         wait-for-service-stability: true
 
     # - name: 🔮  CDN 갱신 (AWS Invalidation)
