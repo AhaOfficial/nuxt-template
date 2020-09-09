@@ -77,7 +77,7 @@ jobs:
       with:
         task-definition: task-definition.json
         # ecs 컨테이너 명  
-        container-name: mook-final-container
+        container-name: mook-final-awspvc-container
         image: ${{ steps.build-image.outputs.image }}
 
     - name: ECS 배포 작업을 정의합니다.
