@@ -1,0 +1,13 @@
+version: 0.0
+os: linux
+Resources:
+  - TargetService:
+      Type: AWS::ECS::Service
+      Properties:
+        TaskDefinition: "arn:aws:ecs:us-east-1:111222333444:task-definition/aha-web-definition"
+        LoadBalancerInfo:
+          ContainerName: "aha-web-container"
+          ContainerPort: 80
+files:
+  - source: /
+    destination: /usr/home/aha

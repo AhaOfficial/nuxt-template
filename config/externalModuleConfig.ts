@@ -35,6 +35,6 @@ export const ExternalModuleConfig = {
     localStorage: true, // boolean or {prefix }
     cookie: false, // boolean or {prefix, options }
     initialState: {},  // Object {}
-    ignoreExceptions: false //
+    ignoreExceptions: false // boolean
   }
 } as Config.Interface.IConfig
