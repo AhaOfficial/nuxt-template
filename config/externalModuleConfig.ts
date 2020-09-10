@@ -11,7 +11,7 @@ export const ExternalModuleConfig = {
   // * 테일윈드
   tailwindcss: {
     configPath: '~/config/tailwind.config.js',
-    cssPath: '~/assets/css/tailwind.css',
+    cssPath: '~/assets/css/tailwind.scss',
     exposeConfig: false
   },
 
