@@ -15,7 +15,6 @@ module.exports = {
       }
     },
     '@storybook/addon-controls',
-    'storybook-zeplin/register'
   ],
   webpackFinal: async config => {
     config.resolve.alias = {
