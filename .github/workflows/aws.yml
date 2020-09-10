@@ -85,10 +85,10 @@ jobs:
       with:
         task-definition: ${{ steps.task-def.outputs.task-definition }}
         # ecs cluster service
-        service: aha-web-service
+        service: aha-service
         cluster: aha-test
         wait-for-service-stability: true
-        codedeploy-appspec: appspec.json
+        codedeploy-appspec: appspec.yml
         codedeploy-application: AppECS-aha-test-aha-web-service
         codedeploy-deployment-group: DgpECS-aha-test-aha-web-service
 
