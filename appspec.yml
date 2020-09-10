@@ -4,7 +4,7 @@ Resources:
   - TargetService:
       Type: AWS::ECS::Service
       Properties:
-        TaskDefinition: "arn:aws:ecs:us-east-1:111222333444:task-definition/aha-web-definition"
+        TaskDefinition: "arn:aws:ecs:ap-southeast-1:676499404107:aha-web-definition/:1"
         LoadBalancerInfo:
           ContainerName: "aha-web-container"
           ContainerPort: 80
