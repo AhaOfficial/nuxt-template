@@ -51,4 +51,8 @@ export const PostConfig = (nuxtConfig: Config.Interface.IConfig) => {
 
   // * 프로젝트에서 사용하는 모듈을 트랜스파일링 합니다.
   ;(nuxtConfig as NuxtConfig).build.transpile = postbuild()
+
+  // * 프로젝트가 개발 중인 경우 terser 를 비활성화합니다.
+  if (!Config.Interface.isProductionMode)
+    (nuxtConfig as NuxtConfig).build.optimization.minimize = false
 }
