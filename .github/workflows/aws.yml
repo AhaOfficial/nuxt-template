@@ -88,9 +88,9 @@ jobs:
         service: aha-service
         cluster: aha-test
         wait-for-service-stability: true
-        codedeploy-appspec: appspec.yml
-        codedeploy-application: AppECS-aha-test-aha-web-service
-        codedeploy-deployment-group: DgpECS-aha-test-aha-web-service
+        # codedeploy-appspec: appspec.yml
+        # codedeploy-application: AppECS-aha-test-aha-web-service
+        # codedeploy-deployment-group: DgpECS-aha-test-aha-web-service
 
     - name: 🔮  CDN 갱신 (AWS Invalidation)
       uses: awact/cloudfront-action@master
