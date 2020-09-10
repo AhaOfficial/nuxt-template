@@ -38,14 +38,6 @@ export const BuildConfig = {
       }
     },
 
-    // * PostCSS 빌드 설정들이 담깁니다.
-    postcss: {
-      plugins: {
-        // * 테일윈드 CSS 를 추가합니다.
-        tailwindcss: path.join(__dirname, 'client/config/tailwind.config.js')
-      }
-    },
-
     // * (빌드 가속용 옵션) 빌드시 해석한 파일들을 해시에 따라 캐싱합니다.
     cache: true,
 
