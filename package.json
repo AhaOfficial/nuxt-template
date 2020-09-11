@@ -11,28 +11,29 @@
   "dependencies": {
     "@nuxt/components": "^1.1.0",
     "@nuxt/core": "2.14.5",
-    "@nuxt/typescript-build": "^2.0.3",
     "@nuxt/typescript-runtime": "2.0.0",
     "@nuxtjs/axios": "5.12.2",
-    "@nuxtjs/pwa": "^3.0.2",
     "@nuxtjs/svg-sprite": "^0.4.12",
     "@nuxtjs/tailwindcss": "3.0.2",
     "@nuxtjs/universal-storage": "^0.5.5",
     "@vue/composition-api": "1.0.0-beta.11",
+    "bignumber.js": "^9.0.0",
     "core-js": "^3.6.5",
     "dayjs": "^1.8.35",
     "deepmerge": "^4.2.2",
     "fingerprintjs2": "^2.1.2",
     "nuxt": "2.14.5",
-    "nuxt-esbuild": "^1.0.2",
     "nuxt-helmet": "^2.0.0",
     "nuxt-jsonld": "^1.4.10",
     "nuxt-lifecycle": "^1.0.2",
+    "svg-sprite-loader": "^5.0.0",
     "validator": "^13.1.1",
     "vue-awesome-swiper": "^4.1.1",
     "vue-croppie": "^2.0.2",
     "vue-scrollto": "^2.18.2",
-    "vue-state-store": "^1.0.0"
+    "vue-state-store": "^1.0.0",
+    "vue-svg-inline-loader": "^1.5.0",
+    "vue-svg-loader": "^0.16.0"
   },
   "scripts": {
     "dev": "nuxt-ts",
@@ -48,6 +49,7 @@
     "storybook": "start-storybook -p 6006 -s public"
   },
   "devDependencies": {
+    "@nuxt/typescript-build": "^2.0.3",
     "@nuxt/builder": "2.14.5",
     "@nuxt/cli": "2.14.5",
     "@nuxt/types": "^2.14.5",
@@ -56,6 +58,7 @@
     "@nuxtjs/eslint-config-typescript": "^3.0.0",
     "@nuxtjs/eslint-module": "^2.0.0",
     "@nuxtjs/gtm": "^2.3.2",
+    "@nuxtjs/pwa": "^3.0.2",
     "@nuxtjs/stylelint-module": "^4.0.0",
     "@storybook/addon-controls": "^6.0.21",
     "@storybook/addon-docs": "^6.0.21",
@@ -71,7 +74,6 @@
     "autoprefixer": "^9.8.6",
     "babel-eslint": "^10.1.0",
     "babel-preset-vue": "^2.0.2",
-    "bignumber.js": "^9.0.0",
     "eslint": "^7.8.1",
     "eslint-config-prettier": "^6.11.0",
     "eslint-plugin-nuxt": "^1.0.0",
@@ -90,9 +92,6 @@
     "stylelint": "^13.7.0",
     "stylelint-config-prettier": "^8.0.2",
     "stylelint-config-recommended": "^3.0.0",
-    "svg-sprite-loader": "^5.0.0",
-    "ts-jest": "^26.3.0",
-    "vue-svg-inline-loader": "^1.5.0",
-    "vue-svg-loader": "^0.16.0"
+    "ts-jest": "^26.3.0"
   }
 }
