@@ -26,7 +26,9 @@
 on:
   push:
     branches:
+      # 👀 정책이 필요합니다.
       - master
+      # - build/CICD
     
 name: Deploy to Amazon ECS
 
@@ -39,9 +41,9 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2
 
-    - name: Configure AWS credentials
+    - name: 💡 AWS 인증키를 설정합니다.
       uses: aws-actions/configure-aws-credentials@v1
-      # aws 인증 키 
+      # 💡 aws 인증 키 
       with:
         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
@@ -55,7 +57,7 @@ jobs:
       id: build-image
       env:
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-        # ecr repo 이름 입니다.  
+        # 💡 ECR REPO NAME  
         ECR_REPOSITORY: aws-ecs-test-new
         IMAGE_TAG: ${{ github.sha }}
       run: |
@@ -66,37 +68,25 @@ jobs:
         docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
         echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
 
-    # definition.json 파일 다운
+    # 💡 TASK DEFINITION DOWNLOAD
     - name: 📥  작업 정의 파일을 다운로드 받습니다.
       run: |
-        aws ecs describe-task-definition --task-definition aha-dev-definition --query taskDefinition > task-definition.json
+        aws ecs describe-task-definition --task-definition aha-qna-web-definition --query taskDefinition > task-definition.json
     
     - name: 📝  ECS 작업 정의에 새 이미지 ID를 입력합니다.
       id: task-def
       uses: aws-actions/amazon-ecs-render-task-definition@v1
       with:
         task-definition: task-definition.json
-        # ecs 컨테이너 명  
-        container-name: aha-dev-container
+        # 💡 ECS CONTAINER NAME
+        container-name: aha-qna-web-container
         image: ${{ steps.build-image.outputs.image }}
 
     - name: 📦  ECS 배포 작업을 정의합니다.
       uses: aws-actions/amazon-ecs-deploy-task-definition@v1
       with:
         task-definition: ${{ steps.task-def.outputs.task-definition }}
-        # ecs cluster service
-        service: aha-dev-service
-        cluster: aha-dev
+        # 💡 ECS CLUSTER & ECS SERVICE 
+        service: aha-qna-web-service
+        cluster: aha-qna-web
         wait-for-service-stability: true
-
-    # - name: 🔮  CDN 갱신 (AWS Invalidation)
-    #   uses: awact/cloudfront-action@master
-    #   env:
-    #     # 무효화시킬 경로
-    #     SOURCE_PATH: ${{ secrets.CLOUDFRONT_INVALIDATION_PATH }}
-    #     # S3 리전
-    #     AWS_REGION: ${{ secrets.CLOUDFRONT_S3_REGION }}
-    #     # 클라우드 프론트 ID
-    #     DISTRIBUTION_ID: ${{ secrets.DISTRIBUTION_ID }}
-    #     AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-    #     AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
