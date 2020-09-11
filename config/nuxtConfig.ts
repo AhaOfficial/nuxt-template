@@ -27,7 +27,6 @@ export const NuxtConfig = {
   modules: [
     '@nuxtjs/axios',
     'nuxt-lifecycle',
-    'nuxt-ssr-cache',
     '@nuxtjs/universal-storage',
     '@nuxtjs/gtm',
     '@nuxtjs/svg-sprite',
