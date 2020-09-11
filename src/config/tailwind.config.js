@@ -36,10 +36,8 @@ module.exports = {
       'nuxt.config.ts'
     ]
   },
-  options: {
-    // whitelist: ['body', 'html', 'nuxt-progress']
-  },
   future: {
-    removeDeprecatedGapUtilities: true
+    removeDeprecatedGapUtilities: true,
+    purgeLayersByDefault: true
   }
 }
