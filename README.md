@@ -88,7 +88,7 @@ npx degit AhaOfficial/nuxt-template
 
   > **VSCode 편집기 사용시 공통적으로 사용될 편집 규칙들**이 여기에 정의됩니다.
 
-- 🗂 client
+- 🗂 src
 
   > **클라이언트 프로그램의 에셋**(소스코드들과 리소스)들이 모두 여기에 담깁니다.
 

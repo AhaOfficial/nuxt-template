@@ -19,7 +19,7 @@ module.exports = {
   webpackFinal: async config => {
     config.resolve.alias = {
       vue$: 'vue/dist/vue.esm.js',
-      '~': path.resolve(__dirname, '../client')
+      '~': path.resolve(__dirname, '../src')
     }
 
     config.module.rules.push({

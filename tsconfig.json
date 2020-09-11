@@ -13,7 +13,7 @@
     "resolveJsonModule": true,
     "importsNotUsedAsValues": "preserve",
     "paths": {
-      "~/*": ["./client/*"]
+      "~/*": ["./src/*"]
     },
     "types": ["@nuxt/types", "@nuxtjs/axios"]
   }

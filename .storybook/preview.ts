@@ -4,8 +4,8 @@ import { addParameters } from '@storybook/vue'
 import { newViewport } from './assets/viewport'
 import { DocsPage, DocsContainer } from '@storybook/addon-docs/blocks'
 
-import { injectVueInstance } from '../client/core'
-import '../client/assets/css/tailwind.scss'
+import { injectVueInstance } from '../src/core'
+import '../src/assets/css/tailwind.scss'
 injectVueInstance()
 
 const SOURCE_REGEX = /^\(\) => `(.*)`$/

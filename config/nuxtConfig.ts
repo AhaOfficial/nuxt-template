@@ -1,4 +1,4 @@
-import { dev, prod } from '../client/env'
+import { dev, prod } from '../src/env'
 import * as Config from '.'
 
 /**
@@ -9,7 +9,7 @@ export const NuxtConfig = {
   mode: 'universal',
 
   // * 배포할 경로를 지정합니다.
-  srcDir: './client',
+  srcDir: './src',
 
   // * Global component를 등록합니다.
   // * 경로는 기본적으로 ~/components를 바라봅니다.
