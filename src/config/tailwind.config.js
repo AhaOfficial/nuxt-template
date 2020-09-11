@@ -32,8 +32,7 @@ module.exports = {
       'src/components/**/*.vue',
       'src/layouts/**/*.vue',
       'src/pages/**/*.vue',
-      'src/plugins/**/*.ts',
-      'nuxt.config.ts'
+      'src/plugins/**/*.ts'
     ]
   },
   future: {
