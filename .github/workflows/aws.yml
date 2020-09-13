@@ -28,7 +28,7 @@ on:
     branches:
       # 👀 정책이 필요합니다. 
       - master
-      # - build/CICD
+      # - build/CICD 
     
 name: Deploy to Amazon ECS
 
