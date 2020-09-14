@@ -1,50 +1,116 @@
-import { Meta, Canvas, Story, ArgsTable } from '@storybook/addon-docs/blocks';
-import Todo from './Todo.vue';
+import {
+  Meta,
+  Canvas,
+  Story,
+  ArgsTable,
+  Source
+} from '@storybook/addon-docs/blocks'
+import Todo from './Todo.vue'
 
-export const args = {
-  btnText: { control: 'text' },
-  btnColor: { control: 'color' },
-  btnSize: { control: { type: 'select', options: { small: 'w-20', middle: 'w-64', large: 'w-full' } } }
+
+<!-- 🔖 스토리북에 등록될 페이지 이름입니다. -->
+export const pageTitle = `할 일 목록 <Todo>`
+
+<!-- 🔖 예시에 사용될 기본 컴포넌트 이름입니다.
+<Todo /> 와 같이 사용되는 컴포넌트 인 경우 Todo 로 명시됩니다. -->
+export const componentName = `Todo`
+
+<!-- 🔖 컴포넌트를 { } 안에 담습니다. 예시: { Todo } -->
+export const component = { Todo }
+
+<!-- 🔖 예시에 사용될 기본 컴포넌트 속성 값들입니다. -->
+<!--
+예시: {
+  btnText: '등록',
+  btnColor: '#5dc4c0',
+  btnSize: 'w-full'
+} -->
+export const propsDefault = {
+  btnText: '등록',
+  btnColor: '#5dc4c0',
+  btnSize: 'w-full'
 }
 
+<!-- 🔖 리모콘용 컴포넌트 속성들의 타입 정보가 담깁니다.  -->
+export const propsTypes = {
+  // 글자 타입  btnText: { control: 'text' }
+  // 색상 타입  btnColor: { control: 'color' }
+  // 선택 타입
+  // btnSize: {
+  //   control: {
+  //     type: 'select',
+  //     options: { small: 'w-20', middle: 'w-64', large: 'w-full' }
+  //   }
+  // }
+  btnText: { control: 'text' },
+  btnColor: { control: 'color' },
+  btnSize: {
+    control: {
+      type: 'select',
+      options: { small: 'w-20', middle: 'w-64', large: 'w-full' }
+    }
+  }
+}
+
+<!-- 🔖 컴포넌트 설명문을 여기 명시합니다. -->
+# 📦 Todo 컴포넌트
+
+> Todo 컴포넌트는 할 일을 목록으로 관리할 수 있는 컴포넌트입니다.
+
+
+
+
+
+
+<!-- ⚠️ 컴포넌트를 스토리북용 컴포넌트로 래핑합니다. -->
+import { useStorybook } from 'vue-storybook-code-generator'
+import CodeViewer from 'vue-storybook-code-generator/CodeViewer'
+export const defaultUsage = useStorybook({
+  component,
+  componentName,
+  CodeViewer
+})
+export const defaultTemplate = defaultUsage.template
+export const defaultCode = defaultUsage.code
+
+
+<!-- ⚠️ 컴포넌트의 기본 스펙입니다. -->
 <Meta
-  title="Todo component"
-  component={Todo}
-  argTypes={{...args}}
+  title={pageTitle}
+  component={component[Object.keys(component)[0]]}
+  argTypes={propsTypes}
 />
 
-export const Template = (args, { argTypes }) => ({
-  props: Object.keys(argTypes),
-  components: { Todo },
-  template: '<Todo :btnText="btnText" :btnColor="btnColor" :btnSize="btnSize" />',
-});
+<br />
 
-# MDX 예제 입니다 😄
 
-Props types를 정의합니다.
+<!-- ⚠️ 컴포넌트의 실제 모습이 아래 코드를 통해서 보여집니다. -->
+### 🔮 컴포넌트 테스트
 
 <Canvas>
-  <div>
-    <Todo :btnText="args.btnText" :btnColor="args.btnColor" :btnSize="args.btnSize" />
-</div>
-</Canvas>
-
-## Default
-
-<Canvas>
-  <Story 
-    name="Default" 
-    args={{	btnText: '등록',	btnColor: '#5dc4c0',	btnSize: 'w-full'}}
-    parameters={{
-      docs: {
-        source: {
-          code: '<Todo :btnText="btnText" :btnColor="btnColor" :btnSize="btnSize" />'
-        }
-      }
-    }}
-  >
-    {Template.bind({})}
+  <Story name="기본 사용법" args={propsDefault}>
+    {defaultTemplate}
   </Story>
 </Canvas>
 
-<ArgsTable story="Default" />
+
+<!-- ⚠️ 컴포넌트의 실제 모습이 아래 코드를 통해서 보여집니다. -->
+### 🎛 컴포넌트 리모콘
+
+> 여기서 컴포넌트 속성을 확인하면서 설정할 수 있습니다.
+
+<ArgsTable story="기본 사용법" />
+
+### ⚗️ 컴포넌트 코드
+
+> 아래 코드를 복사한 뒤 바로 사용 할 수 있습니다.
+
+
+<Canvas>
+  <Story name="코드 결과물">
+    {defaultCode}
+  </Story>
+</Canvas>
+
+
+<!-- ⚠️ 아래에 데이터 문서를 별개로 작성하여 다른 사용법을 작성할 수도 있습니다. ⚠️ -->
