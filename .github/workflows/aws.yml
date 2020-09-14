@@ -71,7 +71,7 @@ jobs:
     # 💡 TASK DEFINITION DOWNLOAD
     - name: 📥  작업 정의 파일을 다운로드 받습니다.
       run: |
-        aws ecs describe-task-definition --task-definition aha-qna-role --query taskDefinition > task-definition.json
+        aws ecs describe-task-definition --task-definition aha-qna-web-cluster-task --query taskDefinition > task-definition.json
     
     - name: 📝  ECS 작업 정의에 새 이미지 ID를 입력합니다.
       id: task-def
@@ -79,7 +79,7 @@ jobs:
       with:
         task-definition: task-definition.json
         # 💡 ECS CONTAINER NAME
-        container-name: aha-qna-web-container
+        container-name: aha-qna-web-cluster-container
         image: ${{ steps.build-image.outputs.image }}
 
     - name: 📦  ECS 배포 작업을 정의합니다.
