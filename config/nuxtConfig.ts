@@ -1,3 +1,4 @@
+require('dotenv').config()
 import { dev, prod } from '../src/env'
 import * as Config from '.'
 
@@ -10,8 +11,8 @@ export const NuxtConfig = {
 
   // * NUXT 구동 환경을 정의합니다.
   server: {
-    port: 14000,
-    host: '0.0.0.0'
+    host: process.env.HOST || '0.0.0.0',
+    port: process.env.PORT || 3000
   },
 
   // * 배포할 경로를 지정합니다.
@@ -41,6 +42,7 @@ export const NuxtConfig = {
 
   // * Nuxt 의 빌드 시 작동되는 모듈들을 지정합니다.
   buildModules: [
+    '@nuxtjs/dotenv',
     '@nuxt/typescript-build',
     '@nuxtjs/tailwindcss',
     '@nuxtjs/pwa',
