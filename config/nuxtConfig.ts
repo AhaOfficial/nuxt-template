@@ -8,6 +8,12 @@ export const NuxtConfig = {
   // * USSR 을 적용합니다.
   mode: 'universal',
 
+  // * NUXT 구동 환경을 정의합니다.
+  server: {
+    port: 14000,
+    host: '0.0.0.0'
+  },
+
   // * 배포할 경로를 지정합니다.
   srcDir: './src',
 

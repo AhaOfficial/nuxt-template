@@ -1,11 +1,11 @@
 {
-  "name": "nuxt-template",
-  "description": "Nuxt.js TypeScript project",
-  "version": "1.0.0",
+  "name": "aha-connects-web",
+  "description": "Aha Connects Web App",
+  "version": "0.1.0",
   "config": {
     "nuxt": {
       "host": "0.0.0.0",
-      "port": "80"
+      "port": "14001"
     }
   },
   "dependencies": {
@@ -17,9 +17,7 @@
     "@nuxtjs/tailwindcss": "3.0.2",
     "@nuxtjs/universal-storage": "^0.5.5",
     "@vue/composition-api": "1.0.0-beta.11",
-    "bignumber.js": "^9.0.0",
     "core-js": "^3.6.5",
-    "dayjs": "^1.8.35",
     "deepmerge": "^4.2.2",
     "fingerprintjs2": "^2.1.2",
     "nuxt": "2.14.5",

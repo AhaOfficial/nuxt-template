@@ -26,8 +26,12 @@ module.exports = {
     '@typescript-eslint/no-var-requires': 'off',
     '@typescript-eslint/interface-name-prefix': 'off',
     'array-element-newline': ['warn', 'consistent'],
-    'prettier/prettier': 'off',
     'handle-callback-err': 'off',
-    'require-await': 'off'
+    'require-await': 'off',
+    'vue/no-v-html': 'off',
+    'no-useless-return': 'off'
+  },
+  parserOptions: {
+    warnOnUnsupportedTypeScriptVersion: false
   }
 }

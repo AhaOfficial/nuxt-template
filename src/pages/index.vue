@@ -12,9 +12,9 @@
         <div class="form">
           <!-- 주 내용이 담기는 넓은 레이아웃 -->
           <div class="w-9/12">
-            <span class="pr-2">{{ item.emoji }}</span>
-            <span class="title">{{ item.title }}</span>
-            <span class="info-short">&nbsp;-&nbsp;{{ item.infoShort }}</span>
+              <span class="pr-2">{{ item.emoji }}</span>
+              <span class="title">{{ item.title }}</span>
+              <span class="info-short">&nbsp;-&nbsp;{{ item.infoShort }}</span>
           </div>
           <!-- 주소용 좁은 레이아웃 -->
           <div class="w-3/12 text-right">
