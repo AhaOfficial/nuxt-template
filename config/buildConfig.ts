@@ -61,6 +61,9 @@ export const BuildConfig = {
     // * gzip 을 사용하지 않습니다.
     performance: {
       gzip: false
+    },
+    optimization: {
+      minimize: true
     }
   }
 } as Config.Interface.IConfig

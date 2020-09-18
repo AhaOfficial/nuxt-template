@@ -1,0 +1,5 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+/*  글로벌 스타일은 ~assets/scss/app 디렉터리 아래 정의합니다. */
+@import './app';
+@import 'tailwindcss/utilities';

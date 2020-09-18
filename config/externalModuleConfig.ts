@@ -11,7 +11,7 @@ export const ExternalModuleConfig = {
   // * 테일윈드
   tailwindcss: {
     configPath: '~/config/tailwind.config.js',
-    cssPath: '~/assets/css/tailwind.scss',
+    cssPath: '~/assets/scss/tailwind.scss',
     exposeConfig: false
   },
 
@@ -25,7 +25,7 @@ export const ExternalModuleConfig = {
   // * svgSprite 라이브러리 옵션을 설정합니다.
   svgSprite: {
     // * default url 입니다.
-    input: '~/assets/images/icons'
+    input: '~/assets/icons'
   },
 
   // * universal-storage 옵션을 설정합니다.
