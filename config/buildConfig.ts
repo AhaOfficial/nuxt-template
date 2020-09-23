@@ -1,4 +1,3 @@
-import path from 'path'
 import * as Config from './'
 
 /**
@@ -63,7 +62,7 @@ export const BuildConfig = {
       gzip: false
     },
     optimization: {
-      minimize: true
+      minimize: process.argv.length > 5 && process.argv[4] === '--plain'
     }
   }
 } as Config.Interface.IConfig

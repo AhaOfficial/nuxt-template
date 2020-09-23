@@ -14,7 +14,6 @@ const ignoredTranspilePatterns = [
   'loader-utils',
 
   // * 뷰 & 넉스트
-  /^@vue.?/,
   /^@nuxt.?/,
   'nuxt'
 ]

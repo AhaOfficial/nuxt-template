@@ -40,7 +40,17 @@ export const HeadConfig = {
       }
     ],
 
-    script: [],
+    script: [
+      {
+        src: 'https://cdnjs.cloudflare.com/ajax/libs/core-js/3.6.5/minified.js',
+        body: true
+      },
+      {
+        src:
+          'https://polyfill.io/v2/polyfill.min.js?features=IntersectionObserver',
+        body: true
+      }
+    ],
 
     // * 파비콘 주소를 명시합니다.
     link: [
