@@ -1,6 +1,5 @@
 import { todo } from './define'
 import { UseTodo } from './inject'
-import * as Core from '~/core'
 
 /**
  * * 할 일 목록 상태 사용 함수

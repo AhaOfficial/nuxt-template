@@ -17,6 +17,7 @@ const useExample = async () => {
 
       // * 게시글들을 읽어옵니다.
       const posts = await service.Post.getPosts({ userId: 4 })
+      console.log(`👀 posts`, posts)
 
       // * 게시글을 업로드 합니다.
       const uploadedPost = await service.Post.uploadPost({
@@ -36,15 +37,18 @@ const useExample = async () => {
         body: 'bar',
         userId: 1
       })
+      console.log(`👀 modifiedPost`, modifiedPost)
 
       // * 게시글을 삭제합니다.
       const isRemoved = await service.Post.removePost(1)
+      console.log(`👀 isRemoved`, isRemoved)
 
       // * 잘못된 요청을 전송합니다.
       // * (잘못된 요청을 전송해도 치명적인 오류가 발생하지 않습니다.)
-      const response = await service.Post.wrongPost(1)
+      const errorResponse = await service.Post.wrongPost(1)
+      console.log(`👀 errorResponse`, errorResponse)
     },
-    exception: async ({ error, service, isClient }) => {
+    exception: async ({ error }) => {
       // * 여기 안에서 예외처리를 해주세요.
       console.log('error?', error)
     }
@@ -54,7 +58,7 @@ const useExample = async () => {
 export default VueAPI.defineComponent({
   components: {},
   props: {},
-  setup(props, context) {
+  setup(_props, _context) {
     useExample()
 
     return {}

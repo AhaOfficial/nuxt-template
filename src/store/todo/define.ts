@@ -1,6 +1,5 @@
 import { Store } from 'vue-state-store'
-import { ITodo, ITodoItem } from './declare'
-import * as Core from '~/core'
+import { ITodo } from './declare'
 
 /**
  * * 할 일 목록 상태 저장소 규격 정의

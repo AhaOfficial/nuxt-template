@@ -40,6 +40,7 @@ export const HeadConfig = {
       }
     ],
 
+    // * 미리 로드될 폴리필 스크립트들 입니다.
     script: [
       {
         src: 'https://cdnjs.cloudflare.com/ajax/libs/core-js/3.6.5/minified.js',

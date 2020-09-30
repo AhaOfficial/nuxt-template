@@ -1,5 +1,4 @@
 import { Store } from 'vue-state-store'
-import * as Core from '~/core'
 import { VueAPI } from '~/core'
 
 /**
@@ -66,11 +65,16 @@ export class UseStory {
   isEmptyTodo = VueAPI.computed(() => this.todo.value === '')
   isTodoShow = VueAPI.computed(() => this.todos.value.length > 0)
   isTodosEmpty = VueAPI.computed(() => this.todos.value.length === 0)
-  emptyClass = VueAPI.computed(() => this.isEmptyTodo && ['cursor-not-allowed', 'opacity-50'])
+  emptyClass = VueAPI.computed(
+    () => this.isEmptyTodo && ['cursor-not-allowed', 'opacity-50']
+  )
 
   // * event 로직 입니다.
-  addTodo = () => !this.isEmptyTodo.value && (story.addTodo({ name: this.todo.value }), (this.todo.value = ''))
-  typingTodo = (e) => (this.todo.value = e.target.value)
+  addTodo = () =>
+    !this.isEmptyTodo.value &&
+    (story.addTodo({ name: this.todo.value }), (this.todo.value = ''))
+
+  typingTodo = e => (this.todo.value = e.target.value)
 }
 
 /**

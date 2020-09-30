@@ -4,7 +4,9 @@
     <!-- 래퍼 -->
     <div class="counter">
       <!-- 제목 -->
-      <h1 class="title">😊&nbsp;&nbsp;간단한 카운터: {{ counter.$counter.count }}</h1>
+      <h1 class="title">
+        😊&nbsp;&nbsp;간단한 카운터: {{ counter.$counter.count }}
+      </h1>
 
       <!-- - 버튼 -->
       <button class="up-button" @click="counter.down()">-</button>
@@ -20,11 +22,11 @@
 
 <script lang="ts">
 import * as Core from '~/core'
-import { VueAPI } from '~/core'
 import { Counter } from '~/store'
+const { VueAPI } = Core
 
 export default VueAPI.defineComponent({
-  setup(props, context) {
+  setup(_props, _context) {
     return {
       /**
        * 카운터 상태의 사용함수 입니다.

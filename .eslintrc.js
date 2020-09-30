@@ -18,16 +18,20 @@ module.exports = {
     'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
     'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
     eqeqeq: 'warn',
-    'no-empty-function': 'off',
-    'no-useless-constructor': 'off',
-    'no-unused-vars': 'off',
-    '@typescript-eslint/no-unused-vars': 'off',
-    '@typescript-eslint/no-empty-function': 'off',
-    '@typescript-eslint/no-var-requires': 'off',
+    'no-empty-function': 'warn',
+    'no-useless-constructor': 'warn',
+    'no-unused-vars': 'warn',
+    '@typescript-eslint/no-unused-vars': 'warn',
+    '@typescript-eslint/no-empty-function': 'warn',
+    '@typescript-eslint/no-var-requires': 'warn',
     '@typescript-eslint/interface-name-prefix': 'off',
     'array-element-newline': ['warn', 'consistent'],
-    'prettier/prettier': 'off',
     'handle-callback-err': 'off',
-    'require-await': 'off'
+    'require-await': 'off',
+    'vue/no-v-html': 'off',
+    'no-useless-return': 'off'
+  },
+  parserOptions: {
+    warnOnUnsupportedTypeScriptVersion: false
   }
 }
