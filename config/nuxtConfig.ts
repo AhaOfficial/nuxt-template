@@ -17,7 +17,7 @@ export const NuxtConfig = {
 
   // * 라우터 설정을 지정합니다.
   router: {
-    middleware: ['auth']
+    middleware: ['auth', 'store']
   },
 
   // * Nuxt 의 기능을 확장할 플러그인들을 지정합니다.
