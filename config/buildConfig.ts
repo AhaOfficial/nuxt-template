@@ -1,4 +1,3 @@
-import path from 'path'
 import * as Config from './'
 
 /**
@@ -61,6 +60,9 @@ export const BuildConfig = {
     // * gzip 을 사용하지 않습니다.
     performance: {
       gzip: false
+    },
+    optimization: {
+      minimize: process.argv.length > 5 && process.argv[4] === '--plain'
     }
   }
 } as Config.Interface.IConfig

@@ -6,8 +6,8 @@ import * as Config from '.'
  * * 모든 Nuxt 설정이 여기에 담깁니다.
  */
 export const NuxtConfig = {
-  // * USSR 을 적용합니다.
-  mode: 'universal',
+  // * 구형 브라우저 지원 빌드를 작동시킵니다.
+  modern: 'server',
 
   // * NUXT 구동 환경을 정의합니다.
   server: {
@@ -24,11 +24,14 @@ export const NuxtConfig = {
 
   // * 라우터 설정을 지정합니다.
   router: {
-    middleware: ['auth']
+    middleware: ['auth', 'store']
   },
 
   // * Nuxt 의 기능을 확장할 플러그인들을 지정합니다.
-  plugins: ['~/plugins/composition-api', '~/plugins/nuxt'],
+  plugins: [
+    '~/plugins/composition-api',
+    '~/plugins/nuxt'
+  ],
 
   // * Nuxt 의 빌드 시 빌드본에 포함될 모듈들을 지정합니다.
   modules: [

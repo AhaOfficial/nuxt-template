@@ -130,7 +130,7 @@ export class RestAPI {
       option = {
         noPreprocess: false,
         noAuthorization: false
-      },
+      }
     } = params
 
     try {
@@ -334,8 +334,7 @@ export class RestAPI {
     link,
     data,
     option,
-    header,
-    axiosOption
+    header
   }: {
     link: string
     data: any
@@ -360,8 +359,7 @@ export class RestAPI {
     link,
     data,
     option,
-    header,
-    axiosOption
+    header
   }: {
     link: string
     data: any
@@ -384,7 +382,6 @@ export class RestAPI {
   ) => {
     const {
       link,
-      process,
       option = {
         noPreprocess: false,
         noAuthorization: false

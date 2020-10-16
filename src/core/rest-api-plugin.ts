@@ -8,6 +8,7 @@ export const setupProgress = (api: RestAPI) => {
   if (process.server) return
   const axios: any = api.extends.getAxios()
 
+  /* eslint-disable */
   const noopLoading = {
     finish: () => {},
     start: () => {},
